@@ -1,0 +1,215 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css" />
+<!-- 图片展示CSS -->
+<link rel="stylesheet" href="__CSS__/main.css" />
+	<!-- 主体展示 -->
+		<div class="am-container">
+				<!-- 标题 -->
+        <p>
+            <span class="am-badge am-badge-danger">售</span>
+            {$data.lname} {$data.floor}层 {$data.area}平米 {$data.shi}室 {$data.totalprice}万元
+            <if condition="$user_info.uid eq $data['uid']">
+            <div class="am-cf">
+              <div class="am-fr">
+                <a href="{:U('home/object/edit',array('id'=>$data['id']))}" class="am-btn am-btn-default am-btn-sm am-round">编辑</a>
+                <a href="{:U('home/object/trash',array('id'=>$data['id']))}" data-confirm="确认删除该房源么?" class="am-btn  ajax-post am-btn-sm am-btn-danger am-round">下架</a>
+              </div>
+            </div>
+            </if>
+				</p>
+					<!-- 房源信息 -->
+					<section data-am-widget="accordion" class="am-accordion am-accordion-default"
+						data-am-accordion='{ "multiple": true }' style="margin:5px 0px">
+						  <dl class="am-accordion-item am-active am-disabled">
+							<dt class="am-accordion-title">房源描述</dt>
+							<dd class="am-accordion-bd am-collapse am-in">
+							  <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+							  <div class="am-accordion-content an-jichu">
+								  <a style="color:#666;">{$data.description}</a>
+							  </div>
+   						</dd>
+             </dl>
+						  <div class="am-accordion-item am-active am-disabled">
+							<dt class="am-accordion-title">基础信息</dt>
+							<div class="am-accordion-bd am-collapse am-in">
+							  <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+							  <div class="am-accordion-content">
+								 <div class="am-g">
+									  <div class="am-u-sm-6 an-jichu">楼盘：{$data.lname}</div>
+									  <div class="am-u-sm-6 an-jichu">楼层：{$data.floor}层</div>
+									  <div class="am-u-sm-6 an-jichu">面积：{$data.area}平米</div>
+									  <div class="am-u-sm-6 an-jichu">户型：{$data.shi}室{$data.ting}厅</div>
+									  <div class="am-u-sm-6 an-jichu">原价：{$data.originalprice}万元</div>
+									  <div class="am-u-sm-6 an-jichu">现价：{$data.totalprice}万元</div>
+									  <div class="am-u-sm-12 an-jichu am-text-truncate">位置：{$data.cbd}</div>
+								 </div>
+							  </div>
+							</div>
+            <ul class="am-avg-sm-3">
+              <notempty name="data.pics">
+              <php>
+                $array_pic = explode(',',$data['pics']);
+                krsort($array_pic);
+              </php>
+                  <volist id="item" name="array_pic">
+                      <li class="am-padding-xs">
+                      <img class="download-pics am-img-responsive" src="{:getThumbImageById($item,150,150)}" data-id="{$item}" alt="">
+                      </li>
+                  </volist>
+              </notempty>
+            </ul>
+                <if condition="is_login() AND ($user_info.identity neq 0)">
+                      <dl class="am-accordion-item am-active am-disabled">
+                          <dt class="am-accordion-title">代理政策</dt>
+                          <dd>
+                               <div class="am-g">
+                                  <div class="am-u-sm-12 an-jichu">成交政策：{$data.deal_description}</div>
+                                  <div class="am-u-sm-12 an-jichu">发布者：  {$data.nickname}</div>
+                                  <div class="am-u-sm-12 an-jichu">发布电话：<a href="{$data.mobile}">{$data.mobile}</a></div>
+                               </div>
+                          </dd>
+                      </dl>
+                 <elseif condition="I('get.tel')" />
+                      <dl class="am-accordion-item am-active am-disabled">
+                          <dt class="am-accordion-title">联系电话</dt>
+                          <dd>
+                               <div class="am-g">
+                                 <div class="am-u-sm-12 an-jichu">
+                                   <php>
+                                     $connector =  D('member')->alias('a')->join('__UCENTER_MEMBER__ b on a.uid = b.id','left')->where(array('b.mobile'=>I('get.tel')))->getField('nickname');
+                                   </php>
+                                   <span>联系人:{$connector}</span><br/>
+                                   <span>电话&nbsp;&nbsp;&nbsp;:<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
+                                 </div>
+                               </div>
+                          </dd>
+                      </dl>
+
+                </if>
+						  </div>
+						</section>
+
+		</div>
+
+		<!--底部工具栏-->
+<if condition="($user_info.identity neq 0) AND (is_login())">
+<!--
+
+		<div class="yincangdh">
+			<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "id="">
+				<ul class="am-navbar-nav am-cf am-avg-sm-4" style="background-color:#c40d23;">
+					<li>
+						<a href="sms:{$data.mobile}" class="">
+							<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/Information.png"
+							alt="消息" />
+							<span class="am-navbar-label">短信</span>
+						</a>
+					</li>
+					<li>
+						<a href="tel:{$data.mobile}" class="">
+
+							<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/phone.png"
+							alt="呼叫" />
+							<span class="am-navbar-label">呼叫</span>
+						</a>
+					</li>
+					<li data-am-navbar-share>
+						<a href="###" class="">
+							<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/share.png"
+							alt="分享" />
+							<span class="am-navbar-label">分享</span>
+						</a>
+					</li>
+				</ul>
+			</div>	
+		</div>
+-->
+</if>
+    <style>
+      #demo{
+        position:fixed;
+        overflow: hidden;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-color:black;
+        z-index:1016;
+        display:none;
+      }
+
+      #demo img{
+        width:100%;
+      }
+
+      #demo ul{
+        padding:0;
+        width:100%;
+      }
+
+      #demo li{
+        list-style: none;
+        width:100%;
+      }
+
+      #demo li{
+        display:none;
+      }
+
+      #demo li.active{
+        display:block;
+      }
+
+      .back-to-dest{
+        position: absolute;
+        top:1rem;
+        left:1rem;
+        font-size:2rem;
+      }
+
+      .back-to-left{
+        position: absolute;
+        padding:2rem;
+        top:40%;
+        left:1rem;
+        font-size:3rem;
+      }
+
+      .back-to-right{
+        position: absolute;
+        padding:2rem;
+        top:40%;
+        right:1rem;
+        font-size:3rem;
+      }
+
+      .back-to-dest a{
+        color:#ccc;
+        width:100%;
+      }
+
+      .fake-download{
+        width:100%;
+      }
+
+      .fake-download span{
+        text-align: center;
+        font-size:3rem;
+      }
+
+    </style>
+    <div id="demo" class="am-vertical-align">
+      <div class="back-to-dest"><a href="" class="am-icon-chevron-left "></a></div>  
+      <ul class="am-vertical-align-middle">
+        <volist id="item" name="array_pic">
+        <li class="am-padding-xs" data-id="{$item}">
+             <img class="" src="{:getThumbImageById($item,900)}" alt="">
+          </li>
+        </volist>     
+      </ul>
+      <div class="back-to-left"><span class="am-icon-chevron-left "></span></div>  
+      <div class="back-to-right"><span class="am-icon-chevron-right "></span></div>  
+    </div>
+    <script src="__JS__/alertpic.js"></script>
+</block>

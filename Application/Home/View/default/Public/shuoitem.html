@@ -1,0 +1,25 @@
+<div class="am-g">
+	<div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered">
+		<div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin:-1px 0px 0px 0px;">
+		  <div class="am-list-news-bd">
+			  <ul class="am-list">
+				<volist id="item" name="list">
+				  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+					<div class="am-u-sm-4 am-list-thumb">
+					  <p class=" am-text-truncate" style="margin-bottom:0px;color:red;">{$item.nickname}</p>
+					</div>
+					<div class=" am-u-sm-8 am-list-main">
+						<ul class="am-list-item-hd am-cf am-text-truncate am-text-left" style="padding-left:0px;">
+							<a href="{:U('home/Index/mylist',array('uid'=>$item['uid']))}">
+							<span class="am-badge am-badge-danger am-fr" style="margin-top:5px;">21套</span>
+							{$item.content}
+							</a>
+						  </ul>
+					</div>
+				  </li>
+				</volist>
+			  </ul>
+		  </div>
+		</div>
+	</div>
+</div>

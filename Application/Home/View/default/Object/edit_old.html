@@ -1,0 +1,125 @@
+<extend name="Base/common"/>
+<block name="body">
+    <link type="text/css" rel="stylesheet" href="__CSS__/editProperty.css"/>
+    <!-- 主体 -->
+    <!--顶部Banner-->
+    <div class="container common_block_border" style="position: relative">
+      <form action="{:U(edit)}" method="post">
+            <div class="col-md-6">
+                  <legend>增加房源图片</legend>
+                  <div class='row'>
+                    <volist name=":explode(',',$data['pic'])" id="vo">
+                      <div class="col-md-122">
+                        <img src="{:getThumbImageById($vo,400)}" alt="" class="center-block img-responsive">
+                      </div>  
+                    </volist>   
+                  </div>
+                  <div id="wrapper">
+                      <div id="container">
+                          <!--头部，相册选择和格式选择-->
+                          <div id="uploader">
+                              <div class="queueList">
+                                  <div id="dndArea" class="placeholder">
+                                      <div id="filePicker"></div>
+                                      <p>或将照片拖到这里，最多可以上传9张</p>
+                                  </div>
+                              </div>
+                              <div class="statusBar" style="display:none;">
+                                  <div class="progress">
+                                      <span class="text">0%</span>
+                                      <span class="percentage"></span>
+                                  </div><div class="info"></div>
+                                  <div class="btns">
+                                      <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                  </div>
+                              </div>
+                           </div>
+                       </div>
+                   </div>
+	          </div>
+            <div class="col-md-6">
+              <div class="form-horizontal" role="form" method="post">
+                  <legend>增加房源信息</legend>
+                  <div class="form-group">
+                       <label class="col-md-2 control-label" for="">地址</label>
+                       <div class="col-md-8">
+                         <input type="text" name="address" value="{$data.address}" class="form-control">
+                       </div>
+                  </div>
+                  <div class="form-group">
+                         <label class="col-md-2 control-label" for="">楼盘名称</label>
+                         <div class="col-md-6">
+                           <input class="form-control" type="text" name="lname" value="{$data.lname}">
+                         </div>
+                  </div>
+                  <div class="form-group">
+                         <label class="col-md-2 control-label" for="">楼层</label>
+                         <div class="col-md-3">
+                           <div class="input-group">
+                              <input class="form-control" type="text" name="floor" value="{$data.floor}">
+                              <span class="input-group-btn"><button class="btn btn-default">楼</button></span>
+                           </div>
+                         </div>
+                  </div>
+                  <div class="form-group">
+                          <label for="" class="col-md-2 control-label">户型</label>
+                          <div class="col-md-3">
+                            <div class="input-group">
+                              <input type="text"  name='ting' value='{$data.ting}' class="form-control">
+                                <span class="input-group-btn"><button class="btn btn-default">厅</button></span>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="input-group">
+                              <input type="" class="form-control" name="shi" value="{$data.shi}">
+                                <span class="input-group-btn"><button class="btn btn-default">室</button></span>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="input-group">
+                              <input type="" class="form-control" name="wei" value="{$data.wei}">
+                                <span class="input-group-btn"><button class="btn btn-default">卫</button></span>
+                            </div>
+                          </div>
+                  </div>
+                  <div class="form-group">
+                           <label for="" class="col-md-2 control-label">总价</label>
+                           <div class="col-md-3">
+                              <div class="input-group">
+                                <input type="text"  name="totalprice" value="{$data.totalprice}" class="form-control">
+                                  <span class="input-group-btn"><button class="btn btn-default">元</button></span>
+                              </div>
+                          </div>
+                  </div>
+                  <div class="form-group">
+                           <label for="" class="col-md-2 control-label">佣金</label>
+                           <div class="col-md-3">
+                              <div class="input-group">
+                                <input type="text" name="charge" value="{$data.charge}" class="form-control">
+                                  <span class="input-group-btn"><button class="btn btn-default">元</button></span>
+                              </div>
+                          </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-2 control-label" for="">描述</label>
+                    <div class="col-md-10"><textarea id="" class="form-control" name="description" cols="30" rows="10">{$data.description}</textarea></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                         <input type="hidden" name="id" value="{$data.id}">
+                         <input type="hidden" name="pic" value="{$data.pic}">
+                         <input type="submit" id="submit" class="btn btn-primary" value="保存" data-loading="请稍后。。">  
+                    </div>
+                  </div>
+              </div>
+            </div>
+            </form>
+	          <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" />
+            <link type="text/css" rel="stylesheet" href="__PUBLIC__/js/ext/webuploader/css/style.css"/>
+            <script type="text/javascript" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+            <!-- 官方DEMO  -->
+            <script type="text/javascript" src="__JS__/upload.js"></script>
+            <!--moon’s DEMO-->
+            <script type="text/javascript" src="__JS__/editProperty.js"></script>
+    </div>
+</block>

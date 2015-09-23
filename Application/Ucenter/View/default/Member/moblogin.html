@@ -1,0 +1,26 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/zheng.css">
+   <div class="am-container">
+        <section>
+          <form class="ajax-form am-form am-u-md-5 am-u-md-centered" action="{:U('Ucenter/member/login')}"  method='post'>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="">账户(手机号码)</label>
+                <input type="text" name='username' placeholder="请输入手机号码">
+              </div>
+              <div class="am-form-group">
+                <label for="">密码</label>
+                <input type="password" name='password' placeholder="请输入密码">
+              </div>
+              <div class="am-form-group">
+                <input type="submit" class="am-btn am-btn-primary am-btn-block" style="background-color:#c40d23;border-color:#c40d23;" value="登陆">
+              </div>
+              <div class="am-form-group">
+                <a href="{:U('Ucenter/member/mobregister')}" class="am-fr"> 注册账号</a>  
+              </div>
+            </fieldset>
+          </form>
+        </section>
+  </div>
+</block>

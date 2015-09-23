@@ -1,0 +1,115 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/zheng.css">
+<style>
+    ul{
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+    #role-list{
+        padding-left: 0;margin: 0;list-style: none;
+    }
+        #role-list li{
+            float: left;margin-right: 10px;padding: 3px 10px;
+            margin-bottom:15px;
+        }
+        .am-in{
+            padding-bottom: 0px;
+        }
+        #role-list .active{
+            background-color: #0084c7;
+        }
+        #type{
+            color:#000000;
+            font-size: 14px;
+        }
+</style>
+   <div class="am-container">
+<section>
+          <form class="ajax-form am-form am-u-md-5 am-u-md-centered" action="{:U('Ucenter/member/register')}"  method='post'>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="">账户(手机号码)</label>
+                <input type="text" name='username' placeholder="此号码用于客户联系和登陆">
+              </div>
+              <div class="am-form-group">
+                <label for="">姓名</label>
+                <input type="text" name='nickname' placeholder="请输入姓名">
+              </div>
+              <div class="am-form-group">
+                <label for="">密码</label>
+                <input type="password" name='password' placeholder="请输入密码">
+              </div>
+              <div class="am-form-group">
+                <label for="">确认密码</label>
+                <input type="password" name='password' placeholder="再次请输入密码">
+              </div>
+
+              <div class="am-form-group">
+                <label for="">验证手机</label>
+                <div class="am-input-group" style="width:200px">
+                  <input type="text" class="am-form-field" placeholder="验证码" name="reg_verify" <if condition='$key neq 0'>disabled="disabled"</if>>
+                  <span class="am-input-group-btn">
+                    <div class="am-btn am-btn-secondary" style="background-color:#c40d23;border-color:#c40d23;" id="getVerify">发验证码</div>
+                  </span>
+                </div>
+              </div>
+              <input id="name" type="hidden" name="role" value="1">
+
+              <!--
+              <div class="am-form-group">
+                <label for="">选择身份</label>
+                <ul id="role-list" class="nav nav-justified nav-pills">
+                  <li class="active"><a style="color:#c8c8c8" onclick="$('#name').val(1);$('#role-list li').removeClass('active');$(this).parent().addClass('active');$(this).removeClass('am-text-primary').css('color','#c8c8c8')"><i class="icon-user"></i> 中介 </a></li> 
+                  <li><a class="am-text-primary" onclick="$('#name').val(2);$('#role-list li').removeClass('active');$(this).parent().addClass('active');$(this).removeClass('am-text-primary').css('color','#c8c8c8')"><i class="icon-user"></i> 楼盘 </a></li>                             
+                </ul>
+              </div>
+              -->
+
+              <div class="am-form-group">
+                <input type="hidden" name="reg_type" value="mobile">
+                <input type="submit" class="am-btn am-btn-success am-btn-block" style="background-color:#c40d23;border-color:#c40d23;" value="注册">
+              </div>
+            </fieldset>
+          </form>
+        </section>
+        <script>
+             $(function () {
+
+                var DecTime = {
+                    obj:0,
+                    time:0,
+                    dec_time : function(){
+                      if(DecTime.time > 0){
+                            DecTime.obj.text(DecTime.time--+'S');
+                            setTimeout(DecTime.dec_time,1000);
+                        }else{
+                            DecTime.obj.text('验证手机')
+                            DecTime.obj.attr('disabled',false)
+                        }
+                      }
+                };
+
+               $('#getVerify').click(function () {
+                   var $this = $(this);
+                   var account = $('[name="username"]').val();
+                   var type= 'mobile';
+                   $.post(U('Ucenter/verify/sendverify'), {account: account, type: type, action: 'member'}, function (res) {
+                       if(res.status) {
+                           DecTime.obj = $this;
+                           DecTime.time = "30";
+                           $this.attr('disabled',true);
+                           DecTime.dec_time();
+                           console.log('aaa');
+                           toast.success(res.info);
+                       }else{
+                           toast.error(res.info);
+                       }
+                   })
+                 })
+
+               })
+        </script>
+  </div>
+</block>

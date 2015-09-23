@@ -1,0 +1,68 @@
+#hero{
+  background:url(http://dl.bizhi.sogou.com/images/2012/04/09/97984.jpg);
+  height:auto;
+  background-size:cover;
+  padding-top:50px;
+}
+
+#hero h2,h1,form{
+  text-align:center;
+}
+
+@media only screen and (min-width: 640px){  
+	.yincangdh {
+		display: none !important;
+		visibility: hidden !important;
+	}	
+}
+
+@media screen and (max-width: 640px) {
+	.yincang2 {
+		display: none !important;
+		visibility: hidden !important;
+	}
+}
+
+.am-menu-offcanvas1 .am-menu-juyou{position:absolute;right:30px;top:-55px;width:44px;color:#FFF}
+
+.beijingcolor{
+	background-color:white;
+}
+
+#beijingwhite{
+	background-color:rgb(232, 232, 232);
+}
+
+.fontjianju{
+	margin:5px;
+}
+
+#jianjudibu{
+	margin-bottom:10px;
+}
+
+.daohangcolor{
+	background-color:#c40d23;
+}
+
+#bianju1{
+	margin:20px
+}
+
+.img-container{
+  padding:4px;
+}
+
+[class*="am-u-"]{
+  padding-right:0;
+}
+
+.am-close-spin{
+  position: absolute;
+  right:5px;
+  top:5px;
+}
+
+#file-list li{
+  position:relative;
+}

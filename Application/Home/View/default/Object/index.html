@@ -1,0 +1,54 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+
+<div class="am-container">
+  <div class="am-scrollable-horizontal">
+    <thead>
+      <tr>
+        <th><a href="{:U('Home/object/edit')}" style="margin-bottom:10px" type="button" class="am-btn am-btn-default"><i class="am-icon-plus"></i>&nbsp;增加房源</a></th>
+      </tr>
+    </thead>
+
+    <table class="am-table am-table-bordered am-table-hover">
+
+      <tbody>
+
+        <volist name="list" id="item">
+        <tr>
+          <td class="am-text-center">{$key+1}</td>
+          <td>
+            <if condition="$item.type eq 1">
+              <a href="{:U('Home/index/objectShow',array('id'=>$item['id'],'tel'=>session('user_info.mobile')))}"   class="am-text-truncate">
+            <elseif condition="$item.type eq 2" />
+              <a href="{:U('Home/index/askShow',array('id'=>$item['id'],'tel'=>session('user_info.mobile')))}"   class="am-text-truncate">
+            </if>
+              
+              {$item.title}</a></td>
+          <td class="tdwidth" id="tdwidth1">
+            <if condition="$item.type eq 1">
+              <a href="{:U('Home/object/trash',array('id'=>$item['id']))}" data-confirm="确认删除该房源么?" class="ajax-post am-btn am-btn-danger am-btn-sm am-topbar-right" style="margin:3px;">
+            <elseif condition="$item.type eq 2" />
+              <a href="{:U('Home/ask/trash',array('id'=>$item['id']))}" data-confirm="确认删除该房源么?" class="ajax-post am-btn am-btn-danger am-btn-sm am-topbar-right" style="margin:3px;">
+            </if>
+              <i class="am-icon-exclamation-circle"></i>
+              删除
+              </a>
+            <if condition="$item.type eq 1">
+              <a href="{:U('Home/object/edit',array('id'=>$item['id']))}"  class="am-btn am-btn-primary am-btn-sm am-topbar-right" style="margin:3px;">
+            <elseif condition="$item.type eq 2" />
+              <a href="{:U('Home/ask/edit',array('id'=>$item['id']))}"  class="am-btn am-btn-primary am-btn-sm am-topbar-right" style="margin:3px;">
+            </if>
+              <i class="am-icon-pencil"></i>
+               编辑
+              </a>
+          </td>
+        </tr>
+        </volist>
+      </tbody>
+    </table>
+        {:getPagination_amaze($totalcount,10)}
+  </div>
+</div>
+
+</block>

@@ -1,0 +1,119 @@
+<style>
+  .filter-top{
+    padding-top:.5em;
+    padding-bottom:.5em;
+    border-top:1px #E3E3E2 solid;
+    border-bottom:1px #E3E3E2 solid;
+  }
+
+  #filter li{
+    list-style:none;
+    line-height:2em;
+    padding:0
+
+  }
+  .filter-menu{
+    padding:0;
+  }
+  .filter-menu li{
+    text-align:center;
+    float:left;
+    width:25%;
+    border-right:1px #E3E3E2 solid;
+    font-size:.5em;
+  }
+
+  .filter-menu li:last-child{
+    border:none;
+  }
+
+  #filter-container{
+    background:#FFF;
+    position:absolute;
+    width:100%;
+  }
+
+  #filter-container li{
+    border-bottom:1px #E3E3E2 solid;
+  }
+
+  #filter-container li a{
+    color:#333;
+  }
+
+  #filter-container ul{
+    margin:0;
+    padding:0;
+    display:none;
+  }
+
+  .filter-cbd{
+    position:relative;
+  }
+
+  .cbd_second {
+    max-height:350px;
+    overflow-y:auto;
+    border-left:1px #E3E3E2 solid;
+    border-bottom:1px #E3E3E2 solid;
+    width:60%;
+    position:absolute;
+    background:#F7F7F7;
+    margin:0;
+    top:0;
+    right:0;
+  }
+
+</style>
+
+<script>
+
+  var cbd_table_json = {$cbd_table_json};
+  var common_url     = {$common_url|json_encode=###};
+
+</script>
+
+<script src="__JS__/filter.js"></script>
+<div id="filter" >
+
+  <div class="filter-top">
+    <ul class="am-g filter-menu am-cf">
+      <li id="cbd-triger"  ><span>{$filter_menu.cbd|default="区域"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+      <li id="price-triger"><span>{$filter_menu.price|default="价格"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+      <li id="shi-triger"  ><span>{$filter_menu.shi|default="户型"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+      <li id="area-triger" ><span>{$filter_menu.area|default="面积"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+    </ul>
+  </div>
+
+  <div id="filter-container">
+
+    <ul id="filter-cbd">
+
+      <li><a href="{:U('Home/index/filter',array_merge($common_url,array('cbd'=>0)))}"> &nbsp;&nbsp;&nbsp;全{$Think.session.user_city.city_name}</a> </li>
+      <volist id="item" name="cbd_table">
+      <li class="cbd-second-triger" data-id="{$item.id}">&nbsp;&nbsp;&nbsp;{$item.name}</li>
+      </volist>
+      <ul class="cbd_second">
+      </ul>
+    </ul>
+
+    <ul id="filter-price">
+      <volist id="item" name="price_table">
+      <li><a href="{:U('Home/index/filter',array_merge($common_url,array('price'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+      </volist>
+    </ul>
+
+    <ul id="filter-shi">
+      <volist id="item" name="shi_table">
+      <li><a href="{:U('Home/index/filter',array_merge($common_url,array('shi'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+      </volist>
+    </ul>
+
+    <ul id="filter-area">
+      <volist id="item" name="area_table">
+      <li><a href="{:U('Home/index/filter',array_merge($common_url,array('area'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+      </volist>
+    </ul>
+
+  </div>
+</div>

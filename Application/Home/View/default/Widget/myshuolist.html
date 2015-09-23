@@ -1,0 +1,14 @@
+<div class="myshuolist am-u-sm-12">
+  <ul class="am-list am-list-static">
+    
+    <notempty name="shuo.content">
+        <li class="am-cf">
+			<span style="color:red">{$user.nickname}:</span>
+              {$shuo.content}
+              <span class="am-fr" style="color:#A79B9B">{$shuo.createtime|date="m-d",###}</span> 
+        </li>
+    </notempty>
+      
+  </ul>
+  
+</div>

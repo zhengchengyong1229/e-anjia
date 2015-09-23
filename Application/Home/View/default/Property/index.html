@@ -1,0 +1,96 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+<div class="am-container" style="margin-top:-20px">
+<style>
+    .card-fix{
+      position:fixed;
+      margin-top:0;
+      top:0;
+      left:0;
+      background-color: #FFF;
+      border-bottom:1px solid #ccc;
+      z-index:3;
+    }
+</style>
+
+	<!-- 促销细则 -->
+	<div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin:0px;">
+
+<notempty name="shuo_data">
+<!--
+		<div class="am-g" id="card">
+            <a  class="am-link-muted" href="">
+              <div class="index-shuo am-list-thumb">
+                <img style="width:50px" class="an-img-shuo" src="{$shuo_data.avatar}" alt=""/>
+              </div>
+              <div class=" index-shuo-2 am-list-main">
+                <h3 class="am-list-item-hd" style="line-height:1">{$shuo_data.nickname}
+				<neq name="shuo_data.identity" value='0'> <span class=""><img style="display:inline-block;width:25px;margin-left:-7px;margin-right:-2px" src="__PUBLIC__/images/v.png" alt=""></span></neq></h3>
+                <h4 class="am-margin-0  am-text-default an-property-shuoming" style="color:#c40d23;font-size:15px;">{$shuo_data.title} </h4>
+              </div>
+            </a>
+		</div>
+
+-->
+</notempty>
+
+
+		<section data-am-widget="accordion" class="am-accordion am-accordion-default" data-am-accordion='{ "multiple": true }' style="margin:3px 0px">
+
+<notempty name="shuo_data">
+<!--
+          <dl class="am-accordion-item am-active am-disabled">
+            <dt class="am-accordion-title">活动详情</dt>
+              <dd class="am-accordion-bd am-collapse am-in">
+                <div class="am-accordion-content an-jichu">
+                  <pre class="property-pre">{$shuo_data.content}</pre>
+                </div>
+              </dd>
+          </dl>
+      
+         <if condition="is_login() AND ($user_info.identity neq 0)">
+              <dl class="am-accordion-item am-active am-disabled">
+                <dt class="am-accordion-title">代理政策</dt>
+                  <dd class="am-accordion-bd am-collapse am-in">
+                    <div class="am-accordion-content an-jichu">
+                        <pre class="property-pre">{$shuo_data.policy}</pre>
+                    </div>
+                  </dd>
+              </dl>
+          </if>
+-->
+</notempty>
+          
+
+
+          <div class="am-accordion-item am-active am-disabled" style="padding-bottom:10px;">
+            <dt class="am-accordion-title">房源信息</dt>
+            <div class="am-accordion-bd am-collapse am-in">
+            <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+              <div class="am-accordion-content" style="padding-top:0px;padding-bottom:0px;">
+                    <ul id="shuo_container" class="am-list" style="margin-top:0px;margin-bottom:10px;">
+                    <include file="Public/myitem" />
+                    </ul>
+                    <div class="am-list-news-ft look-more">
+                      <a class="getmore" style="color:#fff;" data-page=1 data-url="{:U('Home/property/addmoreobject',array('id'=>I('get.id')))}">加载更多 &raquo</a> 
+                    </div>
+              </div>
+            </div>
+          </div>
+		</section>
+	</div>
+</div>
+<script>
+  $(function(){
+    $(window).scroll(function(){
+      if($(window).scrollTop()>51){
+          $('#card').addClass('card-fix');
+        }else{
+          $('#card').removeClass('card-fix');
+      }
+    })
+  })
+</script>
+<script src="__JS__/home.js"></script>
+</block>

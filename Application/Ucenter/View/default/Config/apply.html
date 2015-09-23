@@ -1,0 +1,32 @@
+<extend name="Base/common"/>
+<block name="hero">
+  <link rel="stylesheet" href="__CSS__/zheng.css">
+<div class="am-container">
+  <div class="m-form-group am-form-file">
+      <notin name="apply.status" value="1,2">
+        <div id="uploaderpicker" class="am-btn am-btn-block am-btn-danger am-btn-sm"><i class="am-icon-cloud-upload"></i>
+              上传营业执照/名片，进行认证
+        </div>
+      </notin>
+  </div>
+  <div class="am-g">
+    <div  id="license_image" class="am-u-sm-12">
+      <in name="apply.status" value="1,2,0">
+            <img class="am-img-responsive am-center am-img-thumbnail am-radius" src="{:getOrignalImageById($apply['license'])}" alt="">
+      </in>
+    </div>
+    <div class="descrip">
+        <switch name="apply.status">
+            <case value="1" >恭喜您审核通过,身份为:{$apply.shenfen}</case>
+            <case value="2" > 正在审核 </case>
+            <case value="0" >对不起，您的审核没有通过</case>
+        </switch>
+      <p style="margin-bottom:0px;">如有疑问请致电:4006-5757-86</p>   
+	  <p style="margin-bottom:0px;margin-top:0px;">客服QQ:787575786</p>
+    </div>
+
+  </div>
+</div>
+<script src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+<script src="__JS__/apply.js"></script>
+</block>

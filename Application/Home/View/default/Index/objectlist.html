@@ -1,0 +1,55 @@
+﻿<extend name="Base/common"/>
+
+<block name="hero">
+
+<link rel="stylesheet" href="__CSS__/home.css">
+<!-- 设置背景 -->
+  <!-- 主体展示 -->
+  <div class="am-container" style="margin-top:-20px;">
+    <div class="am-g">
+
+      <!-- 左侧展示 -->
+      <div class="am-u-sm-12 am-u-md-8 am-u-lg-8">
+        <h2 class="am-text-left" style="padding-top:15px; padding-bottom:10px; margin:0px;"><p class="am-text-primary" style="margin:0px;">房源信息</p></h2>
+			  <include file="Public/item"/>
+        {:getPagination_amaze($totalcount,10)}
+
+      </div>
+      <!-- 左侧展示 end -->
+
+      <!-- 右侧展示 -->
+      <div class="yincang2">
+        <div class="am-u-md-4 am-u-lg-4"style="left:10px">
+
+
+          <h2 class="am-text-left" style="padding-top:15px; padding-bottom:10px; margin:0px;"><p class="am-text-primary" style="margin:0px;">商品展示</p></h2>
+
+          <!-- 产品 1 -->
+          <div class="am-g" id="">
+            <div class="am-thumbnail">
+              <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg" alt=""/>
+              <div class="am-thumbnail-caption">
+                <h3>图片标题</h3>
+                <p>...</p>
+              </div>
+            </div>
+
+            <div class="am-thumbnail">
+              <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg" alt=""/>
+              <div class="am-thumbnail-caption">
+                <h3>图片标题</h3>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- 主体展示 end -->
+
+<script src="__AMAZE__/js/amazeui.min.js"></script>
+</block>

@@ -1,0 +1,261 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+<script>
+  var cbd_table_json = {$cbd_table_json};
+  var common_url     = {$common_url|json_encode=###};
+  var url = '';
+  for(var p in common_url){
+     if(p != 'cbd'){
+       url += p+'/'+common_url[p]+'/';
+     }
+   }
+  common_url = url;
+</script>
+<!-- 导航 -->
+<div class="yincang2">
+	<div class="am-container">
+		<if condition="is_login()">
+			<div class="am-topbar-right">
+				<a href="" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="background-color:#c40d23;border-color:#c40d23;">{$user_info.nickname}</a>
+			</div>
+		<else/>
+			<div class="am-topbar-right">
+				<a href="{:U('Ucenter/member/mobregister')}" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="background-color:#c40d23;border-color:#c40d23;">注册</a>
+			</div>
+			<div class="am-topbar-right">
+				<a href="{:U('Ucenter/member/moblogin')}" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="background-color:#c40d23;border-color:#c40d23;">登录</a>
+			</div>
+		</if>
+	<!-- 侧边栏 -->
+		<div class="am-topbar-right">
+			<nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>
+				<a href="javascript: void(0)" class="am-menu-toggle" style="top:2px">
+				<i class="am-icon-sm am-primary am-icon-windows" style="color:black;"></i>
+				</a>
+				<div class="am-offcanvas">
+					<div class="am-offcanvas-bar am-offcanvas-bar-flip">
+						<ul class="am-menu-nav am-avg-sm-1">
+							<div class="am-text-center" id="user" style="">
+								<a style="text-indent: 0px;" href="/index.php?s=/mob/user/index.html">
+									<img class="avatar-img" style="border-radius: 100%;width:64px;margin-top:20px " src="{$user_info.avatar128}">
+								</a>
+
+								<div class="am-text-center">
+									<a class="am-text-truncate" style="color: #fff; width: 81px;
+								display: block;
+								margin: 0 auto;">{$user_info.nickname}</a>
+								</div>
+							</div>
+							<!-- <li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/index/filter')}">
+								<i ></i>
+								新房源                          
+								</a>
+							</li> -->
+							<li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/property/editshuo')}">
+								<i class=""></i>
+								促销主题                          
+								</a>
+							</li>
+							<li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/object/edit')}">
+								<i class=""></i>
+								添加房源                          
+								</a>
+							</li>
+
+							<li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/ask/edit')}">
+								<i class=""></i>
+								求购房源                         
+								</a>
+							</li>
+
+							<if condition="is_login() gt 0">
+
+							<li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/property/index')}">
+								<i class=""></i>
+								已发房源                          
+								</a>
+							</li>
+
+							<!-- <li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Ucenter/config/mobavatar')}">
+								<i class=""></i>
+								修改资料                          
+								</a>
+							</li> -->
+
+							<li>
+								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Ucenter/config/apply')}">
+								<i class=""></i>
+								身份认证                          
+								</a>
+							</li>
+
+							</if>
+
+							<div class="am-text-center" id="signout" style="padding: 5px 0px;">
+							<a><i class="am-icon-sign-out"></i>
+							&nbsp;&nbsp;退出
+							</a>
+							</div>
+						</ul>			  
+					</div>
+				</div>
+			</nav>
+		</div>
+		<!-- 侧边栏 end -->
+
+	</div>
+</div>
+<!-- 导航 end -->
+
+
+<!-- 搜索 -->
+
+<!--小于640 搜索-->
+<!--
+<div class="yincangdh">
+  <form class="am-form-inline" style="margin-top:10px" role="form" method="post" action="{:U('search')}">
+    <div class="am-g">
+      <div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered" style="padding-left:5px;padding-right:5px;margin-top:-18px;">
+          <div class="am-form-group am-form-icon am-form-feedback">
+            <input type="text" name="keywords" type="submit" class="am-form-field am-round" placeholder="" style="border:2px solid #ccc;height:35px;">
+            <span class="am-icon-search" style="padding-right:10px;color:#ccc"></span>
+          </div>
+      </div>
+    </div>
+  </form>
+</div>
+-->
+
+<!-- 大于640搜索 -->
+<div class="yincang2">
+  <div class="am-g">
+	  <div class="am-u-sm-6 am-u-sm-centered am-u-md-3 am-u-md-centered am-u-lg-2 am-u-lg-centered" >
+		<img src="__IMG__/logo.png" class="logojianju" id="logojianju2" style="margin-bottom:20px"/>
+	  </div>
+  
+		<div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered">
+			<form class=" am-topbar-left"  method="post" role="search"  action="{:U(search)}">
+			  <div class="am-input-group an-sousuo am-form-icon">
+				<span class="am-input-group-label" style="padding-left:5px;padding-right:0px;">
+					<select name="type" style="border:none;vertical-align:initial;background-color:rgba(255, 255, 255, 0);">
+						<php>
+						   $type = I('post.type');
+						</php>
+
+					<option value="2" <eq name="type" value="2">selected</eq>  >房源</option>
+					<option value="1" <eq name="type" value="1">selected</eq> >门店</option>
+				  
+					</select>
+				</span>
+				<input type="text" name="keywords" class="am-form-field">
+				<span class="am-input-group-btn">
+				  <input class="am-btn am-btn-default " type="submit" style="background-color:#c40d23;border-color:#c40d23;color:#fff;" value="搜索" />
+				</span>
+			  </div>
+			  </form>
+		</div>
+  </div>
+</div>
+<!-- 搜索 end -->
+
+
+<!-- 筛选 -->
+<div class="am-g">
+  <div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered index-shai index-s">
+    <div id="filter">
+      <div class="filter-top">
+        <ul class="am-g filter-menu am-cf" style="margin-left:0px;margin-right:0px;">
+          <li id="cbd-triger" style="padding-left:10px;" ><span >{$filter_menu.cbd|default="区域"}</span> <i class="am-select-icon am-icon-caret-down" style="color:#c40d23;"></i></li>
+          <li id="price-triger"><span >{$filter_menu.price|default="价格"}</span> <i class="am-select-icon am-icon-caret-down" style="color:#c40d23;"></i></li>
+          <li id="shi-triger"  ><span >{$filter_menu.shi|default="户型"}</span> <i class="am-select-icon am-icon-caret-down" style="color:#c40d23;"></i></li>
+          <li id="area-triger" ><span >{$filter_menu.area|default="面积"}</span> <i class="am-select-icon am-icon-caret-down" style="color:#c40d23;"></i></li>
+        </ul>
+      </div>
+      <div id="filter-container">
+        <ul id="filter-cbd" data-url="Home/index/index">
+          <li><a href="{:U('Home/index/index',array_merge($common_url,array('cbd'=>0)))}"> &nbsp;&nbsp;&nbsp;全{$Think.session.user_city.city_name}</a> </li>
+          <volist id="item" name="cbd_table">
+              <li class="cbd-second-triger" data-id="{$item.id}">&nbsp;&nbsp;&nbsp;{$item.name}</li>
+          </volist>
+          <ul class="cbd_second">
+          </ul>
+        </ul>
+        <ul id="filter-price">
+          <li><a href="{:U('Home/index/filterproperty',array_merge($common_url,array('price'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
+          <volist id="item" name=":C('HOUSE_PRICE_TABLE')">
+          <li><a href="{:U('Home/index/index',array_merge($common_url,array('price'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+          </volist>
+        </ul>
+        <ul id="filter-shi">
+          <li><a href="{:U('Home/index/index',array_merge($common_url,array('shi'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
+          <volist id="item" name=":C('HOUSE_HUXING_TABLE')">
+          <li><a href="{:U('Home/index/index',array_merge($common_url,array('shi'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+          </volist>
+        </ul>
+        <ul id="filter-area">
+          <li><a href="{:U('Home/index/index',array_merge($common_url,array('area'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
+          <volist id="item" name=":C('HOUSE_AREA_TABLE')">
+          <li><a href="{:U('Home/index/index',array_merge($common_url,array('area'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+          </volist>
+        </ul>
+      </div>
+  </div>
+ </div>
+</div>
+<!-- 筛选 end -->
+
+
+<!-- 楼盘说说 小于640-->
+<div class="yincangdh">
+	<div class="am-g">
+		<div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin:-1px 0px 0px 0px;">
+			  <div class="am-list-news-bd">
+				  <ul id="shuo_container" class="am-list">
+            <include file="Public/propertyitem" />
+				  </ul>
+          <div class="am-list-news-ft look-more">
+            <a class="getmore" style="color:#fff;" data-page=1 data-url="{:U('Home/index/addmoreproperty',$common_url)}">加载更多房源 &raquo</a>
+          </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 楼盘说说 小于640 end -->
+
+<!-- 楼盘说说 大于640-->
+<div class="yincang2">
+	<div class="am-g">
+		<div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin:-1px 0px 0px 0px;">
+			  <div class="am-list-news-bd">
+				  <ul class="am-list">
+            <include file="Public/propertyitem" />
+				  </ul>
+          <div class="am-list-news-ft look-more">
+            <a class="getmore" style="color:#fff;" data-page=1 data-url="{:U('Home/index/addmoreproperty',$common_url)}">加载更多房源 &raquo</a> 
+          </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 楼盘说说 大于640 end -->
+<!-- <div data-am-widget="navbar" class="am-navbar am-navbar-default am-cf am-no-layout" style="height:39px;line-height:39px">
+    <ul class="am-navbar-nav am-cf am-avg-sm-4" style="padding:0px;font-size:13px;background:#32b1f1">
+      <li style="background:#0f9ae0"><a class="am-text-default" style="color:#fff" href="">楼盘</a></li>
+      <li><a style="color:#fff" class="am-text-default" href="{:U(filter)}">房源</a></li>
+    </ul>
+</div> -->
+<div class="am-dimmer am-active" data-am-dimmer style="display: none"></div>
+<script src="__JS__/filter.js"></script>
+<script src="__JS__/home.js"></script>
+</block>

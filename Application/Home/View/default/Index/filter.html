@@ -1,0 +1,82 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+
+<script>
+  var cbd_table_json = {$cbd_table_json};
+  var common_url     = {$common_url|json_encode=###};
+  var url = '';
+  for(var p in common_url){
+     if(p != 'cbd'){
+       url += p+'/'+common_url[p]+'/';
+     }
+   }
+  common_url = url;
+</script>
+<script src="__JS__/filter.js"></script>
+
+<div class="am-container index-shai">
+<div id="filter" >
+
+  <div class="filter-top">
+    <ul class="am-g filter-menu am-cf">
+      <li id="cbd-triger"  ><span>{$filter_menu.cbd|default="区域"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+      <li id="price-triger"><span>{$filter_menu.price|default="价格"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+      <li id="shi-triger"  ><span>{$filter_menu.shi|default="户型"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+      <li id="area-triger" ><span>{$filter_menu.area|default="面积"}</span> <i class="am-select-icon am-icon-caret-down"></i></li>
+    </ul>
+  </div>
+
+  <div id="filter-container">
+
+    <ul id="filter-cbd" data-url="Home/index/filter">
+
+      <li><a href="{:U('Home/index/filter',array_merge($common_url,array('cbd'=>0)))}"> &nbsp;&nbsp;&nbsp;全{$Think.session.user_city.city_name}</a> </li>
+      <volist id="item" name="cbd_table">
+      <li class="cbd-second-triger" data-id="{$item.id}">&nbsp;&nbsp;&nbsp;{$item.name}</li>
+      </volist>
+      <ul class="cbd_second">
+      </ul>
+    </ul>
+
+        <ul id="filter-price">
+          <li><a href="{:U('Home/index/filter',array_merge($common_url,array('price'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
+          <volist id="item" name=":C('HOUSE_PRICE_TABLE')">
+          <li><a href="{:U('Home/index/filter',array_merge($common_url,array('price'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+          </volist>
+        </ul>
+        <ul id="filter-shi">
+          <li><a href="{:U('Home/index/filter',array_merge($common_url,array('shi'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
+          <volist id="item" name=":C('HOUSE_HUXING_TABLE')">
+          <li><a href="{:U('Home/index/filter',array_merge($common_url,array('shi'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+          </volist>
+        </ul>
+        <ul id="filter-area">
+          <li><a href="{:U('Home/index/filter',array_merge($common_url,array('area'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
+          <volist id="item" name=":C('HOUSE_AREA_TABLE')">
+          <li><a href="{:U('Home/index/filter',array_merge($common_url,array('area'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
+          </volist>
+        </ul>
+  </div>
+</div>
+<div class="am-list-news-bd">
+  <div class="am-list-news-bd objectlist">
+    <ul class="am-list" style="margin-bottom:10px;">
+       <include file="Public/item"/>
+    </ul>
+    <div class="am-list-news-ft look-more">
+      <a class="getmore" style="color:#fff;" data-page=1 data-url="{:U('Home/index/addmoreobject',$common_url)}">加载更多 &raquo</a> 
+    </div>
+  </div>
+</div>
+<!-- <div data-am-widget="navbar" class="am-navbar am-navbar-default am-cf am-no-layout" style="height:39px;line-height:39px">
+    <ul class="am-navbar-nav am-cf am-avg-sm-4" style="padding:0px;font-size:15px;background:#32b1f1">
+      <li><a style="color:#fff" class="am-text-default" href="{:U(index)}">楼盘</a></li>
+      <li style="background:#0f9ae0"><a class="am-text-default" style="color:#fff" href="">房源</a></li>
+    </ul>
+</div> -->
+<div class="am-dimmer am-active" data-am-dimmer style="display: none"></div>
+
+</div>
+<script src="__JS__/home.js"></script>
+</block>

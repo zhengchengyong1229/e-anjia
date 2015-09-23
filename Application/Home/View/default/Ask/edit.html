@@ -1,0 +1,89 @@
+<extend name="Base/common"/>
+<block name="hero">
+<div class="am-container">
+  <link rel="stylesheet" href="__CSS__/edit.css">
+  <form action="{:U('Home/ask/edit')}" method="post" class="ajax-form am-form am-form-horizontal">
+  <section id="" class="am-g">
+  <div class="am-u-sm-12 am-u-md-6 am-u-md-lg-4 am-u-sm-centered red">
+    <fieldset>
+      <legend>求个房源</legend>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">标题</label>
+        <div class="am-u-sm-9">
+          <input class="am-form-field" type="text" name="title" placeholder="不超过15字"  value="{$data.title}">
+        </div>
+      </div>
+      <!--
+        <div class="am-form-group">
+          <label class="am-u-sm-3 am-form-label" for="">楼层</label>
+          <div class="am-u-sm-4">
+            <input class="am-form-field" type="text" name="start_floor" placeholder="数字"value="{$data.start_floor}">
+          </div>
+          <div class="am-u-sm-1 am-text-center" style="padding-top:5px;">
+             <span>到</span>
+          </div>
+          <div class="am-u-sm-4">
+            <input class="am-form-field" type="text" name="end_floor" placeholder="数字"value="{$data.end_floor}">
+          </div>
+        </div>
+      -->
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">总价</label>
+        <div class="am-u-sm-9">
+          <select  name="totalprice">
+            <volist id="item" name=":C('HOUSE_PRICE_TABLE')">
+                <option value="{$key}">{$item}</option>
+            </volist>
+          </select>
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">面积</label>
+        <div class="am-u-sm-9">
+          <select  name="area">
+            <volist id="item" name=":C('HOUSE_AREA_TABLE')">
+                <option value="{$key}">{$item}</option>
+            </volist>
+          </select>
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">户型</label>
+        <div class="am-u-sm-9">
+          <select  name="shi">
+            <volist id="item" name=":C('HOUSE_HUXING_TABLE')">
+                <option value="{$key}">{$item}</option>
+            </volist>
+          </select>
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">地址</label>
+        <div class="am-u-sm-9">
+          {:hook('J_CBD',$data['cbd'])}
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">佣金</label>
+        <div class="am-u-sm-9">
+          <input class="am-form-field" type="number" name="charge" value="{$data.charge}" placeholder="请填写数字">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">描述</label>
+        <div class="am-u-sm-9">
+          <textarea id="" name="description" cols="30" placeholder="简明扼要,不超过50个字" rows="10">{$data.description}</textarea>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  </section>
+  <div class="am-form-group">
+      <input type="hidden" name="id" value="{$data.id}">
+        <div class="am-u-sm-9 am-u-sm-offset-3">
+          <input type="submit" class="am-btn am-btn-block am-btn-primary" style="background-color:#c40d23;border-color:#c40d23;" value="提交">
+        </div>
+  </div>
+  </form>
+</div>
+</block>

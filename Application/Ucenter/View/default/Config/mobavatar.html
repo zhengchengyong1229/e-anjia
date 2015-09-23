@@ -1,0 +1,109 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/zheng.css">
+<div class="am-container">
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+<link href="__PUBLIC__/js/ext/webuploader/css/webuploader.css" type="text/css" rel="stylesheet">
+<div style="min-height:300px">
+
+
+  <form class="am-form am-form-horizontal ajax-form" method="post" action="{:U('Ucenter/config/mobavatar')}">
+    <div class="am-form-group am-form-group-sm">
+      <label class="am-u-sm-4 am-form-label" for="">&nbsp;&nbsp;&nbsp;&nbsp;您的昵称</label>
+      <div class="am-u-sm-8">
+        <input type="text" name="nickname" value='{$user_info.nickname}' />
+      </div>
+    </div>  
+    
+    <div class="am-form-group am-form-group-sm">
+      <label class="am-u-sm-4 am-form-label" for="">
+          <div id="upload_avatar_{$uid}" class="am-center" style="width:78px;padding: 20px 0">选择头像</div>
+      </label>
+      <div class="am-u-sm-8">
+        <div class="show_avatar">
+          <div class="col-md-4 avatar_select" >
+            <div id="avatar_{$uid}_original">
+                <img class="am-img-responsive am-center" src="{$user_info.avatar128}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <input type="hidden" name="uid" value="{:is_login()}">
+    <input type="hidden" name="ext" value="">
+    <input class="am-btn am-btn-danger am-btn-block" type="submit" value="保存信息"/>
+</form>
+
+
+<script>
+    $(function () {
+        var crop;
+        var jcrop_api;
+        var ext;
+        var boundx, boundy;
+
+        var uploader_{$uid}= WebUploader.create({
+            // 选完文件后，是否自动上传。
+            auto: true,
+            // swf文件路径
+            swf: 'Uploader.swf',
+            // 文件接收服务端。
+            server: "{:U('Core/File/uploadAvatar',array('uid'=>$uid))}",
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#upload_avatar_{$uid}',
+            // 只允许选择图片文件。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+
+        uploader_{$uid}.on('fileQueued', function (file) {
+            uploader_{$uid}.upload();
+            //toast.showLoading();
+        });
+
+        /*上传成功*/
+        uploader_{$uid}.on('uploadSuccess', function (file, ret) {
+            //toast.hideLoading();
+            if (ret.status == 0) {
+
+                toast.error(ret.info);
+
+            } else {
+
+               // $("#avatar_" + "{$uid}" + "_original img").attr('src', ret.data.file.path );
+                ext = ret.data.file.ext;
+
+                $('input[name="ext"]').val(ext);
+
+                var src = ret.data.file.path+'?time='+ret.data.file.time;
+                $("#avatar_" + "{$uid}" + "_original").html('');
+                //用新传到服务器的图片替代默认或这旧图
+                $("#avatar_" + "{$uid}" + "_original").html('<img class="am-img-responsive am-center" src="'+src+'">');
+
+                $('[data-role=avatar_btn]').click(function(){
+                            //检查是否已经裁剪过
+                            if (typeof (crop) == 'undefined') {
+                                crop2='';
+                            }
+                            else{
+                                var crop2 = crop.x / boundx + ',' + crop.y / boundy + ',' + crop.w / boundx + ',' + crop.h / boundy;
+                            }
+                            var uid ='{$uid}';
+                            //提交到服务器
+                            var url = "{:U('ucenter/member/saveAvatar')}";
+
+                            $.post(url, {uid: uid, crop: crop2,ext:ext}, function (res) {
+                                     handleAjax(res);
+                            });
+                })
+            }
+        });
+    })
+</script>
+</div>
+</div>
+</block>

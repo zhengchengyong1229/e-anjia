@@ -1,0 +1,19 @@
+<volist name="list" id="item">
+    <li class="am-list-item-desced" style="">
+           <eq name='item.type' value="1">
+              <a class="am-link-secondary" href="{:U('Home/index/objectShow',array('id'=>$item['id']))}" style="padding-bottom:0px;padding-top:5px;">
+              <span class="am-badge am-badge-danger" style="margin-bottom:3px">售</span>
+			  &nbsp;<span style="color:#c40d23;">{$item.title}</span>&nbsp;
+            <else/>
+              <a class="am-link-secondary" href="{:U('Home/index/askShow',array('id'=>$item['id']))}" style="padding-bottom:0px;padding-top:5px;">
+              <span class="am-badge am-badge-primary" style="margin-bottom:3px">求</span>
+			  &nbsp;<span style="color:#ffac00;">{$item.title}</span>&nbsp;
+           </eq>
+            
+           <div class="am-list-item-text">
+             <p class="am-margin-0">发布者：{$item.nickname}</p>
+              <div class="am-list-item-text am-kai">{$item.description}</div>
+           </div>
+       </a>
+     </li>
+</volist>

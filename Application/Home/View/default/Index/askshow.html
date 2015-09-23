@@ -1,0 +1,112 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+
+	<!-- 主体展示 -->
+	<div class="am-container">
+	
+		<!-- 标题 -->
+		<p style="margin-bottom:15px">
+			<span class="am-badge am-badge-primary">求</span>
+				{$data.title}
+		</p>
+    <if condition="$user_info.uid eq $data['uid']">
+        <div class="am-cf">
+          <div class="am-fr">
+            <a href="{:U('home/ask/edit',array('id'=>$data['id']))}" class="am-btn am-btn-default am-btn-sm am-round">编辑</a>
+            <a href="{:U('home/ask/trash',array('id'=>$data['id']))}" data-confirm="确认删除该房源么?" class="am-btn  ajax-post am-btn-sm am-btn-danger am-round">下架</a>
+          </div>
+        </div>
+    </if>
+
+		<!-- 房源信息 -->
+		<section data-am-widget="accordion" class="am-accordion am-accordion-default"
+		data-am-accordion='{ "multiple": true }' style="margin:5px 0px">
+			<dl class="am-accordion-item am-active am-disabled">
+				<dt class="am-accordion-title">需求描述</dt>
+				<dd class="am-accordion-bd am-collapse am-in">
+					<!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+					<div class="am-accordion-content an-jichu">
+						{$data.description}
+					</div>
+				</dd>
+			</dl>
+			<div class="am-accordion-item am-active am-disabled">
+				<dt class="am-accordion-title">基础需求</dt>
+				<div class="am-accordion-bd am-collapse am-in">
+					<!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+					<div class="am-accordion-content">
+						<div class="am-g">
+							<div class="am-u-sm-6 an-jichu am-text-truncate">面积：<span>{$data.area}</span></div>
+              <div class="am-u-sm-6 an-jichu">价格：<span>{$data.totalprice}</span></div>
+              <div class="am-u-sm-6 an-jichu">户型：{$data.shi}</div>
+              <div class="am-u-sm-12 an-jichu">位置：{$data.cbd}</div>
+              <div class="am-u-sm-12 an-jichu">发布时间：{$data.uptime|date="Y-m-d",###}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 发布者信息 -->
+		<div data-am-widget="titlebar" class="am-titlebar am-titlebar-multi" >
+		<div class="am-g">
+			<div class="am-u-sm-12 am-u-md-4 am-u-lg-4">
+				<p style="padding-top:8px;margin-bottom:10px;">悬赏佣金：
+					<span class="am-text-danger">
+					<eq name="user_info.identity" value="0">
+						<a class="need_login" href="{:U('Ucenter/config/apply')}">认证后可看</a>
+					<else/>
+						<span class="am-text-danger">{$data.charge}</span> 元
+					</eq>
+					</span>
+				</p>
+			</div>
+			<div class="am-u-sm-12 am-u-md-4 am-u-lg-4">
+				<p style="padding-top:8px;margin-bottom:10px;">发布：{$data.nickname}
+				&nbsp;&nbsp;
+				<span style="padding-top:8px;margin-bottom:10px;">Tel：{$data.mobile}</span>
+				</p>
+			</div>
+			
+		</div>
+		</div><br/>
+
+	</div>
+     
+
+<!-- 主体展示 end -->
+
+<!--底部工具栏-->
+		<div class="yincangdh">
+			<div class="am-g">
+				<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "id="">
+					<ul class="am-navbar-nav am-cf am-avg-sm-4" style="background-color:#c40d23;">
+						<li>
+							<a href="sms:{$data.mobile}" class="">
+								<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/Information.png"
+								alt="消息" />
+								<span class="am-navbar-label">短信</span>
+							</a>
+						</li>
+						<li>
+							<a href="tel:{$data.mobile}" class="">
+								<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/phone.png"
+								alt="呼叫" />
+								<span class="am-navbar-label">呼叫</span>
+							</a>
+						</li>
+						<li data-am-navbar-share>
+							<a href="###" class="">
+								<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/share.png"
+								alt="分享" />
+								<span class="am-navbar-label">分享</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+<script src="__AMAZE__/js/amazeui.min.js"></script>
+</block>

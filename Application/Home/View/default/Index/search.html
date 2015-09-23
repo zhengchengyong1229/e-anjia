@@ -1,0 +1,21 @@
+<extend name="Base/common"/>
+
+<block name="hero">
+
+<link rel="stylesheet" href="__CSS__/home.css">
+
+<div class="am-container" style="padding-left:0px;padding-right:0px;">
+	<div class="am-list-news-bd">
+	  <h4 style="margin-bottom:0;margin-left:10px">搜索结果</h4>
+	  <div class="am-list-news-bd objectlist">
+		<ul class="am-list" style="margin-bottom:10px;">
+		   <include file="Public/item"/>
+		</ul>
+		<div class="am-list-news-ft look-more">
+		  <a class="getmore" style="color:#fff" data-page=1 data-url="{:U('Home/index/search',array('keywords'=>I('keywords')))}">加载更多 &raquo</a> 
+		</div>
+	  </div>
+	</div>
+</div>
+<script src="__JS__/home.js"></script>
+</block>

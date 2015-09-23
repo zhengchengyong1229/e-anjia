@@ -1,0 +1,250 @@
+<if condition="(MODULE_NAME eq 'Home') AND (CONTROLLER_NAME eq 'Index') AND (ACTION_NAME eq 'index')">
+
+<else/>
+<!-- 导航 -->
+<div class="yincang2">
+  <header class="am-topbar">
+
+  <!-- 第一排导航 -->
+  <div class="am-container" style="padding:0px">
+    <h1 class="am-topbar-brand">
+      <a href="{:U('Home/index/index')}" class="am-icon-home demo-icon-home">房公盘</a>
+    </h1>
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+	
+
+    <div class="am-topbar-right">
+      <ul class="am-nav am-nav-pills am-topbar-nav">
+        <if condition="is_login()">
+        <li><a href="{:U('Ucenter/config/apply')}">{$user_info.nickname}</a></li>
+        <else/>
+        <li><a href="{:U('Ucenter/member/moblogin')}">登录</a></li>
+        <li><a href="{:U('Ucenter/member/mobregister')}">注册</a></li>
+
+        </if>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- 第二排导航 -->
+  <div class="daohangcolor">
+    <div class="am-container"  style="padding:0px">
+      <nav data-am-widget="menu" class="am-menu  am-menu-slide1" data-am-menu-collapse>
+      <a href="javascript: void(0)" class="am-menu-toggle">
+        <i class="am-menu-toggle-icon am-icon-bars"></i>
+      </a>
+      <ul class="am-menu-nav am-avg-sm-4 am-collapse" style="background-color:#c40d23">
+        <!-- <li class="">
+            <a href="{:U('Home/index/filter')}" class="">新房源</a>
+        </li> -->
+        <li class="">
+            <a href="{:U('Home/property/editshuo')}" class="">促销主题</a>
+        </li>
+        <li class="">
+            <a href="{:U('Home/object/edit')}" class="">添加房源</a>
+        </li>
+        <li class="">
+           <a href="{:U('Home/ask/edit')}" class="">求购房源</a>
+        </li>
+
+		<if condition="is_login() gt 0">
+
+        <li class="">
+           <a href="{:U('Home/property/index')}" class="">已发房源</a>
+        </li>
+        <!-- <li class="">
+        <a href="{:U('Ucenter/config/mobavatar')}" class="">修改资料</a>
+        </li> -->
+		 <li class="">
+           <a href="{:U('Ucenter/config/apply')}" class="">身份认证</a>
+        </li>
+
+		</if>
+
+      </ul>
+      </nav>
+    </div>
+  </div>
+  </header>
+</div>
+<!-- 导航 end -->
+</if>
+
+<!-- 手机端导航 -->
+<div class="yincangdh">
+
+  <header class="am-topbar am-topbar-inverse">
+	  <h1 class="am-topbar-brand">
+      <a href="{:U('Home/index/index',array('tel'=>I('get.tel')))}" class="am-icon-home demo-icon-home"></a>
+      <a href="{:U('Home/index/index',array('tel'=>I('get.tel')))}" class="am-text-center">房公盘</a>
+	  </h1>
+
+
+
+<form class="am-fr am-topbar-form am-topbar-left am-form-inline"  method="post" role="search"  action="{:U(search)}" style="width:50%;height:50px;margin-right:60px; padding-top:6px;">
+<div class="am-input-group">
+  <span class="am-input-group-label am-round" style="padding-left:5px;padding-right:0px;">
+	<select name="type" style="border:none;vertical-align:initial;background-color:rgba(255, 255, 255, 0);">
+    <php>
+       $type = I('post.type');
+    </php>
+
+		<option value="2" <eq name="type" value="2">selected</eq> >房源</option>
+		<option value="1" <eq name="type" value="1">selected</eq> >门店</option>
+      
+	</select>
+  </span>
+  <input type="text" name="keywords" class="am-form-field am-input-sm  am-round" value="{:I('post.keywords')}" placeholder="搜索">
+  <span id="span-search" class="am-input-group-label am-icon-search am-round"></span>
+</div>
+<script>
+  $(function(){
+    $('#span-search').click(function(){
+      $('form[role="search"]').submit();
+    })
+  })
+
+</script>
+</form>
+
+
+    <!-- <form class="am-fr am-topbar-form am-topbar-left am-form-inline"  method="post" role="search"  action="{:U(search)}" style="width:50%;height:50px;margin-right:50px">
+      <div class="am-form-group am-form-feedback am-form-icon" style="margin-top:10px"><input type="text" name="keywords" class="am-form-field am-input-sm  am-round" placeholder="搜索房源">
+        <span class="am-icon-search" style="padding-right:10px"></span>
+      </div>
+		 </form> -->
+	
+ </header>
+
+
+  <nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>
+  <a href="javascript: void(0)" class="am-menu-toggle">
+
+    <i class="am-menu-toggle-icon am-icon-user " style="font-size:150%;"></i>
+  </a>
+  <div class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip am-offcanvas-bar-overlay am-offcanvas-bar-active">
+      <div class="am-text-center" id="user" style="">
+        <a style="text-indent: 0px;" href="/index.php?s=/Ucenter/config/mobavatar.html">
+          <img class="avatar-img" style="border-radius: 100%;width:64px;margin-top:20px " src="{$user_info.avatar128}">
+        </a>
+
+
+        <div class="am-text-center">
+          <a class="" style="color: #fff; width: 100%;
+            display: block;
+            margin: 5px auto;">{$user_info.nickname}</a>
+        </div>
+      </div>
+
+
+      <div class="am-text-center" id="signin" style="display: none; height: 44px; line-height: 44px;">
+        <a style="text-indent: 0px;" href="{:U('Ucenter/member/moblogin')}">
+          <i class=""></i>
+          登录
+        </a>
+      </div>
+      <ul class="am-menu-nav am-avg-sm-1 am-text-center">
+        <li id="register">
+          <a style="text-indent: 0px;" href="{:U('Ucenter/member/mobregister')}">
+            <i class=""></i>
+            注册                          
+          </a>
+        </li>
+        <!--
+        
+        <li>
+          <a style="text-indent: 0px;" href="{:U('Home/index/filter')}">
+            <i class=""></i>
+            新房源                          
+          </a>
+        </li>
+
+        <li>
+          <a style="text-indent: 0px;" class="need_login" href="{:U('Home/property/editshuo')}">
+            <i class=""></i>
+            促销主题                         
+          </a>
+          </li>
+          
+          -->
+        <li>
+          <a style="text-indent: 0px;" class="need_login" href="{:U('Home/object/edit')}">
+            <i class=""></i>
+            添加房源                          
+          </a>
+        </li>
+        <li>
+          <a style="text-indent: 0px;" class="need_login" href="{:U('Home/ask/edit')}">
+            <i class=""></i>
+            求购房源                          
+          </a>
+        </li>
+
+        <if condition="is_login() gt 0">
+        
+        <li>
+        <a style="text-indent: 0px;" class="need_login" href="{:U('Home/object/index',array('uid'=>is_login()))}">
+            <i class=""></i>
+            删改房源                          
+          </a>
+        </li>
+        <li>
+          <a style="text-indent: 0px;" class="need_login" href="{:U('Ucenter/config/apply')}">
+            <i class=""></i>
+            身份认证                          
+          </a>
+        </li>
+     </if>
+
+      </ul>
+      <div class="am-text-center" id="signout" style="padding: 5px 0px;">
+        <a>
+          <i class=""></i>
+          退出登录
+        </a>
+      </div>
+    </div>
+  </div>
+  </nav>
+
+</div>
+<script>
+  var uid = MID;
+  $(document).ready(function () {
+    signout();
+    if (uid > 0) {
+      $('#user').show()
+      $('#signin').hide()
+      $('#register').hide()
+      $('#signout').show()
+      } else {
+      $('#user').hide()
+      $('#signin').show()
+      $('#signout').hide()
+      $('#register').show();
+
+
+      $('.need_login').addClass('ajax-post');
+    }
+
+  });
+
+  var signout = function () {
+    $('#signout').click(function () {
+      $.post("/index.php?s=/Ucenter/member/moblogout.html", {}, function (msg) {
+        if (msg.status == 1) {
+          setTimeout(function () {
+            window.location.href = ThinkPHP.APP;
+          }, 2000);
+          toast.success('退出成功!');
+          } else {
+          toast.error(msg.info);
+        }
+      }, 'json')
+    });
+  }
+</script>
+<!-- 手机端导航 end -->

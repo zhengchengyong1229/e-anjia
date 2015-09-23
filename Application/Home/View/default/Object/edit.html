@@ -1,0 +1,194 @@
+<extend name="Base/common"/>
+<block name="hero">
+<div class="am-container">
+  <link rel="stylesheet" href="__CSS__/edit.css">
+  <form action="{:U('Home/object/edit')}" method="post" class="ajax-form am-form am-form-horizontal">
+  <section id="" class="am-g">
+  <div class="am-u-sm-12 am-u-md-6 am-u-md-lg-4 am-u-sm-centered am-u-md-uncentered am-u-md-uncentered">
+    <fieldset>
+      <legend>编辑房源</legend>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">楼盘</label>
+        <div class="am-u-sm-8">
+          {:hook('J_CBD',$data['cbd'])}
+          <a id="trigger" class="am-badge am-badge-secondary am-text-sm am-radius" style="margin-top:1.4rem"> 找不到楼盘？戳这里输入</a>
+        </div>
+      </div>
+      <div  id="lname" class="am-form-group" style="display:none">
+        <label class="am-u-sm-4 am-form-label" for="">手填楼盘</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field" type="text" name="lname" value="{$data.lname}">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">类型</label>
+        <div class="am-u-sm-8">
+          <select id="" name="style">
+            <volist id="item" name=":C('HOUSE_STYLE')">
+            <option <if condition="$key eq $data['style']">selected</if> value="{$key}">{$item}</option>
+            </volist>
+          </select>
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">楼层</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field" type="number" name="floor" placeholder="请填写数字"value="{$data.floor}">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-4 am-form-label" for="">面积(平米)</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field" type="number"  name="area" placeholder="请填写数字"value="{$data.area}">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">几室</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field" type="number" name="shi" placeholder="请填写数字" value="{$data.shi}">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">几厅</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field" type="number" name="ting" placeholder="请填写数字" value="{$data.ting}">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">几卫</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field" type="number" name="wei" placeholder="请填写数字" value="{$data.wei}">
+        </div>
+      </div>
+
+
+      <div class="am-form-group">
+        <label class="am-u-sm-4 am-form-label" for="">原价(万元)</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field wanyuan" type="number" step="0.1" name="originalprice" placeholder="请填写数字" value="{$data.originalprice}">
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-4 am-form-label" for="">现价(万元)</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field wanyuan" type="number" step="0.1" name="totalprice" placeholder="请填写数字" value="{$data.totalprice}">
+        </div>
+      </div>
+
+      <!--
+        <div class="am-form-group">
+          <label class="am-u-sm-4 am-form-label" for="">成交奖励(元)</label>
+          <div class="am-u-sm-8">
+            <input class="am-form-field" type="number" step="0.1" name="charge" value="{$data.charge}" placeholder="请填写数字">
+          </div>
+        </div>
+        <div class="am-form-group">
+          <label class="am-u-sm-4 am-form-label" for="">看房奖励(元)</label>
+          <div class="am-u-sm-8">
+            <input class="am-form-field" type="number" name="kanfang_charge" value="{$data.kanfang_charge}" placeholder="请填写数字">
+          </div>
+        </div>
+        <div class="am-form-group">
+          <label class="am-u-sm-4 am-form-label" for="">房源电话</label>
+          <div class="am-u-sm-8">
+            <input class="am-form-field" type="text" name="tel" value="{$data.tel}" placeholder="电话号码">
+          </div>
+        </div>
+      -->
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">房源描述</label>
+        <div class="am-u-sm-8">
+          <textarea id="" name="description" cols="30" placeholder="客户可见" rows="10">{$data.description}</textarea>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">成交政策</label>
+        <div class="am-u-sm-8">
+          <textarea id="" name="deal_description" cols="30" placeholder="经纪人可见" rows="10">{$data.deal_description}</textarea>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="am-u-sm-12 am-u-md-6 am-u-md-lg-8 am-u-sm-centered am-u-md-uncentered am-u-md-uncentered">
+    <div class="am-u-sm-offset-3 am-u-sm-8 am-form-group am-form-file">
+      <div id="pictures" class="am-btn am-btn-danger am-btn-sm">
+
+        <i class="am-icon-cloud-upload"></i> 
+        上传的图片,最多9张
+      </div>
+    </div>
+    <div class="am-g">
+        <ul id="file-list" class="am-avg-sm-3">
+           <volist name=":explode(',',$data['pics'])" id="vo">
+           <notempty name="vo" >
+             <li class="am-padding-xs">
+             <a href="javascript:void(0)" data-rid="{$vo}" class="am-close am-close-spin">X</a>
+                <img class="am-img-responsive" src="{:getThumbImageById($vo,150,150)}" alt="">
+             </li>
+           </notempty>
+           </volist>
+        </ul>
+    </div>
+  </section>
+  <div class="am-form-group">
+    <div class="">
+      <input type="hidden" name="pics"     value="{$data.pics}">
+      <input type="hidden" name="id"       value="{$data.id}">
+      <input type="submit" class="am-btn am-btn-block am-btn-primary" style="background-color:#c40d23;border-color:#c40d23;" value="提交">
+    </div>
+  </div>
+  </div>
+  </form>
+</div>
+<script>
+  //手动输入和选择楼盘名切换方法
+  $(function(){
+    var $lname = $('#lname');
+    var $triger = $('#trigger');
+    var $input_lname = $('input[name="lname"]');
+    var $select_fid  = $('select[name="fid"]');
+
+    //提示万元事件
+    $('.wanyuan').on('change',function(){
+      if($(this).val()>100){
+        toast.success('小提示:单位是万元');
+      }
+    })
+    //绑定事件
+    $select_fid.change(function(){
+        $input_lname.val($(this).find('option:selected').text());
+    })
+
+    //触发切换事件
+    $triger.click(function(){
+      //隐藏楼盘select
+      $('select[name="fid"]').hide();
+      //显示楼盘input
+      $lname.show();
+      $(this).hide();
+    })
+
+    $('select[name="bid"]').change(function(){
+      $lname.hide();
+      $triger.show();
+    })
+
+
+    //删除默认图片方法,第一步,每个a标签中绑定data-rid信息，纪录数据库中纪录的数据,第二部绑定事件，点击删除input[name=pic] value,第三部,删除当前节点,点击保存
+    $('#file-list a').on('click',function(e){
+
+      var $pics = $('input[name=pics]');
+      var pic_arr = $pics.val().split(',');
+      var b=$(this).data('rid');
+      pic_arr.splice(pic_arr.indexOf($(this).data('rid').toString()),1);
+      $(this).parent().remove();
+      $('input[name=pics]').val(pic_arr.join(','));
+      e.preventDefault();//阻止默认行为
+
+    })
+  })
+</script>
+<script src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+<script src="__JS__/editObject.js"></script>
+</block>

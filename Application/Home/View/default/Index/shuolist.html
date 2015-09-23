@@ -1,0 +1,21 @@
+﻿<extend name="Base/common"/>
+
+<block name="hero">
+
+<link rel="stylesheet" href="__CSS__/home.css">
+<!-- 主体展示 -->
+<div class="am-container" style="margin-top:-20px;">
+  <div class="am-g">
+    <!-- 左侧展示 -->
+    <div class="am-u-sm-12 am-u-md-8 am-u-lg-8">
+      <h3 class="am-text-left" style="padding-top:15px; padding-bottom:10px; margin:0px;"><p class="am-text-primary" style="margin:0px;">动态</p></h3>
+      <div class="am-list-news-bd">
+        <ul class="am-list">
+          <include file="Public/shuoitem"/>
+        </ul>
+      </div>
+      {:getPagination_amaze($totalcount,10)}
+    </div>
+  </div>
+</div>
+</block>

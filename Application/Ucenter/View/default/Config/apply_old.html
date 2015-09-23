@@ -1,0 +1,71 @@
+<extend name="Config/base"/>
+<block name="body">
+    <div id="center">
+        <div id="center_base" class="with-padding" style="padding: 20px">
+            <h2>申请认证</h2>
+            <hr>
+            <switch name="group_id">
+              <case value="1">
+                  普通会员：添加申请
+                  <h3>该账号注册时的身份设定为中介，可以申请中介认证。若想申请楼盘认证，请注册一个楼盘账号。</h3>
+                          <if condition="$apply_status eq 2">
+                                  正在审核
+                          <elseif condition="$apply_status eq '0'"/> 
+                                  上次审核未通过
+                                  <div id='license'>
+                                       上传执照
+                                  </div>
+                                  <form action="{:U('apply')}" method="post">
+                                    <input type="hidden" name="license">
+                                    <input type="submit" class="btn btn-primary" value="提交">
+                                  </form>
+                          <else/>
+                            <div id='license'>
+                                 上传执照
+                            </div>
+                            <form action="{:U('apply')}" method="post">
+                              <input type="hidden" name="license">
+                              <input type="submit" class="btn btn-primary" value="提交">
+                            </form>
+                          </if>
+              </case>
+
+              <case value="2">认证会员：提示成功</case>
+
+              <case value="3">
+                          <h3>该账号注册时的身份设定为楼盘，可以申请楼盘认证。</h3>
+
+                          <if condition="$apply_status eq 2">
+                                  正在审核
+                          <elseif condition="$apply_status eq '0'"/> 
+                                  上次审核未通过
+                                  <div id='license'>
+                                       上传执照
+                                  </div>
+                                  <form action="{:U('apply')}" method="post">
+                                    <input type="hidden" name="license">
+                                    <input type="submit" class="btn btn-primary" value="提交">
+                                  </form>
+                          <else/>
+                            <div id='license'>
+                                 上传执照
+                            </div>
+                            <form action="{:U('apply')}" method="post">
+                              <input type="hidden" name="license">
+                              <input type="submit" class="btn btn-primary" value="提交">
+                            </form>
+                          </if>
+              </case>
+              <case value="4">认证机构：提示成功</case>
+            </switch>
+            <div class="row">
+                <div class="with-padding">
+                </div>
+            </div>
+            <block name="script">
+               <script type="text/javascript" src="__PUBLIC__/js/ext/webuploader/js/webuploader.js"></script>
+               <script type="text/javascript" src="__JS__/apply.js"></script>
+            </block>
+        </div>
+    </div>
+</block>

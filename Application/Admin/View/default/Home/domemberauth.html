@@ -1,0 +1,95 @@
+<extend name="Public/base" />
+<block name="body">
+    <div class="main-title">
+        <h2>审核会员</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="with-padding">
+            <div class="form-item">
+                <label class="item-label">名称<span class="check-tips">（昵称)</span></label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" readonly  value="{$data.nickname|default=''}">
+                </div>
+            </div>
+
+            <div class="form-item">
+                <label class="item-label">申请时间</label>
+                <div class="controls">
+                    <input type="text" class="text input-large form-input-width form-control" readonly  value="{$data.createtime|date='Y-m-d',###}">
+                </div>
+            </div>
+
+            <div class="form-item">
+                 <div class="item-label">认证图片</div>
+                 <div class="upload-img-box">
+                   <div class="upload-pre-item popup-gallery">
+                     <notempty name="data.license">
+                           <div class="each">
+                               <a href="{$data.license|get_cover='path'}" title="点击查看大图">
+                                    <img src="{$data.license|get_cover='path'}">
+                               </a>
+                           </div>
+                     </notempty>
+                   </div>
+                 </div>
+            </div>
+            <div id="status" class="form-item">
+                <label class="item-label">是否通过审核<span class="check-tips"></span></label>
+                <div class="controls">
+                    <label class="radio-inline"><input type="radio" name="status" value="1">通过</label>
+                    <label class="radio-inline"><input type="radio" name="status" value="0">拒绝</label>
+                </div>
+            </div>
+            <div id="identity" class="form-item">
+                <label class="item-label">选择身份</label>
+                <div class="controls">
+                    <label class="radio-inline"><input type="radio" name="identity" value="1">经纪人</label>
+                    <label class="radio-inline"><input type="radio" name="identity" value="2">中介</label>
+                    <label class="radio-inline"><input type="radio" name="identity" value="3">楼盘</label>
+                </div>
+            </div>
+            <div id="cbd" class="form-item">
+                <label class="item-label">选择楼盘</label>
+                    <div class="controls">
+                    <style type="text/css">
+                      .form-control {
+                        display:inline-block;
+                        width: 140px;
+                      }
+                    </style>
+                    {:hook('J_CBD')}
+                    </div>
+              </div>
+          </div>
+
+          <div class="form-item with-padding">
+            <input type="hidden" name="id" value="{$data.id|default=''}">
+            <input type="hidden" name="uid" value="{$data.uid|default=''}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+    <script>
+      $(function(){
+        $('#identity').hide();
+        $('#cbd').hide();
+
+        $('#status input[value=1]').click(function(){
+          $('#identity').show();
+        })
+
+        $('#identity input[value=3]').click(function(){
+          $('#cbd').show();
+        })
+
+        $('#identity input[value=1],input[value=2]').click(function(){
+          $('#cbd').hide();
+        })
+
+        $('#status input[value=0]').click(function(){
+          $('#identity').hide();
+          $('#cbd').hide();
+        })
+      })
+    </script>
+</block>

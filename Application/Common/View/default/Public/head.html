@@ -1,0 +1,103 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+
+	  <!-- Set render engine for 360 browser -->
+<meta name="renderer" content="webkit">
+
+	  <!-- No Baidu Siteapp-->
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+<link rel="icon" type="image/png" href="Public/images/favicon.png">
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="192x192" href="Public/images/app-icon.png">
+
+<!-- Add to homescreen for Safari on iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="房公盘"/>
+<link rel="apple-touch-icon-precomposed" href="Public/images/app-icon.png">
+
+<!-- Tile icon for Win8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="Public/images/app-icon.png">
+<meta name="msapplication-TileColor" content="#c31b21">
+{:hook('syncMeta')}
+
+<include file="Public/seo"/>
+
+<!-- amaze -->
+<link rel="stylesheet" href="__PUBLIC__/css/core.css">
+<link rel="stylesheet" href="__AMAZE__/css/amazeui.min.css">
+<link rel="stylesheet" href="__AMAZE__/css/app.css">
+<link rel="stylesheet" href="__PUBLIC__/js/ext/toast/toastr.min.css">
+
+<include file="Public/js"/>
+
+<block name="style"><!--Style--></block>
+<!--合并前的js-->
+<include file="Public/var"/>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<php>
+
+    if(ACTION_NAME == 'objectshow'){
+    //房源
+
+      if($data['pics']){
+          $pos =  strpos($data['pics'],',');
+          if($pos){
+            $pic = substr($data['pics'],0,$pos);
+            $wei_logo = '/'.getThumbImageById($pic,150,150);
+          }else{
+            $wei_logo = '/'.getThumbImageById($data['pics'],150,150);
+          }
+      }else{
+        $wei_logo = '/Public/images/app-icon.png';
+      }
+
+      $wei_title = $data['title'];
+      $wei_descrip = str_replace(array(chr(13),chr(10)),'',$data['description']);
+
+    }else if(CONTROLLER_NAME == 'Property'){
+    //个人主页
+      $wei_logo    = '/Public/images/app-icon.png';
+      $wei_title = $shuo_data['nickname'];
+      $wei_descrip = $shuo_data['title'];
+     
+    }else{
+    //主页和其他
+      $wei_logo    = '/Public/images/app-icon.png';
+      $wei_title   = '房公盘,房源共享平台';
+      $wei_descrip = '干好房地产，用好房公盘';
+    }
+
+
+</php>
+<script>
+    //全局内容的定义
+    var _ROOT_ = "__ROOT__";
+    var MID = "{:is_login()}";
+    var MODULE_NAME="<php>echo MODULE_NAME;</php>";
+    var ACTION_NAME="<php>echo ACTION_NAME;</php>";
+    var WEIXIN_JSON= {$weixin_json|default="0"};
+
+    //微信分享内容
+    var WEIXIN_LOGO = location['protocol']+'//'+location['host']+'{$wei_logo}';
+    var WEIXIN_TITLE = '{$wei_title}';
+    var WEIXIN_DESCRIP = '{$wei_descrip}';
+</script>
+
+<audio id="music" src="" autoplay="autoplay"></audio>
+<!-- 页面header钩子，一般用于加载插件CSS文件和代码 -->
+{:hook('pageHeader')}

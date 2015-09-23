@@ -1,0 +1,380 @@
+#hero{
+  background:url(http://dl.bizhi.sogou.com/images/2012/04/09/97984.jpg);
+  height:auto;
+  background-size:cover;
+  padding-top:50px;
+}
+
+#hero h2,h1,form{
+  text-align:center;
+}
+
+
+@media only screen and (min-width: 640px){  
+	.yincangdh {
+		display: none !important;
+		visibility: hidden !important;
+	}	
+}
+
+@media screen and (max-width: 640px) {
+	.yincang2 {
+		display: none !important;
+		visibility: hidden !important;
+	}
+}
+
+.am-menu-offcanvas1 .am-menu-juyou{position:absolute;right:30px;top:-55px;width:44px;color:#FFF}
+
+.beijingcolor{
+	background-color:white;
+}
+
+#beijingwhite{
+	background-color:rgb(232, 232, 232);
+}
+
+.fontjianju{
+	margin:5px;
+}
+
+#jianjudibu{
+	margin-bottom:10px;
+}
+
+.daohangcolor{
+	background-color:#c40d23;
+}
+
+.an-sousuo{
+	width:100%;
+}
+
+.an-help{
+	margin-left:10px; 
+	margin-right:10px; 
+	background-color:rgb(234, 234, 234);
+}
+
+#bianju1{
+	margin:20px
+}
+
+#redline:hover{border:1px solid red;}
+
+ /*大于640小于960*/
+@media only screen and (min-width: 640px) and (max-width: 960px) { 
+	#font960{
+		margin-top:10px;
+		margin-bottom:10px;
+	}
+}
+
+/*小于640*/
+@media only screen and (max-width: 640px) { 
+	.font640{
+		margin-top:5px;
+		margin-bottom:5px;
+	}
+	.index-shuo{
+		width:18%;
+		float:left;
+		position:relative;
+	}
+
+        .index-shuo img{
+                width:50px;
+                height:50px;
+                border-radius:4px;
+        }
+	.index-shuo-2{
+		width:82%;
+		float:right;
+		position:relative;
+	}
+
+        .index-shuo-2 h3{
+                color:black;
+        }
+
+	.index-shai{
+		padding:0px;
+	}
+
+	.an-property-shuoming{
+		padding-top:1%;
+	}
+
+}
+
+
+/*大于640*/
+@media only screen and (min-width: 640px) {
+	.font960{
+		margin-top:16px;
+		margin-bottom:16px;
+	}
+	#logojianju2{
+		width:100%; 
+		margin-top:50px; 
+		margin-bottom:15px;
+	}
+	#tdwidth1{
+		width:19%
+	}
+	.an-index-shaixuan{
+		padding-top:15px;
+	}
+	.index-shuo{
+		width:16%;
+		float:left;
+		position:relative;
+		padding-right:1.5em;
+	}
+	.index-shuo-2{
+		width:84%;
+		position:relative;
+		float:right;
+	}
+	.index-shai{
+		padding:0px 20px;
+	}
+	.index-s{
+		margin-top:18px;
+	}
+	.an-property-shuoming{
+		padding-top:0%;
+	}
+}
+
+/*小于960*/
+@media only screen and (max-width: 960px) { 
+	.logojianju{
+		width:100%; 
+		margin-top:30px; 
+		margin-bottom:15px;
+	}
+	.tdwidth{
+		width:10%;
+	}
+}
+
+.objectlist{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.objectlist ul li:first-child{
+    border-top:none;
+}
+.myshuolist{
+  margin-top:-1px;
+}
+
+.myshuolist p{
+  margin:0px;
+}
+
+.an-padding-5{
+	padding:5px 0px;
+}
+
+@media screen and (min-width: 1201px) {
+.an-img {width: auto}
+}
+/* css 注释说明：设置了浏览器宽度不小于1201px时 abc 显示1200px宽度 */
+
+@media screen and (max-width: 1200px) {
+.an-img {width: auto}
+}
+/* 设置了浏览器宽度不大于1200px时 abc 显示900px宽度 */
+
+@media screen and (max-width: 900px) {
+.an-img {width: 140px; height: 140px;}
+}
+/* 设置了浏览器宽度不大于900px时 abc 显示200px宽度 */
+
+@media screen and (max-width: 500px) {
+.an-img {width: 100px; height: 80px;}
+}
+/* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */
+
+.an-jichu{
+	font-size:15px;
+	margin-bottom:10px;
+	padding-bottom:0px;
+}
+/* 筛选菜单开始 */
+
+  #filter{
+    margin-top:-1.6rem;
+  }
+
+  .filter-modal{
+    position: fixed;
+    top:0;
+    width: 100%;
+    background-color: #FFF;
+    z-index: 1110;
+  }
+
+  .filter-top{
+    padding-top:.5em;
+    padding-bottom:.5em;
+    border-top:1px #E3E3E2 solid;
+    border-bottom:1px #E3E3E2 solid;
+  }
+
+  #filter li{
+    list-style:none;
+    padding:0
+
+  }
+  .filter-menu{
+    padding:0;
+  }
+
+  .filter-menu li{
+    text-align:center;
+    float:left;
+    width:25%;
+    border-right:1px #E3E3E2 solid;
+    line-height: 2em;
+    font-size:1em;
+  }
+
+  .filter-menu li:last-child{
+    border:none;
+  }
+
+  #filter-container{
+    background:#FFF;
+    position:absolute;
+    width:100%;
+    z-index:10;
+  }
+
+  #filter-container li{
+    border-bottom:1px #E3E3E2 solid;
+    line-height:2.6em;
+  }
+
+  #filter-container li a{
+    color:#333;
+  }
+
+  #filter-container ul{
+    margin:0;
+    padding:0;
+    display:none;
+  }
+
+  .filter-cbd{
+    position:relative;
+  }
+
+  .cbd_second {
+    max-height:350px;
+    overflow-y:auto;
+    border-left:1px #E3E3E2 solid;
+    border-bottom:1px #E3E3E2 solid;
+    width:60%;
+    position:absolute;
+    background:#F7F7F7;
+    margin:0;
+    top:0;
+    right:0;
+  }
+/* 筛选菜单结束*/
+
+.an-imgs{
+	width:100px;
+	height:100px;
+}
+
+/* 首页图标设置 */
+.an-index-nav{
+	height:65px;
+}
+.an-index-font{
+	font-size:.6em;
+	margin-bottom:0px;
+	margin-top:-15px;
+	color:black;
+}
+.an-index-fenye{
+	margin-top:20px;
+}
+.an-index-t{
+	padding-bottom:0px;
+}
+
+
+.index-shuo{
+	margin:-1px 0px 0px 0px;
+}
+
+@media screen and (min-width: 1201px) {
+.an-img-shuo {width: 64px; height: 64px;}
+}
+/* css 注释说明：设置了浏览器宽度不小于1201px时 abc 显示1200px宽度 */
+
+@media screen and (max-width: 1200px) {
+.an-img-shuo {width: 64px; height: 64px;}
+}
+/* 设置了浏览器宽度不大于1200px时 abc 显示900px宽度 */
+
+@media screen and (max-width: 900px) {
+.an-img-shuo {width: 64px; height: 64px;}
+}
+/* 设置了浏览器宽度不大于900px时 abc 显示200px宽度 */
+
+@media screen and (max-width: 500px) {
+.an-img-shuo {width: 64px; height: 64px;}
+}
+/* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */
+
+
+
+.look-more{
+   padding: 10px;
+   color: #000;
+   background-color: #c40d23;
+}
+
+.look-more a{
+  display:block;
+}
+
+/* Property-index */
+.property-font-a{
+	padding-top:5px; 
+	padding-bottom:10px;
+	padding-left:5px; 
+	margin:0px;
+}
+
+.property-pre{
+	padding:0px;
+	border:none;
+	margin:0px;
+	background-color:rgba(255, 255, 255, 0);
+}
+
+/* 导航搜索 */
+.an-daohang{
+	padding-left:0px;
+	padding-right:0px;
+	background-color:#fff;
+	line-height:0px;
+	border:none;
+	white-space:initial;
+}
+
+#card{
+       padding:12px 6px 6px 6px;
+}
+
+#edit-object{
+
+}
