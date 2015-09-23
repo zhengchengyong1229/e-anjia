@@ -1,3 +1,9 @@
 Runtime/
 ZIP/
 Public/images/default_avatar_64_64.jpg
+
+*.png
+
+*.jpg
+!Upload/**/*.png
+!Upload/**/*.jpg
