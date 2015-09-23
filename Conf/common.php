@@ -42,8 +42,8 @@ return array(
 /* 数据库配置 */
 'DB_TYPE'   => 'mysqli', // 数据库类型
 'DB_HOST'   => '114.215.85.36', // 服务器地址
-'DB_NAME'   => 'fang', // 数据库名
-'DB_USER'   => 'fang', // 用户名
+'DB_NAME'   => 'e_anjia', // 数据库名
+'DB_USER'   => 'e_anjia', // 用户名
 'DB_PWD'    => '123456',  // 密码
 'DB_PORT'   => '3306', // 端口
 'DB_PREFIX' => 'fang_', // 数据库表前缀
