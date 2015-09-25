@@ -78,25 +78,22 @@
   <header class="am-topbar am-topbar-inverse">
 	  <h1 class="am-topbar-brand">
       <a href="{:U('Home/index/index',array('tel'=>I('get.tel')))}" class="am-icon-home demo-icon-home"></a>
-      <a href="{:U('Home/index/index',array('tel'=>I('get.tel')))}" class="am-text-center">安家在线</a>
+      <a href="{:U('Home/index/index',array('tel'=>I('get.tel')))}" class="am-text-center am-text-sm">安家在线</a>
 	  </h1>
-
-
-
-<form class="am-fr am-topbar-form am-topbar-left am-form-inline"  method="post" role="search"  action="{:U(search)}" style="width:50%;height:50px;margin-right:60px; padding-top:6px;">
+<form class="am-fr am-topbar-form am-topbar-left am-form-inline"  method="post" role="search"  action="{:U(search)}" style="width:50%;height:50px;margin-right:45px; padding-top:6px;">
 <div class="am-input-group">
+    <!--
   <span class="am-input-group-label am-round" style="padding-left:5px;padding-right:0px;">
 	<select name="type" style="border:none;vertical-align:initial;background-color:rgba(255, 255, 255, 0);">
     <php>
        $type = I('post.type');
     </php>
-
 		<option value="2" <eq name="type" value="2">selected</eq> >房源</option>
 		<option value="1" <eq name="type" value="1">selected</eq> >门店</option>
-      
 	</select>
+    -->
   </span>
-  <input type="text" name="keywords" class="am-form-field am-input-sm  am-round" value="{:I('post.keywords')}" placeholder="搜索">
+  <input type="text" name="keywords" class="am-form-field am-input-sm  am-round" value="{:I('post.keywords')}" placeholder="  搜索">
   <span id="span-search" class="am-input-group-label am-icon-search am-round"></span>
 </div>
 <script>
