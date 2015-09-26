@@ -52,8 +52,9 @@ class ObjectModel extends Model{
                  $map   = $map['map'];
 
                  $o_list = $this->alias('a')->where($map)->page($page,$r)
-                          ->field('a.id,title,1 as type,a.uptime,description,b.nickname')
+                          ->field('distinct a.id,title,1 as type,a.uptime,description,b.nickname,c.pid as ifpic')
                           ->join('__MEMBER__ b on a.uid = b.uid','left')
+                          ->join('__OBJECT_PIC__ c on a.id = c.oid','left')
                           ->order('a.uptime desc')
                           ->select();
 
@@ -70,11 +71,6 @@ class ObjectModel extends Model{
 
                 return $list;
     }
-
-
-
-
-
 
     public function getSearchList($o_map,$a_map,$page = 0,$r = '15',$order="createtime desc"){
 

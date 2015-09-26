@@ -3,7 +3,10 @@
       <a href="{:U('Home/index/objectShow',array('id'=>$item['id']))}" style="padding-bottom:0px;padding-top:5px;">
             <eq name='item.type' value="1">
             <a href="{:U('home/index/objectShow',array('id'=>$item['id'],'tel'=>I('get.tel')))}">
-               <span class="am-badge am-badge-danger">售</span>&nbsp;<span style="color:#c40d23;">{$item.title}</span>&nbsp;
+              <span class="am-badge am-badge-danger">售</span>&nbsp;<span style="color:#c40d23;">{$item.title}</span>&nbsp;
+              <if condition="$item.ifpic neq null">
+                <span class="am-badge am-badge-warning">多图</span>
+              </if>
             <else/>
               <a href="{:U('home/index/askShow',array('id'=>$item['id'],'tel'=>I('get.tel')))}">
               <span class="am-badge am-badge-primary">求</span>&nbsp;<span style="color:#ffac00;">{$item.title}</span>&nbsp;
