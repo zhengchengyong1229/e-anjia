@@ -21,12 +21,13 @@ class PropertyModel extends Model{
      *
      */
     public function getlist($map,$page = 0 ,$order = 'objectcount desc', $r = 10 ){
-        $field = 'a.id,a.name as title,a.objectcount,a.uptime,a.cover,(select min(`totalprice`/`area`*10000) from fang_object where fid = a.id) as uprice';
+        $field = 'distinct a.id,a.name as title,a.objectcount,a.uptime,a.cover,(select min(`totalprice`/`area`*10000) from fang_object where fid = a.id) as uprice';
         $list  =     $this->where($map)->field($field)->alias('a')
-                     ->join('__OBJECT__ d on d.uid = a.uid','left')   //房源搜索条件
+                     ->join('__OBJECT__ d on d.fid = a.id','left')   //房源搜索条件
                      ->order('a.objectcount desc')
                      ->page($page,$r)
                      ->select();
+
         foreach($list as $key=>$val){
             $list[$key]['avatar'] = query_user('avatar128',$val['uid']);
         }

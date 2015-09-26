@@ -122,7 +122,7 @@ class CBDController extends AddonsController{
 
 
             $d_property = D('Home/property');
-            $list = $d_property->getlist($map);
+            $list = $d_property->getlist($map,0,'objectcount desc',100);
 
 			$data = "<option value =''>-楼盘-</option>";
 			foreach ($list as $k => $vo) {
