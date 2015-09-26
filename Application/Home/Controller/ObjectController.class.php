@@ -131,11 +131,10 @@ class ObjectController extends BaseController
             }
         }else{
             if($id){
-                $data = $this->d_object->alias('a')->where(array('id'=>$id,'uid'=>$this->mid))->field('a.*,group_concat(b.pid) as pics')->join('__OBJECT_PIC__  b on a.id = b.oid')->find();
+                $data = $this->d_object->alias('a')->where(array('id'=>$id,'uid'=>$this->mid))->field('a.*,group_concat(b.pid) as pics')->join('__OBJECT_PIC__  b on a.id = b.oid','left')->find();
                 if(!$data){
                     $this->error('错误');
                 }
-
 
                 $data['cbd'] = get_whole_address($data['bid']);//根据cbd，找到其父菜单
                 $data['cbd']['property'] = $data['fid'];
