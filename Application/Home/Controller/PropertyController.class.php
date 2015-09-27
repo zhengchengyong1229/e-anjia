@@ -269,7 +269,7 @@ class PropertyController extends BaseController
 
     protected function objectlist_to_html($list){
         $this->assign('list',$list);
-        $html = $this->fetch('Public/item');
+        $html = $this->fetch('Public/myitem');
         return $html;
     }
 }
