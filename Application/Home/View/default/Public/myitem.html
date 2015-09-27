@@ -4,7 +4,7 @@
             <eq name='item.type' value="1">
             <a href="{:U('home/index/objectShow',array('id'=>$item['id'],'tel'=>I('get.tel')))}">
               <span class="am-badge am-badge-danger">售</span>&nbsp;<span style="color:#c40d23;">{$item.title}</span>&nbsp;
-              <if condition="$item.ifpic neq null">
+              <if condition="$item.pic_num eq 9">
                 <span class="am-badge am-badge-warning">多图</span>
               </if>
             <else/>

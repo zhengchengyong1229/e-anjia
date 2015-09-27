@@ -530,17 +530,14 @@ class IndexController extends BaseController
     //临时操作类
     /*
     public function sqlac(){
-        $list = D('object')->field('fid,count(`id`) as objectcount')->where(array('fid'=>array('gt',0),'status'=>1))->group('fid')->select();
-        $i = 1;
-        foreach($list as $key=>$val){
-              $res =   D('property')->where(array('id'=>$val['fid']))->save(array('objectcount'=>$val['objectcount']));
-              if($res){
-                  echo '成功'.'<br/>'.$i;
-                  $i++;
-              }
+        $res = D('object_pic')->group('oid')->field('oid,count(`oid`) as pic_num')->select();
+        dump($res);
+        $i = 0;
+        foreach($res as $k=>$v){
+           $r =     D('object')->where(array('id'=>$v['oid'],'status'=>1))->save(array('pic_num'=>$v['pic_num']));
+           $e = $r?'成功':'失败';
+           echo ++$i+$e+'<br/>';
         }
-        exit;
-        dump($list);
     }
     */
 }

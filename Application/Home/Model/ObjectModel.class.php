@@ -52,9 +52,8 @@ class ObjectModel extends Model{
                  $map   = $map['map'];
 
                  $o_list = $this->alias('a')->where($map)->page($page,$r)
-                          ->field('distinct a.id,title,1 as type,a.uptime,description,b.nickname,IF(c.pid>0,1,0) as ifpic')
+                          ->field('distinct a.id,title,1 as type,a.uptime,description,b.nickname,pic_num')
                           ->join('__MEMBER__ b on a.uid = b.uid','left')
-                          ->join('__OBJECT_PIC__ c on a.id = c.oid','left')
                           ->order('a.uptime desc')
                           ->select();
 
