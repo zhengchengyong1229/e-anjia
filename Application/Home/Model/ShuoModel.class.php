@@ -31,6 +31,7 @@ class ShuoModel extends Model{
 
 
     public function getList($map = '',$page = 0,$r = 10){
+        dump($map);
         $field = 'distinct a.uid,IF(a.title!="",a.title,concat(count,"套房源")) as title,a.content,a.uptime,a.identity,a.count,a.sTime,a.eTime,b.nickname';
         $list  =   $this->where($map)->field($field)->alias('a')
                  ->join('__MEMBER__ b on a.uid = b.uid','left')

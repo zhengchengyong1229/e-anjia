@@ -353,9 +353,10 @@ class IndexController extends BaseController
           if($cbd == 0){
               $map['a.city'] = $city;
           }elseif($cbd>0){
-              $map['c.pid'] = $cbd;
+              //$map['c.pid'] = $cbd;
+              $map['a.pid'] = $cbd;
           }elseif($cbd<0){
-              $map['d.district'] = -$cbd;
+              $map['a.district'] = -$cbd;
           }
 
           $price_map = C('HOUSE_PRICE_MAP');
@@ -450,7 +451,7 @@ class IndexController extends BaseController
      * $page intval 页面
      *
      */
-    public function addMoreProperty($page = 0,$shi = 0,$area = 0,$price = 0,$area = 0){
+    public function addMoreProperty($page = 0,$shi = 0,$area = 0,$price = 0,$area = 0,$cbd = 0){
 
           $price_map = C('HOUSE_PRICE_MAP');
           $area_map = C('HOUSE_AREA_MAP');
@@ -462,9 +463,9 @@ class IndexController extends BaseController
           if($cbd == 0){
               $map['a.city'] = $city;
           }elseif($cbd>0){
-              $map['c.pid'] = $cbd;
+              $map['a.pid'] = $cbd;
           }elseif($cbd<0){
-              $map['d.district'] = -$cbd;
+              $map['a.district'] = -$cbd;
           }
 
         //筛选价格
@@ -530,14 +531,16 @@ class IndexController extends BaseController
     //临时操作类
     /*
     public function sqlac(){
-        $res = D('object_pic')->group('oid')->field('oid,count(`oid`) as pic_num')->select();
-        dump($res);
-        $i = 0;
-        foreach($res as $k=>$v){
-           $r =     D('object')->where(array('id'=>$v['oid'],'status'=>1))->save(array('pic_num'=>$v['pic_num']));
-           $e = $r?'成功':'失败';
-           echo ++$i+$e+'<br/>';
-        }
+       $res =   D('cbd')->field('id,pid')->select();
+       $i = 0;
+       foreach($res as $k=>$v){
+         $r =    D('property')->where(array('pid'=>$v['id']))->save(array('district'=>$v['pid']));
+         $i++;
+         $re = $r?'成功':'失败';
+         echo $i.$re.'<br/>';
+       }
+
+
     }
     */
 }
