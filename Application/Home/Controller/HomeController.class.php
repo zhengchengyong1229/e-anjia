@@ -425,9 +425,10 @@ class HomeController extends AdminController
 
             $admin_config = new AdminConfigBuilder();
             $admin_config->title('新增楼盘')->keyId()->keyText('name', '名称')
+                         ->keyText('cuxiao','促销信息')
                          ->keyUid('uid','用户ID')
                          ->keyHidden('pid')
-                         ->KeyHidden('city')
+                         ->keyHidden('city')
                          ->keySingleImage('cover','封面','首页各个楼盘的logo')
                          ->data($data)
                          ->buttonSubmit(U('propertyEdit'))->buttonBack()->display();
