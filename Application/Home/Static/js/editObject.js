@@ -101,8 +101,13 @@ jQuery(function(){
 });
 
 
+//////////////////////////////////////////////////////////////////////////////
+//户型图上传控制方法
 jQuery(function(){
   var $ = jQuery,
+        $wrap = $('#huxing_wrap'),//列表容器
+        $input = $('input[name="huxing"]'),
+        uploader;
 
   //初始化Web Uploader
   uploader = WebUploader.create({
@@ -110,14 +115,14 @@ jQuery(function(){
       auto: true,
 
       //swf文件路径
-      swf: './Uploader.swf',
+      swf: './Public/js/ext/webuploader/js/Uploader.swf',
 
       //文件接受服务器
       server: U('Core/File/uploadPicture'),
 
-      //选择文件按钮
+      //选择文件按钮,单图
       pick: {
-        id:'#file',
+        id:'#huxing',
         multiple:false
       },
 
@@ -127,19 +132,51 @@ jQuery(function(){
             extensions: 'jpg,jpeg,bmp,png',
             mimeType: 'image/*'
       }
+ }) 
 
-  }) 
 
 
-  uploader.on('uploadComplete',function( file ){
-       $input_pic.val(pictures);
+  //有文件加入触发事件,制作缩略图,并显示在容器中
+   uploader.on('fileQueued',function( file ){
+       uploader.makeThumb(file,function(error,src){
+            if(error){
+               alert('不能预览');
+               return;
+            }
+            var img = $('<img class="am-img-responsive am-center" src="'+src+'"/>');
+                 img.find('a').click(function(e){
+            })
+             //向容器中添加图片 ,单图,覆盖
+            $wrap.html(img);
+       },'400','400');
   })
 
+  /*
+  uploader.on('uploadStart',function(){
+     if(already_count >= 9){
+          uploader.stop();
+     }
+  })
+  */
 
+  //上传成功后，将户型图id存入input中
   uploader.on('uploadSuccess',function(file,response){
-         input_file.val(response.data.file.id);
+        console.log(response.data.file.id);
+        $input.val(response.data.file.id);
   })
 
+  /*
+  uploader.on('beforeFileQueued',function(){
+     if( status == 0){
+       $wrap.empty();
+       $input_pic.val('');
+       status = 1;
+     }
+     if(count >= 9){
+         return false;
+     }
+  })
+  */
 
   uploader.on('uploadError',function(file,response){
         console.log('上传失败')
