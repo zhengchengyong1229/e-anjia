@@ -53,7 +53,7 @@ class ObjectModel extends Model{
 
                  $o_list = $this->alias('a')->where($map)
                        // ->page($page,$r)
-                          ->field('distinct a.floor,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,type as leibie')
+                          ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,type as leibie')
                           ->join('__MEMBER__ b on a.uid = b.uid','left')
                           ->join('__PROPERTY__ c on a.fid = c.id','left')
                           ->order('a.uptime desc')

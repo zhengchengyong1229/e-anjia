@@ -213,6 +213,9 @@
     <div id="demo" class="am-vertical-align">
       <div class="back-to-dest"><a href="" class="am-icon-chevron-left "></a></div>  
       <ul class="am-vertical-align-middle">
+        <li class="am-padding-xs" data-id="{$item}">
+             <img class="" src="{:getThumbImageById($data.huxing,900)}" alt="">
+         </li>
         <volist id="item" name="array_pic">
         <li class="am-padding-xs" data-id="{$item}">
              <img class="" src="{:getThumbImageById($item,900)}" alt="">

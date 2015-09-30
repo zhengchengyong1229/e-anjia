@@ -85,6 +85,7 @@ class ObjectController extends BaseController
             $data['uid']    =  $this->mid;
             $data['status'] = 1;
             $data['pics']    = $pics;
+            $data['pic_num']  =  count(explode(',',$pics));
             $data['province']   = $province;
             $data['city']   = $city?$city:session('user_city.city_id');
             $data['district']   = $district;
