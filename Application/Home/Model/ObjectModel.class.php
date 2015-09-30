@@ -51,28 +51,53 @@ class ObjectModel extends Model{
                  $a_map = $map['a_map'];
                  $map   = $map['map'];
 
-                 $o_list = $this->alias('a')->where($map)->page($page,$r)
-                          ->field('distinct a.id,title,1 as type,a.uptime,description,b.nickname,pic_num')
+                 $o_list = $this->alias('a')->where($map)
+                       // ->page($page,$r)
+                          ->field('distinct a.floor,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,type as leibie')
                           ->join('__MEMBER__ b on a.uid = b.uid','left')
+                          ->join('__PROPERTY__ c on a.fid = c.id','left')
                           ->order('a.uptime desc')
                           ->select();
 
-
-                 $a_list = D('ask')->alias('a')->where($a_map)->page($page,$r)
+                /*
+                 $a_list = D('ask')->alias('a')->where($a_map)
+                         ->page($page,$r)
                           ->field('a.id,title,2 as type,a.uptime,description,b.nickname')
                           ->join('__MEMBER__ b on a.uid = b.uid','left')
                           ->order('a.uptime desc')
                           ->select();
-
                 $list = array_merge((array)$a_list,(array)$o_list);
                 array_multisort(array_column($list,'uptime'),SORT_DESC,$list);
                 $list =  array_slice($list,0,10);
 
-                return $list;
+                */
+
+                return $o_list;
+    }
+
+
+
+
+    //将房源拼装成三维数组
+    /*
+     *  高层／一居
+     *
+     *    img      ~~~~
+     *             ~~~~
+     *             ~~~~
+     *
+     */
+    public function getMultyList($page=0,$order="",$field="*",$r=10){
+          $list =   $this->getlist($page=0,$order="",$field="*",$r=10);
+          $new_list = array();
+          foreach($list as $key=>$val){
+                $new_list[strval($val['leibie']).','.$val['shi']][]=$val;
+          }
+
+          return $new_list;
     }
 
     public function getSearchList($o_map,$a_map,$page = 0,$r = '15',$order="createtime desc"){
-
 
         /*
         $this    ->alias('a')
@@ -91,6 +116,7 @@ class ObjectModel extends Model{
                   ->select();
 
 
+        /*
         $a_list = D('ask')->alias('a')->where($a_map)
                   ->field('a.id,title,2 as type,a.uptime,description,b.show_role')
                   ->join('__MEMBER__ b on a.uid = b.uid','left')
@@ -102,9 +128,10 @@ class ObjectModel extends Model{
 
         array_multisort(array_column($list,'uptime'),SORT_DESC,$list);
         $list =  array_slice($list,0,10);
+        */
 
 
-        return $list;
+        return $o_list;
     }
 
     /*

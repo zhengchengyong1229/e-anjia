@@ -378,3 +378,47 @@
 #edit-object{
 
 }
+
+.leibie-list{
+       list-style:none;
+       padding:0;
+       margin:0;
+}
+
+.leibie-list h2{
+       font-size:1.8rem;
+       margin: 5px 0 0 0 ;       
+       padding:0;
+}
+
+.object-list{
+       list-style:none;
+       padding:0;
+       margin: 0;
+}
+
+.object-item{
+       padding:10px;
+       border-bottom:1px solid #D4D4D4;
+}
+
+.object-item img{
+       float:left;
+       margin-right:20px;
+}
+
+.object-text{
+
+}
+
+.object-first,.object-second,.object-third{
+      font-size:1.9rem;
+      padding-bottom:5px;
+}
+
+.object-second span{
+      border:1px red solid;
+      color:red;
+      font-size:1.7rem;
+      padding:1px;
+}

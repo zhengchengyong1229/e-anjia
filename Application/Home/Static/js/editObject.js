@@ -36,7 +36,7 @@ jQuery(function(){
 
   //有文件加入触发事件
    uploader.on('fileQueued',function( file ){
-     if(count < 9){
+     if(count < 8){
        uploader.makeThumb(file,function(error,src){
             if(error){
                alert('不能预览');
@@ -66,7 +66,7 @@ jQuery(function(){
   })
 
   uploader.on('uploadStart',function(){
-     if(already_count >= 9){
+     if(already_count >= 8){
           uploader.stop();
      }
   })
@@ -85,7 +85,7 @@ jQuery(function(){
        $input_pic.val('');
        status = 1;
      }
-     if(count >= 9){
+     if(count >= 8){
          return false;
      }
   })

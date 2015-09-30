@@ -43,15 +43,15 @@ class PropertyController extends BaseController
         $id = I('get.id',0,'intval');//修正我的房源
 
         //取出促销
+        /*
         $d_shuo = D('shuo');
         $shuo_data = $d_shuo->getdetail(array('a.property'=>$id));
 
-
-
         $this->assign('shuo_data',$shuo_data);
+        */
 
         $d_object = D('object');
-        $list = $this->d_object->getList();
+        $list = $this->d_object->getMultyList();
 
         $this->assign('list',$list);
         $this->display();
