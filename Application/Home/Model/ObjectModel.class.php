@@ -56,7 +56,7 @@ class ObjectModel extends Model{
                           ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,type as leibie')
                           ->join('__MEMBER__ b on a.uid = b.uid','left')
                           ->join('__PROPERTY__ c on a.fid = c.id','left')
-                          ->order('a.uptime desc')
+                          ->order('leibie,shi,floor')
                           ->select();
 
                 /*
@@ -94,7 +94,8 @@ class ObjectModel extends Model{
                 $new_list[strval($val['leibie']).','.$val['shi']][]=$val;
           }
 
-          return $new_list;
+//      ksort($new_list);
+        return $new_list;
     }
 
     public function getSearchList($o_map,$a_map,$page = 0,$r = '15',$order="createtime desc"){

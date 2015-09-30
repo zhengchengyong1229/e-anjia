@@ -385,21 +385,31 @@
        margin:0;
 }
 
-.leibie-list h2{
+.object-text h2{
        font-size:1.8rem;
        margin: 5px 0 0 0 ;       
        padding:0;
 }
 
+.leibie-item-title{
+       margin:0 -20px 5px -20px;
+       padding:3px 0 3px 20px;
+       background-color:#ccc;
+       color:gray;
+}
+
 .object-list{
        list-style:none;
        padding:0;
-       margin: 0;
+       margin: 0 -10px 0px -10px;
+}
+
+.object-item:not(:last-child){
+       border-bottom:1px solid #D4D4D4;
 }
 
 .object-item{
-       padding:10px;
-       border-bottom:1px solid #D4D4D4;
+       padding: 5px 0 5px 0;
 }
 
 .object-item img{
@@ -413,7 +423,12 @@
 
 .object-first,.object-second,.object-third{
       font-size:1.9rem;
+      color:black;
       padding-bottom:5px;
+}
+
+.object-third{
+      color:#8A8A8A;
 }
 
 .object-second span{
