@@ -14,103 +14,26 @@
 </script>
 <!-- 导航 -->
 <div class="yincang2">
-	<div class="am-container">
-		<if condition="is_login()">
-			<div class="am-topbar-right">
-				<a href="" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="background-color:#c40d23;border-color:#c40d23;">{$user_info.nickname}</a>
-			</div>
-		<else/>
-			<div class="am-topbar-right">
-				<a href="{:U('Ucenter/member/mobregister')}" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="background-color:#c40d23;border-color:#c40d23;">注册</a>
-			</div>
-			<div class="am-topbar-right">
-				<a href="{:U('Ucenter/member/moblogin')}" class="am-btn am-btn-primary am-topbar-btn am-btn-sm" style="background-color:#c40d23;border-color:#c40d23;">登录</a>
-			</div>
-		</if>
-	<!-- 侧边栏 -->
-		<div class="am-topbar-right">
-			<nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>
-				<a href="javascript: void(0)" class="am-menu-toggle" style="top:2px">
-				<i class="am-icon-sm am-primary am-icon-windows" style="color:black;"></i>
-				</a>
-				<div class="am-offcanvas">
-					<div class="am-offcanvas-bar am-offcanvas-bar-flip">
-						<ul class="am-menu-nav am-avg-sm-1">
-							<div class="am-text-center" id="user" style="">
-								<a style="text-indent: 0px;" href="/index.php?s=/mob/user/index.html">
-									<img class="avatar-img" style="border-radius: 100%;width:64px;margin-top:20px " src="{$user_info.avatar128}">
-								</a>
+ <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}' style="margin-top:-20px;">
+  <ul class="am-slides">
+      <li>
+        	<img src="__IMG__/lunbo1.jpg">
+         
+      </li>
+      <li>
+        	<img src="__IMG__/lunbo2.jpg">
+         
+      </li>
+      <li>
+        	<img src="__IMG__/sdw1h.jpg">
+         
+      </li>
+  </ul>
+</div>
 
-								<div class="am-text-center">
-									<a class="am-text-truncate" style="color: #fff; width: 81px;
-								display: block;
-								margin: 0 auto;">{$user_info.nickname}</a>
-								</div>
-							</div>
-							<!-- <li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/index/filter')}">
-								<i ></i>
-								新房源                          
-								</a>
-							</li> -->
-							<li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/property/editshuo')}">
-								<i class=""></i>
-								促销主题                          
-								</a>
-							</li>
-							<li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/object/edit')}">
-								<i class=""></i>
-								添加房源                          
-								</a>
-							</li>
 
-							<li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/ask/edit')}">
-								<i class=""></i>
-								求购房源                         
-								</a>
-							</li>
 
-							<if condition="is_login() gt 0">
 
-							<li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Home/property/index')}">
-								<i class=""></i>
-								已发房源                          
-								</a>
-							</li>
-
-							<!-- <li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Ucenter/config/mobavatar')}">
-								<i class=""></i>
-								修改资料                          
-								</a>
-							</li> -->
-
-							<li>
-								<a class="am-text-center" style="text-indent: 0px;" href="{:U('Ucenter/config/apply')}">
-								<i class=""></i>
-								身份认证                          
-								</a>
-							</li>
-
-							</if>
-
-							<div class="am-text-center" id="signout" style="padding: 5px 0px;">
-							<a><i class="am-icon-sign-out"></i>
-							&nbsp;&nbsp;退出
-							</a>
-							</div>
-						</ul>			  
-					</div>
-				</div>
-			</nav>
-		</div>
-		<!-- 侧边栏 end -->
-
-	</div>
 </div>
 <!-- 导航 end -->
 
@@ -136,12 +59,12 @@
 <!-- 大于640搜索 -->
 <div class="yincang2">
   <div class="am-g">
-	  <div class="am-u-sm-6 am-u-sm-centered am-u-md-3 am-u-md-centered am-u-lg-2 am-u-lg-centered" >
+	  <!-- <div class="am-u-sm-6 am-u-sm-centered am-u-md-3 am-u-md-centered am-u-lg-2 am-u-lg-centered" >
 		<img src="__IMG__/logo.png" class="logojianju" id="logojianju2" style="margin-bottom:20px"/>
-	  </div>
+	  </div> -->
   
 		<div class="am-u-sm-12 am-u-sm-centered am-u-md-10 am-u-md-centered am-u-lg-6 am-u-lg-centered">
-			<form class=" am-topbar-left"  method="post" role="search"  action="{:U(search)}">
+			<form class=" am-topbar-left"  method="post" role="search"  action="{:U(search)}" style="margin-top:20px;">
 			  <div class="am-input-group an-sousuo am-form-icon">
 				<span class="am-input-group-label" style="padding-left:5px;padding-right:0px;">
 					<select name="type" style="border:none;vertical-align:initial;background-color:rgba(255, 255, 255, 0);">

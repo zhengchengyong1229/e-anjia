@@ -1,14 +1,13 @@
-<if condition="(MODULE_NAME eq 'Home') AND (CONTROLLER_NAME eq 'Index') AND (ACTION_NAME eq 'index')">
 
-<else/>
 <!-- 导航 -->
 <div class="yincang2">
   <header class="am-topbar">
 
   <!-- 第一排导航 -->
   <div class="am-container" style="padding:0px">
+	<!-- <img href="{:U('Home/index/index')}" src="__IMG__/logo2.png" style="height:50px;padding-left:1.5rem;"> -->
     <h1 class="am-topbar-brand">
-      <a href="{:U('Home/index/index')}" class="am-icon-home demo-icon-home">安家在线</a>
+      <a href="{:U('Home/index/index')}" class="am-icon-home demo-icon-home" style="padding-left:0.6rem;">安家在线</a>
     </h1>
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 
@@ -63,14 +62,24 @@
 
 		</if>
 
+
+		<div class="am-topbar-right">
+			<li class="">
+				<a href="http://super.e-anjia.com" class="" style="color:#fff;padding-right:10px;">OA 系统</a>
+			</li>
+	    </div>
+
       </ul>
       </nav>
+
+	  
+
     </div>
   </div>
   </header>
 </div>
 <!-- 导航 end -->
-</if>
+
 
 <!-- 手机端导航 -->
 <div class="yincangdh">

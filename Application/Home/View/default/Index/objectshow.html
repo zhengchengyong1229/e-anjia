@@ -52,6 +52,9 @@
                 $array_pic = explode(',',$data['pics']);
                 krsort($array_pic);
               </php>
+                      <li class="am-padding-xs">
+                      <img class="download-pics am-img-responsive" src="{:getThumbImageById($data['huxing'],150,150)}" data-id="{$data.huxing}" alt="">
+                      </li>
                   <volist id="item" name="array_pic">
                       <li class="am-padding-xs">
                       <img class="download-pics am-img-responsive" src="{:getThumbImageById($item,150,150)}" data-id="{$item}" alt="">
@@ -213,8 +216,8 @@
     <div id="demo" class="am-vertical-align">
       <div class="back-to-dest"><a href="" class="am-icon-chevron-left "></a></div>  
       <ul class="am-vertical-align-middle">
-        <li class="am-padding-xs" data-id="{$item}">
-             <img class="" src="{:getThumbImageById($data.huxing,900)}" alt="">
+        <li class="am-padding-xs" data-id="{$data.huxing}">
+             <img class="" src="{:getThumbImageById($data['huxing'],900)}" alt="">
          </li>
         <volist id="item" name="array_pic">
         <li class="am-padding-xs" data-id="{$item}">
