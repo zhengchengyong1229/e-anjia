@@ -386,8 +386,8 @@
 }
 
 .object-text h2{
-       font-size:1.8rem;
-       margin: 5px 0 0 0 ;       
+       font-size:1.6rem;
+       margin: 0 0 0 0 ;       
        padding:0;
 }
 
@@ -422,9 +422,9 @@
 }
 
 .object-first,.object-second,.object-third{
-      font-size:1.9rem;
+      font-size:1.5rem;
       color:black;
-      padding-bottom:5px;
+      padding-bottom:2px;
 }
 
 .object-third{
@@ -434,6 +434,6 @@
 .object-second span{
       border:1px red solid;
       color:red;
-      font-size:1.7rem;
+      font-size:1.5rem;
       padding:1px;
 }
