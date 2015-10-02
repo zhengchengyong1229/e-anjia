@@ -34,6 +34,11 @@
                                  <div class="object-second">
                                    <eq name="it.pic_num" value="8"><span>多图</span></eq>
                                    <eq name="it.ifspecial" value="1"><span>特价</span></eq>
+                                   <eq name="it.ifdingzhang" value="1"><span>顶账</span></eq>
+                                   <if condition="$it.ifershou eq 1">
+                                      <span>二手</span>
+                                   </else>
+                                      <span>新房</span>
                                  </div>
                                  <div class="object-third am-text-bottom">{$it.loupan}</div>
                              </div>

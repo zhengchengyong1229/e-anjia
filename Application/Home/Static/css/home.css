@@ -439,6 +439,20 @@
       padding:1px;
 }
 
+.object-second span:nth-child(2){
+      border:1px yellow solid;
+      color:yellow;
+      font-size:1.2rem;
+      padding:1px;
+}
+
+
+.object-second span:nth-child(3){
+      border:1px orange solid;
+      color:orange;
+      font-size:1.2rem;
+      padding:1px;
+}
 
 .object-second span:last-child{
       border:1px red solid;
