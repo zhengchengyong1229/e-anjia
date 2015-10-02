@@ -41,13 +41,14 @@ class BaseController extends Controller
         $city = session('user_city.city_id');
         if(!$city['city_id']){
            // $ip = $_SERVER['REMOTE_ADDR'];
-              $ip = '221.2.170.181';
+           // $ip = '221.2.170.181';
 
-            //开始取得城市信息
-            $city = get_city_by_lee_ip($ip);
-            //如果有区域参数，则获取区域id
-            //$city_id = M('district')->where(array('name'=>$city))->getField('id');
+           //开始取得城市信息
+           // $city = get_city_by_lee_ip($ip);
+           //如果有区域参数，则获取区域id
+           //$city_id = M('district')->where(array('name'=>$city))->getField('id');
             $city_id = 371000;
+            $city = '威海市';
 
             //开始取得城市信息  end 
             //把城市信息存到session中
