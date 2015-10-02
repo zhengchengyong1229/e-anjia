@@ -301,6 +301,11 @@ class MemberController extends Controller
         }
     }
 
+    //手机端变更密码
+    public function mobchangepass(){
+        $this->display();
+    }
+
     /* 验证码，用于登录和注册 */
     public function verify()
     {

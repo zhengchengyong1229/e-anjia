@@ -1,0 +1,41 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/zheng.css">
+   <div class="am-container">
+     <section>
+         <form class="ajax-form am-form am-u-md-5 am-u-md-centered" action="{:U('Ucenter/config/dochangepassword')}"  id="changePasswordForm" method='post'>
+           <fieldset>
+             <div class="am-form-group">
+               <label for="">原密码</label>
+               <input type="text" name='old_password'>
+             </div>
+             <div class="am-form-group">
+               <label for="">新密码</label>
+               <input id="inputNewPassword" type="text" name='new_password'>
+             </div>
+             <div class="am-form-group">
+               <label for="">确认新密码</label>
+               <input id="inputConfirmPassword" type="password" name='confirm_password'>
+             </div>
+             <div class="am-form-group">
+               <input type="submit" class="am-btn am-btn-success am-btn-block" style="background-color:#c40d23;border-color:#c40d23;" value="修改">
+             </div>
+           </fieldset>
+         </form>
+         <script> 
+            $(function(){
+                        $('#changePasswordForm').submit(function(e){
+                            var newPassword = $('#inputNewPassword').val();
+                            var confirmPassword = $('#inputConfirmPassword').val();
+                            if(newPassword != confirmPassword) {
+                                toast.error('两次输入的密码不一致');
+                                e.stopPropagation();
+                                return false;
+                            }
+                        })
+              })
+         </script>
+     
+     </section>
+  </div>
+</block>
