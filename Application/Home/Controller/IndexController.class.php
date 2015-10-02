@@ -327,8 +327,6 @@ class IndexController extends BaseController
            $this->redirect('Home/index/index',array('tel'=>($this->user_info['mobile'])));
        }
 
-       D('Common/weixin')->get_jsapi_ticket();
-
        $city = $this->city_id?$this->city_id:371000;
 
           /*

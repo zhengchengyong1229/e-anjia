@@ -118,6 +118,7 @@ class BaseController extends Controller
             'url'         => $url,
         );
 
+
         $str = '';
 
         foreach($arr as $key=>$val){
