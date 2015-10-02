@@ -109,7 +109,8 @@ class ObjectController extends BaseController
                 }
                 $data['uptime'] = time();
                 if($this->d_object->savePic($id,$data['pics'])||$this->d_object->save($data)){
-                    D('shuo')->where(array('uid'=>is_login()))->save(array('uptime'=>NOW_TIME));//更新说说时间，也就是更新主页信息
+                    //D('shuo')->where(array('uid'=>is_login()))->save(array('uptime'=>NOW_TIME));//更新说说时间，也就是更新主页信息
+                    D('property')->where(array('id'=>$data['fid']))->save(array('uptime'=>NOW_TIME));//更新说说时间，也就是更新主页信息
                     $this->ajaxReturnHandle(1,'编辑房源成功',U('home/object/index',array('uid'=>$this->mid)));
                 }else{
                     $this->ajaxReturnHandle(0,'编辑房源失败');

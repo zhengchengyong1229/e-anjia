@@ -432,7 +432,15 @@
 .object-third{
 }
 
-.object-second span{
+.object-second span:first-child{
+      border:1px green solid;
+      color:green;
+      font-size:1.2rem;
+      padding:1px;
+}
+
+
+.object-second span:last-child{
       border:1px red solid;
       color:red;
       font-size:1.2rem;

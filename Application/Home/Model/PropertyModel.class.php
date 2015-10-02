@@ -24,7 +24,8 @@ class PropertyModel extends Model{
         $field = 'distinct a.cuxiao,a.id,a.name as title,a.objectcount,a.uptime,a.cover,(select min(`totalprice`/`area`*10000) from fang_object where fid = a.id) as uprice';
         $list  =     $this->where($map)->field($field)->alias('a')
                      ->join('__OBJECT__ d on d.fid = a.id','left')   //房源搜索条件
-                     ->order('a.objectcount desc')
+                     //->order('a.objectcount desc')
+                     ->order('a.uptime desc')
                      ->page($page,$r)
                      ->select();
 

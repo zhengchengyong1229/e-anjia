@@ -70,6 +70,9 @@ class BaseController extends Controller
                 $this->assign('user_info',$user_info);
         }
 
+        //统计房源数量
+        ($object_count = S('TOTAL_OBJECT_COUNT')) || ($object_count =  S('TOTAL_OBJECT_COUNT',$this->createTotalObjectCount(),2*60*60));
+        $this->assign('object_count',$object_count);
 
         //header("Content-type:text/html;charset=uft-8");
         /*读取站点配置*/
@@ -98,7 +101,7 @@ class BaseController extends Controller
     protected function user_info(){
 
       $user_info = query_user(array('avatar128','nickname','uid','mobile'));
-      $user_info['identity'] = D('shuo')->where(array('uid'=>is_login()))->getField('identity');
+      $user_info['identity'] = D('broker')->where(array('uid'=>is_login()))->getField('identity');
       session('user_info',$user_info);
       return $user_info;
     }
@@ -130,6 +133,11 @@ class BaseController extends Controller
 
         $weixin_json = json_encode($arr);
         $this->assign('weixin_json',$weixin_json);
+
+    }
+
+    protected function createTotalObjectCount(){
+       return  D('object')->where(array('status'=>1))->count();
 
     }
 }
