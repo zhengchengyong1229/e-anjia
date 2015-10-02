@@ -68,7 +68,7 @@
                           <dd>
                                <div class="am-g">
                                   <div class="am-u-sm-12 an-jichu">成交政策：{$data.deal_description}</div>
-                                  <div class="am-u-sm-12 an-jichu">发布者：  {$data.nickname}</div>
+                                  <div class="am-u-sm-12 an-jichu">发布者：  {$data.nickname} &nbsp; 安家在线电商专供房源</div>
                                   <div class="am-u-sm-12 an-jichu">发布电话：<a href="{$data.mobile}">{$data.mobile}</a></div>
                                </div>
                           </dd>
@@ -82,7 +82,7 @@
                                    <php>
                                      $connector =  D('member')->alias('a')->join('__UCENTER_MEMBER__ b on a.uid = b.id','left')->where(array('b.mobile'=>I('get.tel')))->getField('nickname');
                                    </php>
-                                   <span>联系人:{$connector}</span><br/>
+                                   <span>联系人:{$connector} </span>&nbsp; 安家在线电商专供房源<br/>
                                    <span>电话&nbsp;&nbsp;&nbsp;:<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
                                  </div>
                                </div>
@@ -94,7 +94,7 @@
                           <dd>
                           <div class="am-g">
                             <div class="am-u-sm-12 an-jichu">
-                              <span>联系人:曹经理</span><br/>
+                              <span>联系人:曹经理 </span>&nbsp; 安家在线电商专供房源<br/>
                               <span>电话&nbsp;&nbsp;&nbsp;:<a href="tel:06315266266">0631-5266266</a></span>
                             </div>
                           </div>
@@ -104,7 +104,6 @@
 						  </div>
 						</section>
             <div class="am-text-center">
-                安家在线电商专供房源 
             </div>
 
 		</div>
