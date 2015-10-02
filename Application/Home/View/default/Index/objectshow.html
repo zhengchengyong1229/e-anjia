@@ -69,7 +69,11 @@
                                <div class="am-g">
                                   <div class="am-u-sm-12 an-jichu">成交政策：{$data.deal_description}</div>
                                   <div class="am-u-sm-12 an-jichu">发布者：  {$data.nickname}</div>
-                                  <div class="am-u-sm-12 an-jichu">发布电话：<a href="{$data.mobile}">{$data.mobile}</a></div>
+                                  <php>
+                                        //张磊电话或者顶账者电话 
+                                        $neibu_tel = $data['tel']?$data['tel']:$data['mobile'];
+                                  </php>
+                                  <div class="am-u-sm-12 an-jichu">发布电话：<a href="{$neibu_tel}">{$neibu_tel}</a></div>
                                </div>
                           </dd>
                       </dl>

@@ -144,6 +144,13 @@
           <textarea id="" name="deal_description" cols="30" placeholder="经纪人可见" rows="10">{$data.deal_description}</textarea>
         </div>
       </div>
+
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label" for="">电话</label>
+        <div class="am-u-sm-8">
+          <input class="am-form-field wanyuan" type="text" step="" name="tel" placeholder="特殊电话" value="{$data.tel}">
+        </div>
+      </div>
     </fieldset>
   </div>
   <div class="am-u-sm-12 am-u-md-6 am-u-md-lg-8 am-u-sm-centered am-u-md-uncentered am-u-md-uncentered">
@@ -221,7 +228,6 @@
       $lname.hide();
       $triger.show();
     })
-
 
     //删除默认图片方法,第一步,每个a标签中绑定data-rid信息，纪录数据库中纪录的数据,第二部绑定事件，点击删除input[name=pic] value,第三部,删除当前节点,点击保存
     $('#file-list a').on('click',function(e){
