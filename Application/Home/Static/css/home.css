@@ -382,11 +382,12 @@
 .leibie-list{
        list-style:none;
        padding:0;
-       margin:0;
+       margin:0 ;
 }
 
 .object-text h2{
        font-size:1.6rem;
+       font-weight: normal;
        margin: 0 0 0 0 ;       
        padding:0;
 }
@@ -395,6 +396,7 @@
        margin:0 -20px 5px -20px;
        padding:3px 0 3px 20px;
        background-color:#EEEEEE;
+       font-weight: normal;
        color:gray;
 }
 
@@ -428,7 +430,6 @@
 }
 
 .object-third{
-      color:#8A8A8A;
 }
 
 .object-second span{
