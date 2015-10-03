@@ -42,6 +42,10 @@
 									  <div class="am-u-sm-6 an-jichu">户型：{$data.shi}室{$data.ting}厅</div>
 									  <div class="am-u-sm-6 an-jichu">原价：{$data.originalprice}万元</div>
 									  <div class="am-u-sm-6 an-jichu">现价：{$data.totalprice}万元</div>
+                    <php>
+                        $danjia = intval($data['totalprice']/$data['area']*10000);
+                    </php>
+                    <div class="am-u-sm-6 an-jichu">单价：{$danjia}元</div>
 									  <div class="am-u-sm-12 an-jichu am-text-truncate">位置：{$data.cbd}</div>
 								 </div>
 							  </div>
@@ -85,6 +89,7 @@
                                  <div class="am-u-sm-12 an-jichu">
                                    <php>
                                      $connector =  D('member')->alias('a')->join('__UCENTER_MEMBER__ b on a.uid = b.id','left')->where(array('b.mobile'=>I('get.tel')))->getField('nickname');
+                                     $connector =  $connector == '安家发布'?'张磊':$connector;
                                    </php>
                                    <span>联系人:{$connector}</span><br/>
                                    <span>电话&nbsp;&nbsp;&nbsp;:<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
