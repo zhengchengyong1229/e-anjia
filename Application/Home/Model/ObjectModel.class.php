@@ -52,12 +52,14 @@ class ObjectModel extends Model{
                  $map   = $map['map'];
 
                  $o_list = $this->alias('a')->where($map)
-                       // ->page($page,$r)
-                          ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,type_span,type as leibie')
-                          ->join('__MEMBER__ b on a.uid = b.uid','left')
-                          ->join('__PROPERTY__ c on a.fid = c.id','left')
-                          ->order('leibie,shi,floor')
-                          ->select();
+
+                   // ->page($page,$r)
+                      ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,a.type as leibie')
+                      ->join('__MEMBER__ b on a.uid = b.uid','left')
+                      ->join('__PROPERTY__ c on a.fid = c.id','left')
+                      ->order('leibie,shi,floor')
+                      ->select();
+
 
                 /*
                  $a_list = D('ask')->alias('a')->where($a_map)
