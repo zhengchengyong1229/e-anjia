@@ -60,7 +60,7 @@ class ObjectController extends BaseController
      * $fid 楼chengID
      */
 
-    public function edit($id=0,$fid = 0,$floor=0,$style=0,$lname = '',$address = '',$area = 0,$shi=0,$ting=0,$wei=0,$originalprice = 0,$totalprice=0,$charge=0,$description='',$deal_description='',$pics = '',$kanfang_charge = 0,$files = '',$province = 0,$city = 0,$district = 0,$bid = 0,$tel = '',$ifspecial = 0,$ifershou = 0,$ifdingzhang = 0,$type_span = 0,$type= 0,$huxing = 0){
+    public function edit($id=0,$fid = 0,$floor=0,$style=0,$lname = '',$address = '',$area = 0,$shi=0,$ting=0,$wei=0,$originalprice = 0,$totalprice=0,$charge=0,$description='',$deal_description='',$pics = '',$kanfang_charge = 0,$files = '',$province = 0,$city = 0,$district = 0,$bid = 0,$tel = '' , $gong_name='' , $gong_tel='', $ifspecial = 0,$ifershou = 0,$ifdingzhang = 0,$type_span = 0,$type= 0,$huxing = 0){
         $id = intval($id);
         if(IS_POST){
             $data['fid']    = intval($fid);                //个人房源没有所属楼盘
@@ -81,7 +81,6 @@ class ObjectController extends BaseController
             $data['kanfang_charge'] = intval($kanfang_charge);
             $data['description'] = text($description);
             $data['deal_description'] = text($deal_description);
-            $data['type']   = 0; //标记为个人房源 
             $data['uid']    =  $this->mid;
             $data['status'] = 1;
             $data['pics']    = $pics;
@@ -101,6 +100,8 @@ class ObjectController extends BaseController
             $data['huxing'] = intval($huxing);
 
             $data['tel']   = text($tel);
+            $data['gong_name']   = text($gong_name);
+            $data['gong_tel']   = text($gong_tel);
             $data['bid']   = $bid;    //CBD, 归属为哪个商圈
             //为了优化搜索，此处添加title冗余,并添加索引
 

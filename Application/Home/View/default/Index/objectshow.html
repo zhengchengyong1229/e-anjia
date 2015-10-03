@@ -91,7 +91,7 @@
                                      $connector =  D('member')->alias('a')->join('__UCENTER_MEMBER__ b on a.uid = b.id','left')->where(array('b.mobile'=>I('get.tel')))->getField('nickname');
                                      $connector =  $connector == '安家发布'?'张磊':$connector;
                                    </php>
-                                   <span>联系人:{$connector}</span><br/>
+                                   <span>置业顾问:{$connector}</span><br/>
                                    <span>电话&nbsp;&nbsp;&nbsp;:<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
                                  </div>
                                </div>
@@ -103,8 +103,12 @@
                           <dd>
                           <div class="am-g">
                             <div class="am-u-sm-12 an-jichu">
-                              <span>联系人:曹经理</span>  <br/>
-                              <span>电话&nbsp;&nbsp;&nbsp;:<a href="tel:06315266266">0631-5266266</a></span>
+                              <php>
+                                $gongkai_tel = $data['gong_tel']?$data['gong_tel']:'0631-5266266';
+                                $gongkai_name = $data['gong_name']?$data['gong_name']:'曹经理';
+                              </php>
+                              <span>置业顾问:{$gong_name}</span>  <br/>
+                              <span>电话&nbsp;&nbsp;&nbsp;:<a href="tel:{$gong_tel}">{$gong_tel}</a></span>
                             </div>
                           </div>
                           </dd>
