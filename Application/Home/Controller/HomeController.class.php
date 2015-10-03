@@ -430,6 +430,7 @@ class HomeController extends AdminController
                          ->keyHidden('pid')
                          ->keyHidden('city')
                          ->keySingleImage('cover','封面','首页各个楼盘的logo')
+                         ->keyCheckBox('type','类型','',array(0=>'住宅',1=>'公寓',2=>'商铺',3=>'写字楼'))
                          ->data($data)
                          ->buttonSubmit(U('propertyEdit'))->buttonBack()->display();
         }

@@ -183,7 +183,7 @@ return array(
         5=>array('gt',4),
     ),
 
-    //房产类型
+    //房产类型,object中使用
     'HOUSE_STYLE'=>array(
         1=>'住宅',
         2=>'公寓',
@@ -204,5 +204,15 @@ return array(
         2=>'小高层',
         3=>'高层',
     ),
+
+    //房产类型，property中使用
+    'PROPERTY_SPAN'=>array(
+        0=>'<span class="am-badge am-badge-primary am-radius">住宅</span>',
+        1=>'<span class="am-badge am-badge-secondary am-radius">公寓</span>',
+        2=>'<span class="am-badge am-badge-success am-radius">商铺</span>',
+        3=>'<span class="am-badge am-badge-warning am-radius">写字楼</span>'
+    ),
+
+
 
 );

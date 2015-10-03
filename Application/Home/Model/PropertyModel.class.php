@@ -21,7 +21,7 @@ class PropertyModel extends Model{
      *
      */
     public function getlist($map,$page = 0 ,$order = 'objectcount desc', $r = 10 ){
-        $field = 'distinct a.cuxiao,a.id,a.name as title,a.objectcount,a.uptime,a.cover,(select min(`totalprice`/`area`*10000) from fang_object where fid = a.id) as uprice';
+        $field = 'distinct a.cuxiao,a.id,a.name as title,a.type,a.objectcount,a.uptime,a.cover,(select min(`totalprice`/`area`*10000) from fang_object where fid = a.id) as uprice';
         $list  =     $this->where($map)->field($field)->alias('a')
                      ->join('__OBJECT__ d on d.fid = a.id','left')   //房源搜索条件
                      //->order('a.objectcount desc')
@@ -31,10 +31,18 @@ class PropertyModel extends Model{
 
         foreach($list as $key=>$val){
             $list[$key]['avatar'] = query_user('avatar128',$val['uid']);
+            $list[$key]['type']  =  implode(' ',array_map(array(__CLASS__,'_type2spans'),explode(',',$val['type'])));
         }
+        
         return $list;
     }
+
     public function getDetail($id){
         return $this->find($id);
     }
+    
+    private function  _type2spans($num){
+         return C('PROPERTY_SPAN.'.$num);
+    }
+
 }
