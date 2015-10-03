@@ -75,9 +75,9 @@
                                       $nei_tel  = $data['tel']?$data['tel']:$data['mobile'];
                                       $nei_name = $data['nei_name']?$data['nei_name']:$data['nickname'];
                                    </php>
-                                  <div class="am-u-sm-12 an-jichu">成交政策：{$data.deal_description}</div>
-                                  <div class="am-u-sm-12 an-jichu">联系人 ：  {$data.nei_name}</div>
-                                  <div class="am-u-sm-12 an-jichu">发布电话：<a href="{$nei_tel}">{$nei_tel}</a></div>
+                                  <div class="am-u-sm-12 an-jichu">成交政策：&nbsp;&nbsp;&nbsp;{$data.deal_description}</div>
+                                  <div class="am-u-sm-12 an-jichu">联系人 ：&nbsp;&nbsp;&nbsp;  {$data.nei_name}</div>
+                                  <div class="am-u-sm-12 an-jichu">发布电话：&nbsp;&nbsp;&nbsp;<a href="{$nei_tel}">{$nei_tel}</a></div>
                                </div>
                           </dd>
                       </dl>
@@ -91,8 +91,8 @@
                                      $connector =  D('member')->alias('a')->join('__UCENTER_MEMBER__ b on a.uid = b.id','left')->where(array('b.mobile'=>I('get.tel')))->getField('nickname');
                                      $connector =  $connector == '安家发布'?'张磊':$connector;
                                    </php>
-                                   <span>置业顾问:{$connector}</span><br/>
-                                   <span>联系电话:<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
+                                   <span>置业顾问:&nbsp;&nbsp;&nbsp;{$connector}</span><br/>
+                                   <span>联系电话:&nbsp;&nbsp;&nbsp;<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
                                  </div>
                                </div>
                           </dd>
@@ -107,8 +107,8 @@
                                 $gong_tel = $data['gong_tel']?$data['gong_tel']:'0631-5266266';
                                 $gong_name = $data['gong_name']?$data['gong_name']:'曹经理';
                               </php>
-                              <span>置业顾问:{$gong_name}</span>  <br/>
-                              <span>联系电话:<a href="tel:{$gong_tel}">{$gong_tel}</a></span>
+                              <span>置业顾问:&nbsp;&nbsp;&nbsp;{$gong_name}</span>  <br/>
+                              <span>联系电话:&nbsp;&nbsp;&nbsp;<a href="tel:{$gong_tel}">{$gong_tel}</a></span>
                             </div>
                           </div>
                           </dd>
