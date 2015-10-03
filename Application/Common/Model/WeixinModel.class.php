@@ -25,9 +25,7 @@ class WeixinModel extends Model
                 $jsapi_ticket = file_get_contents($url);
                 $jsapi_ticket = json_decode($jsapi_ticket,true);
                 $jsapi_ticket  = $jsapi_ticket['ticket'];
-               // S('jsapi_ticket',$jsapi_ticket,7200);
-                S('jsapi_ticket','abc',7200);
-              dump('in');
+                S('jsapi_ticket',$jsapi_ticket,7200);
 
                 return $jsapi_ticket;
     }
