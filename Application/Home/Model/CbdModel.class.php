@@ -28,9 +28,9 @@ class CbdModel extends Model{
 
     //获取子节点,供删选使用，查出某一个城市下的cbd
     public function get_cbd_table($pid){
-         $objectSql = 'select FLOOR(avg(totalprice/area*10000)) as avgprice ,bid from fang_object where status = 1 group by bid';
+         $objectSql = 'select CONCAT(FLOOR(avg(totalprice/area*10000)),"元") as avgprice ,bid from fang_object where status = 1 group by bid';
 
-         $list = $this->where(array('city'=>$pid))->field('id,CONCAT(name," ",b.avgprice,"元") as name,pid')->alias('a')
+         $list = $this->where(array('city'=>$pid))->field('id,CONCAT(name," ",COALESCE(b.`avgprice`,"")) as name,pid')->alias('a')
                       ->join('('.$objectSql.') b on b.bid = a.id','left')
                       ->select();
         return $list;
