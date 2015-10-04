@@ -16,19 +16,6 @@ use Think\Model;
 class ObjectModel extends Model{
     //获取主页右边栏数据
     /*
-	public function getHomeRightList($map,$limit = 10){
-        //$map
-        // 展示规则
-        $map = array(
-        );
-        return $this->getlist(0,'id,address,lname,floor,shi,ting,wei,totalprice,charge,createtime',$map,$order,$limit);
-	}
-    public function getlist($page,$field,$map,$order = 'id desc',$limit = 10){
-        return $this->field($field)->where($map)->order($order)->page($page,$limit)->select();
-    }
-    */
-
-    /*
      * 获取列表通用方法 ,  search 调用，展示列表调用 
      * @param 一眼就能明白，此处忽略不写
      * @return 返回标准化数据，直接传给模版
@@ -52,27 +39,12 @@ class ObjectModel extends Model{
                  $map   = $map['map'];
 
                  $o_list = $this->alias('a')->where($map)
+                 ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,a.type as leibie')
+                 ->join('__MEMBER__ b on a.uid = b.uid','left')
+                 ->join('__PROPERTY__ c on a.fid = c.id','left')
+                 ->order('leibie,shi,floor')
+                 ->select();
 
-                   // ->page($page,$r)
-                      ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,a.type as leibie')
-                      ->join('__MEMBER__ b on a.uid = b.uid','left')
-                      ->join('__PROPERTY__ c on a.fid = c.id','left')
-                      ->order('leibie,shi,floor')
-                      ->select();
-
-
-                /*
-                 $a_list = D('ask')->alias('a')->where($a_map)
-                         ->page($page,$r)
-                          ->field('a.id,title,2 as type,a.uptime,description,b.nickname')
-                          ->join('__MEMBER__ b on a.uid = b.uid','left')
-                          ->order('a.uptime desc')
-                          ->select();
-                $list = array_merge((array)$a_list,(array)$o_list);
-                array_multisort(array_column($list,'uptime'),SORT_DESC,$list);
-                $list =  array_slice($list,0,10);
-
-                */
 
                 return $o_list;
     }
@@ -102,37 +74,11 @@ class ObjectModel extends Model{
 
     public function getSearchList($o_map,$a_map,$page = 0,$r = '15',$order="createtime desc"){
 
-        /*
-        $this    ->alias('a')
-                 ->field("a.id,concat(lname,' ',floor,'楼',' ',area,'平',' ',shi,'室','',totalprice,'万',' ') as title ,1 as type,a.uptime,description,b.show_role")
-                 ->join('__MEMBER__ b on a.uid = b.uid','left')
-                 ->buildSql();
-        $sql =     '('.$this->_sql().')'; 
-
-        $o_list = $this->table($sql.'c')->where($o_map)->select();
-        */
-
         $o_list = $this->alias('a')->where($o_map)
                   ->field('a.id,title,1 as type,a.uptime,description,b.show_role')
                   ->join('__MEMBER__ b on a.uid = b.uid','left')
                   ->page($page,$r)
                   ->select();
-
-
-        /*
-        $a_list = D('ask')->alias('a')->where($a_map)
-                  ->field('a.id,title,2 as type,a.uptime,description,b.show_role')
-                  ->join('__MEMBER__ b on a.uid = b.uid','left')
-                  ->page($page,$r)
-                  ->select();
-
-          
-        $list = array_merge((array)$o_list,(array)$a_list);
-
-        array_multisort(array_column($list,'uptime'),SORT_DESC,$list);
-        $list =  array_slice($list,0,10);
-        */
-
 
         return $o_list;
     }
@@ -218,6 +164,7 @@ class ObjectModel extends Model{
      *  包含  object 和 ask
      *
      */
+
     protected function createMap(){
 
           $city = session('user_city');

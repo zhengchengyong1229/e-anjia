@@ -18,6 +18,19 @@
             </div>
             </if>
 				</p>
+         <div  data-am-widget="slider" class="am-slider am-slider-a1">
+           <ul class="am-slides">
+              <php>
+                $array_pic = explode(',',$data['pics']);
+                krsort($array_pic);
+              </php>
+              <volist id="item" name="array_pic">
+                 <li>
+                    <img src="{:getThumbImageById($data['huxing'],150,150)}">
+                 </li>
+               </volist>
+           </ul>
+         </div>
 					<!-- 房源信息 -->
 					<section data-am-widget="accordion" class="am-accordion am-accordion-default"
 						data-am-accordion='{ "multiple": true }' style="margin:5px 0px">
@@ -50,6 +63,8 @@
 								 </div>
 							  </div>
 							</div>
+              <!--
+              
             <ul class="am-avg-sm-3">
               <notempty name="data.pics">
               <php>
@@ -66,6 +81,7 @@
                   </volist>
               </notempty>
             </ul>
+             -->
                 <if condition="is_login() AND ($user_info.identity neq 0)">
                       <dl class="am-accordion-item am-active am-disabled">
                           <dt class="am-accordion-title">代理政策</dt>

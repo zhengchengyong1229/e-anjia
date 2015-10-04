@@ -1,6 +1,6 @@
 <volist id="item" name="shuo_list">
   <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-  <a  class="am-link-muted" href="{:U('property/index',array('id'=>$item['id'],'tel'=>I('get.tel')))}">
+  <a  class="am-link-muted" href="{:U('/Home/property/index/id/'.$item['id'],I('get.'))}">
       <div class="index-shuo am-list-thumb">
         <img style="width:80px" class="an-img-shuo" src="{:getThumbImageById($item['cover'],150,150)}" alt=""/>
       </div>
