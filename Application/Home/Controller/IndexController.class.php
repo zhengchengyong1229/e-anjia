@@ -407,7 +407,7 @@ class IndexController extends BaseController
 
           if(!($cbd_table_orignal = S('cbd_table_orignal'.$city))){
                 $cbd_table_orignal   = D('cbd')->get_cbd_table($city);
-                S('cbd_table_orignal'.'chty',$cbd_table_orignal,7200);
+                S('cbd_table_orignal'.'city',$cbd_table_orignal,7200);
           }
           //dump($cbd_table_orignal);
           //exit;
@@ -542,4 +542,4 @@ class IndexController extends BaseController
 
     }
     */
-}
+} 
