@@ -8,7 +8,7 @@
       <h3 class="am-list-item-hd am-text-default" style="line-height:1.6">{$item.title} 
         <samll class="am-fr" style="color:#757575">{:intval($item['uprice'])}元/平起</samll>
       </h3>
-      <p class="am-margin-0  am-text-sm" style="color:gray">{$item.area}</p>
+      <p class="am-margin-0  am-text-sm am-cf" style="color:gray">{$item.area}<span class="am-fr">{$item.min_area}~{$item.max_area}平米</span></p>
       <p class="am-margin-0">{$item.type} <span style="color:#c40d23;font-size:15px;" class="am-fr">{$item.objectcount}套</span></p>
       </div>
     </a>
