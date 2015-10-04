@@ -425,7 +425,10 @@ class HomeController extends AdminController
 
             $admin_config = new AdminConfigBuilder();
             $admin_config->title('新增楼盘')->keyId()->keyText('name', '名称')
-                         ->keyText('cuxiao','促销信息')
+                         ->keyText('nei_name','内部名字')
+                         ->keyText('nei_tel','内部电话')
+                         ->keyText('gong_name','外部名字')
+                         ->keyText('gong_tel','外部电话')
                          ->keyUid('uid','用户ID')
                          ->keyHidden('pid')
                          ->keyHidden('city')
