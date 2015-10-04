@@ -117,7 +117,7 @@ class CBDController extends AddonsController{
 		if (IS_AJAX){
 			$bid = I('bid');  //默认的城市id
             $fid = I('fid');
-			$map['pid'] = $bid;
+			$map['a.pid'] = $bid;
             
 
 
