@@ -2,13 +2,14 @@
   <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
   <a  class="am-link-muted" href="{:U('property/index',array('id'=>$item['id'],'tel'=>I('get.tel')))}">
       <div class="index-shuo am-list-thumb">
-        <img style="width:50px" class="an-img-shuo" src="{:getThumbImageById($item['cover'],150,150)}" alt=""/>
+        <img style="width:80px" class="an-img-shuo" src="{:getThumbImageById($item['cover'],150,150)}" alt=""/>
       </div>
       <div class=" index-shuo-2 am-list-main">
       <h3 class="am-list-item-hd am-text-default" style="line-height:1.6">{$item.title} 
-        <samll class="am-fr" style="color:#757575">{:intval($item['uprice'])}元/平起</samll></h3>
-      <p class="am-margin-0">{$item.type} <span style="color:#c40d23;font-size:15px;" class="am-fr">{$item.objectcount}套房</span>
-      </p>
+        <samll class="am-fr" style="color:#757575">{:intval($item['uprice'])}元/平起</samll>
+      </h3>
+      <p class="am-margin-0  am-text-sm" style="color:gray">{$item.area}</p>
+      <p class="am-margin-0">{$item.type} <span style="color:#c40d23;font-size:15px;" class="am-fr">{$item.objectcount}套</span></p>
       </div>
     </a>
   </li>
