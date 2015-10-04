@@ -3,10 +3,25 @@
 <link rel="stylesheet" href="__CSS__/home.css" />
 <!-- 图片展示CSS -->
 <link rel="stylesheet" href="__CSS__/main.css" />
-	<!-- 主体展示 -->
+   <div  data-am-widget="slider" class="am-slider am-slider-a1" style="margin-top:-1.6rem">
+     <ul class="am-slides">
+          <php>
+            $array_pic = explode(',',$data['pics']);
+            krsort($array_pic);
+          </php>
+           <li>
+              <img src="{:getThumbImageById($data['huxing'],400,250)}">
+           </li>
+        <volist id="item" name="array_pic">
+          <li data-id="{$item}">
+             <img class="" src="{:getThumbImageById($item,400,250)}" alt="">
+           </li>
+         </volist>
+     </ul>
+   </div>
 		<div class="am-container">
 				<!-- 标题 -->
-        <p>
+        <p class="am-margin-vertical">
             <span class="am-badge am-badge-danger">售</span>
             {$data.lname} {$data.floor}层 {$data.area}平米 {$data.shi}室 {$data.totalprice}万元
             <if condition="$user_info.uid eq $data['uid']">
@@ -18,19 +33,6 @@
             </div>
             </if>
 				</p>
-         <div  data-am-widget="slider" class="am-slider am-slider-a1">
-           <ul class="am-slides">
-              <php>
-                $array_pic = explode(',',$data['pics']);
-                krsort($array_pic);
-              </php>
-              <volist id="item" name="array_pic">
-                 <li>
-                    <img src="{:getThumbImageById($data['huxing'],150,150)}">
-                 </li>
-               </volist>
-           </ul>
-         </div>
 					<!-- 房源信息 -->
 					<section data-am-widget="accordion" class="am-accordion am-accordion-default"
 						data-am-accordion='{ "multiple": true }' style="margin:5px 0px">
@@ -132,99 +134,5 @@
                 </if>
 						  </div>
 						</section>
-            <div class="am-text-center">
-            </div>
-
 		</div>
-
-		<!--底部工具栏-->
-    <style>
-      #demo{
-        position:fixed;
-        overflow: hidden;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        background-color:black;
-        z-index:1016;
-        display:none;
-      }
-
-      #demo img{
-        width:100%;
-      }
-
-      #demo ul{
-        padding:0;
-        width:100%;
-      }
-
-      #demo li{
-        list-style: none;
-        width:100%;
-      }
-
-      #demo li{
-        display:none;
-      }
-
-      #demo li.active{
-        display:block;
-      }
-
-      .back-to-dest{
-        position: absolute;
-        top:1rem;
-        left:1rem;
-        font-size:2rem;
-      }
-
-      .back-to-left{
-        position: absolute;
-        padding:2rem;
-        top:40%;
-        left:1rem;
-        font-size:3rem;
-      }
-
-      .back-to-right{
-        position: absolute;
-        padding:2rem;
-        top:40%;
-        right:1rem;
-        font-size:3rem;
-      }
-
-      .back-to-dest a{
-        color:#ccc;
-        width:100%;
-      }
-
-      .fake-download{
-        width:100%;
-      }
-
-      .fake-download span{
-        text-align: center;
-        font-size:3rem;
-      }
-
-    </style>
-    <div id="demo" class="am-vertical-align">
-      <div class="back-to-dest"><a href="" class="am-icon-chevron-left "></a></div>  
-      <ul class="am-vertical-align-middle">
-        <li class="am-padding-xs" data-id="{$data.huxing}">
-             <img class="" src="{:getThumbImageById($data['huxing'],900)}" alt="">
-         </li>
-        <volist id="item" name="array_pic">
-        <li class="am-padding-xs" data-id="{$item}">
-             <img class="" src="{:getThumbImageById($item,900)}" alt="">
-          </li>
-        </volist>     
-      </ul>
-      <div class="back-to-left"><span class="am-icon-chevron-left "></span></div>  
-      <div class="back-to-right"><span class="am-icon-chevron-right "></span></div>  
-    </div>
-    <script src="__JS__/alertpic.js"></script>
 </block>
