@@ -95,7 +95,7 @@
                                    </php>
                                   <div class="am-u-sm-12 an-jichu">成交政策：&nbsp;&nbsp;&nbsp;{$data.deal_description}</div>
                                   <div class="am-u-sm-12 an-jichu">联系人 ：&nbsp;&nbsp;&nbsp;  {$data.nei_name}</div>
-                                  <div class="am-u-sm-12 an-jichu">发布电话：&nbsp;&nbsp;&nbsp;<a href="{$nei_tel}">{$nei_tel}</a></div>
+                                  <div class="am-u-sm-12 an-jichu">发布电话：&nbsp;&nbsp;&nbsp;<a class="dianhua" href="{$nei_tel}">{$nei_tel}</a></div>
                                </div>
                           </dd>
                       </dl>
@@ -110,7 +110,7 @@
                                      $connector =  $connector == '安家发布'?'张磊':$connector;
                                    </php>
                                    <span>置业顾问:&nbsp;&nbsp;&nbsp;{$connector}</span><br/>
-                                   <span>联系电话:&nbsp;&nbsp;&nbsp;<a href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
+                                   <span>联系电话:&nbsp;&nbsp;&nbsp;<a  class="dianhua" href="{:I('get.tel')}">{:I('get.tel')}</a> </span>
                                  </div>
                                </div>
                           </dd>
@@ -126,7 +126,7 @@
                                 $gong_name = $data['gong_name']?$data['gong_name']:'曹经理';
                               </php>
                               <span>置业顾问:&nbsp;&nbsp;&nbsp;{$gong_name}</span>  <br/>
-                              <span>联系电话:&nbsp;&nbsp;&nbsp;<a href="tel:{$gong_tel}">{$gong_tel}</a></span>
+                              <span>联系电话:&nbsp;&nbsp;&nbsp;<a class="dianhua" href="tel:{$gong_tel}">{$gong_tel}</a></span>
                             </div>
                           </div>
                           </dd>
@@ -134,5 +134,34 @@
                 </if>
 						  </div>
 						</section>
+		</div>
+		<div class="telandsms">
+			<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "id="">
+				<ul class="am-navbar-nav am-cf am-avg-sm-6" style="background-color:#c40d23;">
+					<li>
+						<a href="" class="">
+							<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/Information.png"
+							alt="消息" />
+							<span class="am-navbar-label">短信</span>
+						</a>
+					</li>
+					<li>
+						<a href="" class="">
+
+							<img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/phone.png"
+							alt="呼叫" />
+							<span class="am-navbar-label">呼叫</span>
+						</a>
+					</li>
+				</ul>
+        <script>
+          $(function(){
+                //分配电话   
+                var tel = $('.dianhua').html();
+                $('.telandsms').find('a').first().attr('href',tel);
+                $('.telandsms').find('a').last('href',tel);
+          })  
+        </script>
+			</div>	
 		</div>
 </block>
