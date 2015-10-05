@@ -14,16 +14,10 @@
     }
 </style>
 <div class="am-accordion-content" style="padding-top:2px">
-  <php>
-    $OBJECT_LEIBIE = C('OBJECT_LEIBIE');
-  </php>
   <ul class="leibie-list" >
     <volist name="list"  id="item">
         <li class="leibie-item">
-        <php>
-           $arr = explode(',',$key);
-        </php>
-        <h2 class="leibie-item-title">{$OBJECT_LEIBIE[$arr[0]]}/{$arr[1]}居</h2>
+        <h2 class="leibie-item-title">{$item.title}</h2>
               <ul class="object-list">
                 <volist name="item" id="it">
                   <li class="object-item am-cf">

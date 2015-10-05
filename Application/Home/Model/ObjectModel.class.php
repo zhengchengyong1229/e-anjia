@@ -39,7 +39,7 @@ class ObjectModel extends Model{
                  $map   = $map['map'];
 
                  $o_list = $this->alias('a')->where($map)
-                 ->field('distinct a.floor,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,a.type as leibie')
+                 ->field('distinct a.floor,a.style,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,a.type as leibie')
                  ->join('__MEMBER__ b on a.uid = b.uid','left')
                  ->join('__PROPERTY__ c on a.fid = c.id','left')
                  ->order('leibie,shi,floor')
@@ -64,12 +64,32 @@ class ObjectModel extends Model{
     public function getMultyList($page=0,$order="",$field="*",$r=10){
           $list =   $this->getlist($page=0,$order="",$field="*",$r=10);
           $new_list = array();
-          foreach($list as $key=>$val){
-                $new_list[strval($val['leibie']).','.$val['shi']][]=$val;
-          }
 
-//      ksort($new_list);
-        return $new_list;
+          /*
+            'HOUSE_STYLE'=>array(
+                1=>'住宅',
+                2=>'公寓',
+                3=>'商铺',
+                4=>'写字楼',
+                5=>'别墅'
+            ),
+          */
+
+          $OBJECT_LEIBIE = C('OBJECT_LEIBIE');
+          $HOUSE_STYLE   = C('HOUSE_STYLE');
+
+          foreach($list as $key=>$val){
+               if($val['style'] == 1){
+                  $new_list[strval($val['leibie']).','.$val['shi']]['title']=$OBJECT_LEIBIE[$val['leibie']].'/'.$val['shi'].'室';
+                  $new_list[strval($val['leibie']).','.$val['shi']][]=$val;
+               }else{
+                  $new_list[strval(-$val['style'])]['title']=$HOUSE_STYLE[$val['style']];
+                  $new_list[strval(-$val['style'])][]=$val;
+               }
+          } 
+
+       // ksort($new_list);
+          return $new_list;
     }
 
     public function getSearchList($o_map,$a_map,$page = 0,$r = '15',$order="createtime desc"){
