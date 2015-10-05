@@ -19,6 +19,9 @@
         <li class="leibie-item">
         <h2 class="leibie-item-title">{$item.title}</h2>
               <ul class="object-list">
+                <php>
+                     array_shift($item)
+                </php>
                 <volist name="item" id="it">
                   <li class="object-item am-cf">
                         <a href="{:U('Home/index/objectShow',array('id'=>$it['id'],'tel'=>I('get.tel')))}">
