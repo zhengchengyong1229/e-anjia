@@ -123,11 +123,14 @@
           <li class="area_first_triger">&nbsp;&nbsp;&nbsp;面积</li>
           <li class="area_second_triger">&nbsp;&nbsp;&nbsp;类型</li>
           <ul class="area_first">
+
+              <li><a href="{:U('Home/index/index',array_merge($common_url,array('type'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
               <volist id="item" name=":C('HOUSE_AREA_TABLE')">
               <li><a href="{:U('Home/index/index',array_merge($common_url,array('area'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
               </volist>
           </ul>
           <ul class="area_second">
+            <li><a href="{:U('Home/index/index',array_merge($common_url,array('type'=>0)))}">&nbsp;&nbsp;&nbsp;不限</a></li>
             <volist id="item" name=":C('HOUSE_TYPE_TABLE')">
               <li><a href="{:U('Home/index/index',array_merge($common_url,array('type'=>$key)))}">&nbsp;&nbsp;&nbsp;{$item}</a></li>
             </volist>
