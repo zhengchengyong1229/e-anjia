@@ -115,10 +115,8 @@ return array(
     //总价参考列表
     'HOUSE_PRICE_TABLE' => array(
         1=>'20万以下',
-        2=>'20-30万',
-        3=>'30-40万',
-        4=>'40-50万',
-        5=>'50-60万',
+        2=>'20-40万',
+        4=>'40-60万',
         6=>'60-80万',
         7=>'80-100万',
         8=>'100-150万',
@@ -127,10 +125,8 @@ return array(
 
     'HOUSE_PRICE_MAP'  =>array(
         1=>array('lt','20'),
-        2=>array('between','20,30'),
-        3=>array('between','30,40'),
-        4=>array('between','40,50'),
-        5=>array('between','50,60'),
+        2=>array('between','20,40'),
+        4=>array('between','40,60'),
         6=>array('between','60,80'),
         7=>array('between','80,100'),
         8=>array('between','100,150'),
