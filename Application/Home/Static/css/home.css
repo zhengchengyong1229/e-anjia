@@ -273,7 +273,7 @@
     position:relative;
   }
 
-  .cbd_second {
+  .cbd_second,.area_first,.area_second {
     max-height:350px;
     overflow-y:auto;
     border-left:1px #E3E3E2 solid;
@@ -285,6 +285,7 @@
     top:0;
     right:0;
   }
+
 /* 筛选菜单结束*/
 
 .an-imgs{
