@@ -30,9 +30,10 @@ class CbdModel extends Model{
     public function get_cbd_table($pid){
          $objectSql = 'select CONCAT(" 均价",FLOOR(avg(totalprice/area*10000)),"元") as avgprice ,bid from fang_object where status = 1 group by bid';
 
-         $list = $this->where(array('city'=>$pid))->field('id,CONCAT(name," ",COALESCE(b.`avgprice`,"")) as name,pid')->alias('a')
+         $list = $this->where(array('city'=>$pid))
+                      ->alias('a')
                       ->join('('.$objectSql.') b on b.bid = a.id','left')
-                      ->select();
+                      ->getField('id,CONCAT(name," ",COALESCE(b.`avgprice`,"")) as name,pid');
         return $list;
     }
 

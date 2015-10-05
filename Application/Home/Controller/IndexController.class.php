@@ -416,8 +416,6 @@ class IndexController extends BaseController
                 $cbd_table_orignal   = D('cbd')->get_cbd_table($city);
                 S('cbd_table_orignal'.'city',$cbd_table_orignal,7200);
           }
-          //dump($cbd_table_orignal);
-          //exit;
           if(!($cbd_table = S('cbd_table_'.$city))){
                 $cbd_table   = list_to_tree($cbd_table_orignal,'id','pid','_',$city);
                 S('cbd_table_'.'chty',$cbd_table);
