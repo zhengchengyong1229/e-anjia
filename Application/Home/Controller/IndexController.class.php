@@ -222,7 +222,7 @@ class IndexController extends BaseController
 
 
              $list = D('shuo')->getList($where);
-             $this->filter_menu($cbd,$price,$area,$shi);
+             $this->filter_menu($cbd,$price,$area,$shi,$type);
 
              $this->assign('shuo_list',$list);
              $this->display('index');
@@ -449,7 +449,6 @@ class IndexController extends BaseController
           $this->assign('cbd_table_json',json_encode($tree));
           $this->assign('filter_menu',$filter_menu);
           $this->assign('common_url',$common_url);
-
     }
 
 
