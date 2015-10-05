@@ -102,7 +102,7 @@
         <ul id="filter-cbd" data-url="Home/index/index">
           <li><a href="{:U('Home/index/index',array_merge($common_url,array('cbd'=>0)))}"> &nbsp;&nbsp;&nbsp;全{$Think.session.user_city.city_name}</a> </li>
           <volist id="item" name="cbd_table">
-              <li class="cbd-second-triger" data-id="{$item.id}">&nbsp;&nbsp;&nbsp;{$item.name}</li>
+             <li class="cbd-second-triger" data-id="{$item.id}">&nbsp;&nbsp;&nbsp;{$item.name} </li>
           </volist>
           <ul class="cbd_second">
           </ul>

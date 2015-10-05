@@ -33,8 +33,8 @@ class CbdModel extends Model{
          $list = $this->where(array('city'=>$pid))
                       ->alias('a')
                       ->join('('.$objectSql.') b on b.bid = a.id','left')
-                      ->getField('id,CONCAT(name," ",COALESCE(b.`avgprice`,"")) as name,pid');
-        return $list;
+                      ->getField('id,name,b.`avgprice`,pid');
+         return $list;
     }
 
 }
