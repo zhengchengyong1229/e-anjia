@@ -84,7 +84,8 @@ $(function(){
        }
 
        data.map(function(it){
-         html+='<li><a href="'+ url + it.id+'">&nbsp;&nbsp;&nbsp;'+it.name+'</a></li>';
+         console.log(it);
+         html+='<li><a href="'+ url + it.id+'">&nbsp;&nbsp;&nbsp;'+it.name+' <span class="">&nbsp;&nbsp;&nbsp;' + (it.avgprice?it.avgprice:'') +'</span></a></li>';
        })
 
        return html;
