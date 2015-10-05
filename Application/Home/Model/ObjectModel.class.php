@@ -96,7 +96,7 @@ class ObjectModel extends Model{
     }
 
     public function getDetail($id){
-      $data =  $this->alias('a')->field('a.*,concat(h.name,g.name,f.name,e.name) as cbd,group_concat(b.pid) as pics,c.mobile,d.nickname,d.show_role,a.uptime,i.nei_tel,i.nei_name,i.gong_tel,i.gong_name')
+      $data =  $this->alias('a')->field('a.*,concat(h.name,g.name,f.name,e.name) as cbd,group_concat(b.pid) as pics,c.mobile,d.nickname,d.show_role,a.uptime,a.nei_tel,a.nei_name,a.gong_tel,a.gong_name')
                     ->join('__OBJECT_PIC__  b on a.id = b.oid ','LEFT')
                     ->join('__UCENTER_MEMBER__  c on a.uid = c.id ','LEFT')
                     ->join('__MEMBER__ d on a.uid = d.uid','LEFT')
@@ -104,7 +104,6 @@ class ObjectModel extends Model{
                     ->join('__CBD__ f on f.id = e.pid','LEFT')
                     ->join('__DISTRICT__ g on g.id = f.pid','LEFT')
                     ->join('__DISTRICT__ h on h.id = g.upid','LEFT')
-                    ->join('__PROPERTY__ i on i.id = a.fid','LEFT')
                     ->where(array('a.id'=>$id))
                     ->find();
 
