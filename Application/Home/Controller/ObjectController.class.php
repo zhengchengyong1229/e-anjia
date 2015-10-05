@@ -60,7 +60,7 @@ class ObjectController extends BaseController
      * $fid 楼chengID
      */
 
-    public function edit($id=0,$fid = 0,$floor=0,$style=0,$lname = '',$address = '',$area = 0,$shi=0,$ting=0,$wei=0,$originalprice = 0,$totalprice=0,$charge=0,$description='',$deal_description='',$pics = '',$kanfang_charge = 0,$files = '',$province = 0,$city = 0,$district = 0,$bid = 0,$tel = '' , $nei_name = '',$gong_name='' , $gong_tel='', $ifspecial = 0,$ifershou = 0,$ifdingzhang = 0,$type_span = 0,$type= 0,$huxing = 0){
+    public function edit($id=0,$fid = 0,$floor=0,$style=0,$lname = '',$address = '',$area = 0,$shi=0,$ting=0,$wei=0,$originalprice = 0,$totalprice=0,$charge=0,$description='',$deal_description='',$pics = '',$kanfang_charge = 0,$files = '',$province = 0,$city = 0,$district = 0,$bid = 0,$nei_tel = '' , $nei_name = '',$gong_name='' , $gong_tel='', $ifspecial = 0,$ifershou = 0,$ifdingzhang = 0,$type_span = 0,$type= 0,$huxing = 0){
         $id = intval($id);
         if(IS_POST){
             $data['fid']    = intval($fid);                //个人房源没有所属楼盘
@@ -99,7 +99,7 @@ class ObjectController extends BaseController
 
             $data['huxing'] = intval($huxing);
 
-            $data['tel']   = text($tel);
+            $data['nei_tel']   = text($nei_tel);
             $data['nei_name']   = text($nei_name);
             $data['gong_name']   = text($gong_name);
             $data['gong_tel']   = text($gong_tel);
@@ -195,5 +195,4 @@ class ObjectController extends BaseController
            $this->ajaxReturnHandle(0,'删除失败');
        }
     }
-
 }
