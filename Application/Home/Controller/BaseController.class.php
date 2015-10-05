@@ -48,7 +48,7 @@ class BaseController extends Controller
            //如果有区域参数，则获取区域id
            //$city_id = M('district')->where(array('name'=>$city))->getField('id');
             $city_id = 371000;
-            $city = '威海市';
+            $city = '威海';
 
             //开始取得城市信息  end 
             //把城市信息存到session中

@@ -312,7 +312,7 @@ class IndexController extends BaseController
      *
      *
      */
-    public function index($page = 0, $cbd = 0, $area = 0,$shi = 0,$price = 0){
+    public function index($page = 0, $cbd = 0, $area = 0,$shi = 0,$price = 0,$type = 0){
 
         /*
         $src = getThumbImageById(25,50,50);
@@ -335,6 +335,7 @@ class IndexController extends BaseController
           $price  = intval($price) ;
           $area   = intval($area);
           $shi    = intval($shi);
+          $type    = intval($type);
 
           $list = $this->d_object->getList($map,$a_map,$page);
           $totalcount = $this->d_object->getTotalcount($map,$a_map);
@@ -360,6 +361,7 @@ class IndexController extends BaseController
           $price_map = C('HOUSE_PRICE_MAP');
           $area_map = C('HOUSE_AREA_MAP');
           $shi_map = C('HOUSE_HUXING_MAP');
+          $type_map = C('HOUSE_TYPE_MAP');
 
           //筛选价格
         
@@ -373,6 +375,10 @@ class IndexController extends BaseController
 
           if($price>0){
               $map['d.totalprice'] = $price_map[$price];
+          }
+
+          if($type>0){
+              $map['a.type'] = array('like',$type_map[$type]);
           }
 
           //$map['a.status'] = 1;
@@ -389,7 +395,7 @@ class IndexController extends BaseController
 
 
     //此方法只处理筛选菜单展示，不处理数据
-    protected function filter_menu($cbd = 0,$price = 0,$area = 0,$shi = 0){
+    protected function filter_menu($cbd = 0,$price = 0,$area = 0,$shi = 0,$type = 0){
 
           $city = $this->city_id;
 
@@ -403,6 +409,7 @@ class IndexController extends BaseController
           $price_table = C('HOUSE_PRICE_TABLE');
           $area_table  = C('HOUSE_AREA_TABLE');
           $shi_table   = C('HOUSE_HUXING_TABLE');
+          $type_table   = C('HOUSE_TYPE_TABLE');
 
 
           if(!($cbd_table_orignal = S('cbd_table_orignal'.$city))){
@@ -421,6 +428,7 @@ class IndexController extends BaseController
               'price'=>$price_table[$price],
               'area' =>$area_table[$area],
               'shi'  =>$shi_table[$shi],
+              'type'  =>$type_table[$type],
           );
 
           $common_url = array(
@@ -428,9 +436,9 @@ class IndexController extends BaseController
               'price'=>$price,
               'area' =>$area,
               'shi'  =>$shi,
+              'type'  =>$type,
               'tel'  =>I('get.tel'),
           );
-
 
           $tree = array();
           foreach($cbd_table as $k=>$v){

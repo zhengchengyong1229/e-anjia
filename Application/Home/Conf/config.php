@@ -183,6 +183,23 @@ return array(
         5=>array('gt',4),
     ),
 
+    
+    "HOUSE_TYPE_TABLE"=>array(
+         5 =>'住宅',
+         1 =>'公寓',
+         4 =>'别墅',
+         2 =>'商铺',
+         3 =>'写字楼'
+    ),
+
+    "HOUSE_TYPE_MAP"=>array(
+         5 =>'%0%',
+         1 =>'%1%',
+         4 =>'%4%',
+         2 =>'%2%',
+         3 =>'%3%',
+    ),
+
     //房产类型,object中使用
     'HOUSE_STYLE'=>array(
         1=>'住宅',
@@ -212,7 +229,5 @@ return array(
         2=>'<span class="am-badge am-badge-success am-radius">商铺</span>',
         3=>'<span class="am-badge am-badge-warning am-radius">写字楼</span>'
     ),
-
-
 
 );

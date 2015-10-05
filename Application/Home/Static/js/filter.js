@@ -7,12 +7,14 @@ $(function(){
    var $f_price  = $('#filter-price'); //价格
    var $f_shi    = $('#filter-shi');//户型
    var $f_area   = $('#filter-area');//区域
+   var $f_type   = $('#filter-type');//区域
 
    //触发器定义
    var $cbd_triger   = $('#cbd-triger');
    var $price_triger = $('#price-triger');
    var $shi_triger   = $('#shi-triger');
    var $area_triger  = $('#area-triger');
+   var $type_triger  = $('#type-triger');
 
    var $cbd_second_triger = $('.cbd-second-triger');
    var $cbd_second   = $('.cbd_second');
@@ -39,21 +41,31 @@ $(function(){
           $f_price.hide();
           $f_shi.hide();
           $f_area.hide();
+          $f_type.hide();
           break;
        case 'price':
           $f_cbd.hide();
           $f_shi.hide();
           $f_area.hide();
+          $f_type.hide();
           break;
        case 'shi':
           $f_cbd.hide();
           $f_price.hide();
           $f_area.hide();
+          $f_type.hide();
           break;
        case 'area':
           $f_cbd.hide();
           $f_price.hide();
           $f_shi.hide();
+          $f_type.hide();
+          break;
+       case 'type':
+          $f_cbd.hide();
+          $f_price.hide();
+          $f_shi.hide();
+          $f_area.hide();
           break;
      }
    }
@@ -90,6 +102,11 @@ $(function(){
    $area_triger.click(function(){
       $f_area.toggle();
       hidden_fc('area');
+   });
+
+   $type_triger.click(function(){
+      $f_type.toggle();
+      hidden_fc('type');
    });
 
    //cbd子菜单展示功能
