@@ -20,6 +20,12 @@ $(function(){
    var $cbd_second   = $('.cbd_second');
 
 
+   var $area_second = $('.area_second');
+   var $area_first = $('.area_first');
+   var $area_first_triger = $('.area_first_triger');
+   var $area_second_triger = $('.area_second_triger');
+
+
    
    //拼装公共URL
    var url = '';
@@ -110,7 +116,6 @@ $(function(){
    });
 
    //cbd子菜单展示功能
-
    $cbd_second_triger.click(function(){
         $('#filter-cbd>li').css('background','#FFF');
         $(this).css('background','#F7F7F7');
@@ -124,11 +129,23 @@ $(function(){
         $cbd_second.html(html).show();
    })
 
-
-
+   //面积子菜单展示功能，合并类型，商铺啊，写字楼啊，巴拉巴拉的
+   $area_first_triger.click(function(){
+        $('#filter-area>li').css('background','#FFF');
+        $(this).css('background','#F7F7F7');
+        //直接在html中隐藏，需要的时候显示出来好了
+        $area_second.hide();
+        $area_first.show();
+   })
+   $area_second_triger.click(function(){
+        $('#filter-area>li').css('background','#FFF');
+        $(this).css('background','#F7F7F7');
+        //直接在html中隐藏，需要的时候显示出来好了
+        $area_first.hide();
+        $area_second.show();
+   })
 
    //处理筛选菜单动画效果，参考amazeui动画
-   
    
    $('#filter').on('click',function(){
      $(this).addClass('filter-modal').css('margin-top',0);
@@ -141,7 +158,5 @@ $(function(){
      })
      $(this).addClass('filter-modal').css('margin-top',0);
    })
-   
-   
    
 })
