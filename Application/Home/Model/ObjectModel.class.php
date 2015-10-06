@@ -42,7 +42,7 @@ class ObjectModel extends Model{
                  ->field('distinct a.floor,a.style,a.huxing,a.totalprice,a.area,a.shi,a.id,title,1 as type,a.fid,a.uptime,b.nickname,c.name as loupan,pic_num,ifspecial,a.type as leibie')
                  ->join('__MEMBER__ b on a.uid = b.uid','left')
                  ->join('__PROPERTY__ c on a.fid = c.id','left')
-                 ->order('leibie,shi,floor')
+                 ->order('leibie,style,shi,floor')
                  ->select();
 
 
