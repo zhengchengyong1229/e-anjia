@@ -34,6 +34,8 @@ class MemberController extends Controller
         $aStep = I('get.step', 'start', 'op_t');
         $aRole = I('post.role', 0, 'intval');
 
+        $aTuijian = I('post.tuijian',0,'intval');
+
 
         if (!modC('REG_SWITCH', '', 'USERCONFIG')) {
             $this->error('注册已关闭');
@@ -55,6 +57,7 @@ class MemberController extends Controller
                 $this->error('请选择角色。');
             }
 
+            //检测短信
             if (($aRegType == 'mobile' && modC('MOBILE_VERIFY_TYPE', 0, 'USERCONFIG') == 1) || (modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 2 && $aRegType == 'email')) {
                 if (!D('Verify')->checkVerify($aUsername, $aRegType, $aRegVerify, 0)) {
                     $str = $aRegType == 'mobile' ? '手机' : '邮箱';
@@ -111,6 +114,7 @@ class MemberController extends Controller
                 $this->error($this->showRegError($uid));
             }
         } else { //显示注册表单
+            //已经把这部分代码迁移到mobregister中
             if (is_login()) {
                 redirect(U(C('AFTER_LOGIN_JUMP_URL')));
             }
@@ -132,8 +136,8 @@ class MemberController extends Controller
           //     redirect(U(C('AFTER_LOGIN_JUMP_URL')));
             }
 
-            $this->checkRegisterType();
-            $aType = I('get.type', '', 'op_t');
+            $this->checkRegisterType(); //检查注册配置
+            $aType = I('get.type', '', 'op_t'); //手机注册无疑
             $regSwitch = modC('REG_SWITCH', '', 'USERCONFIG');
             $regSwitch = explode(',', $regSwitch);
             $this->assign('regSwitch', $regSwitch);
