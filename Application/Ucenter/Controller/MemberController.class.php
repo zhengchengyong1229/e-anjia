@@ -16,14 +16,12 @@ require_once APP_PATH . 'User/Conf/config.php';
  */
 class MemberController extends Controller
 {
-
     /**
      * register  注册页面
      * @author:xjw129xjt(肖骏涛) xjt@ourstu.com
      */
     public function register()
     {
-
         //获取参数
         $aUsername = $username = I('post.username', '', 'op_t');
         $aNickname = I('post.nickname', '', 'op_t');
@@ -33,14 +31,11 @@ class MemberController extends Controller
         $aRegType = I('post.reg_type', '', 'op_t');
         $aStep = I('get.step', 'start', 'op_t');
         $aRole = I('post.role', 0, 'intval');
-
         $aTuijian = I('post.tuijian',0,'intval');
-
 
         if (!modC('REG_SWITCH', '', 'USERCONFIG')) {
             $this->error('注册已关闭');
         }
-
 
         if (IS_POST) { //注册用户
             $return = check_action_limit('reg', 'ucenter_member', 1, 1, true);
@@ -92,23 +87,19 @@ class MemberController extends Controller
                 ///////////////////
                 //  初始化说说   //
                 ///////////////////
-                  
-
                 $this->initialShuo($uid);
-
-
-                $this->initInviteUser($uid, $aCode, $aRole);
+                $this->initInviteUser($uid, $aCode, $aRole);//邀请用户?
                 $this->initRoleUser($aRole, $uid); //初始化角色用户
+
+                //通常用不上?
                 if (modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 1 && $aUnType == 2) {
                     set_user_status($uid, 3);
                     $verify = D('Verify')->addVerify($email, 'email', $uid);
                     $res = $this->sendActivateEmail($email, $verify, $uid); //发送激活邮件
                     // $this->success('注册成功，请登录邮箱进行激活');
                 }
-
                 $uid = UCenterMember()->login($username, $aPassword, $aUnType); //通过账号密码取到uid
-                D('Member')->login($uid, false, $aRole); //登陆
-
+                D('Member')->login($uid, false, $aRole);                        //实际登陆
                 //$this->success('注册成功', U('Ucenter/member/step', array('step' => get_next_step('start'))));
             } else { //注册失败，显示错误信息
                 $this->error($this->showRegError($uid));
@@ -979,6 +970,7 @@ class MemberController extends Controller
         }
         return false;
     }
+
 
     private function initInviteUser($uid = 0, $code = '', $role = 0)
     {

@@ -88,15 +88,14 @@ class HomeController extends AdminController
                   //在申请表中标记通过时间,状态
                   $res = D('apply')->where(array('id'=>$id))->save(array('status'=>1,'uptime'=>NOW_TIME));
                   if($res){
-                      $res = D('broker')->add(array('uid'=>$uid,'identity'=>$identity,'property'=>$fid,'createtime'=>NOW_TIME,'status'=>1));
-                      //同时修改说说中身份标记
-                      D('shuo')->where(array('uid'=>$uid))->save(array('identity'=>$identity,'property'=>$fid));
+                      $res = D('broker')->addIdentity($uid,$identity);
 
                       if($res){
                           $this->success('认证成功');
                       }else{
                           $this->error('认证失败');
                       }
+
                   }else{
                       $this->error('审核失败');
                   }
