@@ -1,0 +1,106 @@
+<style>
+  #broker_filter span{
+    display: inline-block;
+  }
+</style>
+<div class="row" id="broker_filter">
+  <div class="col-md-1">
+    <select id="" name="time_filter" class="form-control">
+      <option <if condition="I('get.time_filter') eq 0">selected</if> value="0">不限</option>
+      <option <if condition="I('get.time_filter') eq 1">selected</if> value="1">今天</option>
+      <option <if condition="I('get.time_filter') eq 2">selected</if> value="2">昨天</option>
+      <option <if condition="I('get.time_filter') eq 3">selected</if> value="3">范围</option>
+    </select>
+  </div> 
+  <div class="col-md-2 start_time">
+    <input type="text" class="form-control form-date" name="start_time" placeholder="开始日期" value="{:I('get.start_time')}" readonly />  
+  </div>
+  <div class="col-md-2 end_time">
+    <input type="text" class="form-control form-date" name="end_time"   placeholder="结束日期" value="{:I('get.end_time')}" readonly />  
+  </div>
+  <div class="col-md-1">
+    <select id="" name="broker_filter" class="form-control">
+      <volist name=":S('adviser_list')" id="item">
+      <option value="{$key}">{$item}</option>
+      </volist>
+    </select>
+  </div>
+  <div class="col-md-1">
+    <select id="" name="status_filter" class="form-control">
+      <option <if condition="I('get.status_filter') eq 3">selected</if> value="3">不限</option>
+      <option <if condition="I('get.status_filter') eq 0">selected</if> value="0">推荐</option>
+      <option <if condition="I('get.status_filter') eq 1">selected</if> value="1">跟进</option>
+      <option <if condition="I('get.status_filter') eq 2">selected</if> value="2">成交</option>
+      <option <if condition="I('get.status_filter') eq -1">selected</if> value="-1">放弃</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <button id="broker_fileter_triger" class="btn btn-default">搜索</button>
+  </span>
+</div>
+<script>
+  $(function(){
+    //ajax传输数据
+    $('#broker_fileter_triger').click(function(){
+           //获得参数
+           var time_filter = $('select[name="time_filter"]').val();
+           var start_time  = $('input[name="start_time"]').val();
+           var end_time    = $('input[name="end_time"]').val();
+           var broker_filter = $('select[name="broker_filter"]').val();
+           var status_filter = $('select[name="status_filter"]').val();
+           var data = [
+              'time_filter',time_filter,
+              'start_time',start_time,
+              'end_time'   ,end_time,
+              'broker_filter',broker_filter,
+              'status_filter',status_filter
+           ];
+           var url = U('admin/home/clientlist',data,false);
+           location.href = url;
+    })
+
+    //ajax传输数据
+    //用php写入参数
+    //默认隐藏？no 无条件的话,通过query参数确定是否显示时间标签,同时控制两个
+    //参数1 date_type ,控制第一个select显示内容,所有操作在模版中实现,如果为三则显示date_str,默认今天
+    //参数2 date_str  将url中的数据展示进去,    默认今天 
+    //参数3 员工      默认                      默认
+    //仅选择日期
+
+    //初始化状态
+    if($('select[name="time_filter"]').val() != 3){
+          $('.start_time').hide();
+          $('.end_time').hide();
+    }
+
+    //$time_type = $('input[name="time_filter"]').val();状态监听
+    $('select[name="time_filter"]').on('change',function(e){
+        $this = $(e.target);
+        if($this.val() == 3){
+          //显示
+          $('.start_time').show();
+          $('.end_time').show();
+        }else{
+          //隐藏
+          $('.start_time').hide();
+          $('.end_time').hide();
+        }
+    })
+
+		$(".form-date").datetimepicker({
+		    language:   "zh-CN",
+		    weekStart:  1,
+		    todayBtn:   1,
+		    autoclose:  1,
+		    todayHighlight:1,
+		    startView:  2,
+		    minView:2,
+		    forceParse:0,
+		    format:"yyyy-mm-dd"
+		});
+   //时间操作
+   })
+
+</script>
+<script src="__ZUI__/lib/datetimepicker/datetimepicker.min.js"></script>
+<link rel="stylesheet" href="__ZUI__/lib/datetimepicker/datetimepicker.min.css">

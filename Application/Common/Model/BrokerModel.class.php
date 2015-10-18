@@ -21,7 +21,7 @@ class BrokerModel extends Model
 
     public function addPid($uid,$yaoqingma){
 
-        $p_broker_id =  $this->getBrokerIdByYaoqingma();
+        $p_broker_id =  $this->getBrokerIdByYaoqingma($yaoqingma);
 
         if(!$p_broker_id){
             //表示获取失败，提示错误,what the fuck
@@ -85,10 +85,29 @@ class BrokerModel extends Model
             $broker_id =  D('ucenter_member')->alias('a')->where(array('mobile'=>$yaoqingma))
                           ->join('__BROKER__ b on a.id = b.uid','left')
                           ->getField('b.id');
-    
+
             return $broker_id;
     }
 
+    //检查邀请码    
+    public function checkYaoqingma($mobile){
+        $res  =    D('ucenter_member')->alias('a')->where(array('mobile'=>$mobile))
+                                      ->join('__BROKER__ b on a.id = b.uid')
+                                      ->getField('b.id');
 
+        return $res;
+    } 
 
+    //获得员工列表并缓存
+    /*  
+     *  1 表示员工
+     *
+     */
+    public function getAdviserList(){
+        $list =  $this->where(array('identity'=>1))->field('a.uid,nickname')->alias('a')
+                      ->join('__MEMBER__ b on a.uid = b.uid','left')
+                      ->getField('a.uid,nickname');
+        S('adviser_list',$list);
+        return $list;
+    } 
 }

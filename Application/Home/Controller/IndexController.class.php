@@ -314,13 +314,10 @@ class IndexController extends BaseController
      */
     public function index($page = 0, $cbd = 0, $area = 0,$shi = 0,$price = 0,$type = 0){
 
-
         $d_broker = D('broker');
-        $res = D('broker')->addBroker(0,0,18660352919);
-        dump(D('broker')->_sql());
 
-        exit;
-
+        //$res = D('broker')->addBroker(0,0,18660352919);
+        //exit;
         /*
         $src = getThumbImageById(25,50,50);
         dump($src);
@@ -550,8 +547,7 @@ class IndexController extends BaseController
          $re = $r?'成功':'失败';
          echo $i.$re.'<br/>';
        }
-
-
     }
     */
+    
 } 

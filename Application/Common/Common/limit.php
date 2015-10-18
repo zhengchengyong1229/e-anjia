@@ -107,7 +107,7 @@ class ActionLimit
     function warning($item,$val){
         $this->state = false;
         $this->info = '操作频繁，请'.$val['time_number'].get_time_unit($val['time_unit']).'后再试';
-        $this->url = U('home/index/index');
+        //$this->url = U('home/index/index');
     }
 }
 

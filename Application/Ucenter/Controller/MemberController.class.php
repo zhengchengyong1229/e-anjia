@@ -32,6 +32,7 @@ class MemberController extends Controller
         $aStep = I('get.step', 'start', 'op_t');
         $aRole = I('post.role', 0, 'intval');
         $aTuijian = I('post.tuijian',0,'intval');
+        $aYaoqingma = I('post.yaoqingma',0,'intval');
 
         if (!modC('REG_SWITCH', '', 'USERCONFIG')) {
             $this->error('注册已关闭');
@@ -50,6 +51,14 @@ class MemberController extends Controller
             }
             if (!$aRole) {
                 $this->error('请选择角色。');
+            }
+
+            /*  检测邀请码 */
+            if($aYaoqingma){
+                  $res  =    D('broker')->checkYaoqingma($aYaoqingma);
+                  if(!$res){
+                      $this->error('sorry,邀请码不正确');
+                  }
             }
 
             //检测短信
@@ -98,8 +107,17 @@ class MemberController extends Controller
                     $res = $this->sendActivateEmail($email, $verify, $uid); //发送激活邮件
                     // $this->success('注册成功，请登录邮箱进行激活');
                 }
+
+
                 $uid = UCenterMember()->login($username, $aPassword, $aUnType); //通过账号密码取到uid
+
+               //判断邀请码 
+                if($aYaoqingma){
+                    $res = D('broker')->addPid($uid,$aYaoqingma);
+                }
+
                 D('Member')->login($uid, false, $aRole);                        //实际登陆
+
                 //$this->success('注册成功', U('Ucenter/member/step', array('step' => get_next_step('start'))));
             } else { //注册失败，显示错误信息
                 $this->error($this->showRegError($uid));
@@ -116,6 +134,22 @@ class MemberController extends Controller
             $this->assign('regSwitch', $regSwitch);
             $this->assign('step', $aStep);
             $this->assign('type', $aType == '' ? 'username' : $aType);
+            $this->display();
+        }
+    }
+
+    //添加邀请码，注册上级
+    public function addYaoQing(){
+        if(IS_POST){
+            $yaoqingma = I('post.yaoqingma',0,'intval');
+            
+            $res =   D('broker')->addPid(is_login(),$yaoqingma);
+            if($res){
+                $this->success('配置成功');
+            }else{
+                $this->error('配置失败');
+            }
+        }else{
             $this->display();
         }
     }

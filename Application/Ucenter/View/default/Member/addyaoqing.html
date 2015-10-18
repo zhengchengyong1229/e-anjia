@@ -1,0 +1,19 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/zheng.css">
+   <div class="am-container">
+        <section>
+          <form class="ajax-form am-form am-u-md-5 am-u-md-centered" action="{:U('Ucenter/member/addYaoQing')}"  method='post'>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="">邀请码</label>
+                <input type="text" name='yaoqingma' placeholder="请输入手机号码">
+              </div>
+              <div class="am-form-group">
+                <input type="submit" class="am-btn am-btn-primary am-btn-block" style="background-color:#c40d23;border-color:#c40d23;" value="提交">
+              </div>
+            </fieldset>
+          </form>
+        </section>
+  </div>
+</block>

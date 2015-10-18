@@ -26,7 +26,7 @@
         }
 </style>
    <div class="am-container">
-<section>
+   <section>
           <form class="ajax-form am-form am-u-md-5 am-u-md-centered" action="{:U('Ucenter/member/register')}"  method='post'>
             <fieldset>
               <div class="am-form-group">
@@ -46,10 +46,14 @@
                 <input type="password" name='password' placeholder="再次请输入密码">
               </div>
 
-              <div class="am-form-group">
-                <label for="">推荐码</label>
-                <input type="text" name='tuijian' placeholder="再输入推荐者手机号">
-              </div>
+              <if condition="I('get.tel')">
+              <input type="hidden" name='yaoqingma' value="{:I('get.tel')}">
+              <else/>
+                <div class="am-form-group">
+                  <label for="">推荐码</label>
+                  <input type="text" name='yaoqingma' placeholder="再输入推荐者手机号">
+                </div>
+              </if>
 
               <div class="am-form-group">
                 <label for="">验证手机</label>
@@ -113,7 +117,6 @@
                        }
                    })
                  })
-
                })
         </script>
   </div>
