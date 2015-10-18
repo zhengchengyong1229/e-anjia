@@ -31,7 +31,7 @@ class MemberController extends Controller
         $aRegType = I('post.reg_type', '', 'op_t');
         $aStep = I('get.step', 'start', 'op_t');
         $aRole = I('post.role', 0, 'intval');
-        $aTuijian = I('post.tuijian',0,'intval');
+        //$aTuijian = I('post.tuijian',0,'intval');
         $aYaoqingma = I('post.yaoqingma',0,'intval');
 
         if (!modC('REG_SWITCH', '', 'USERCONFIG')) {

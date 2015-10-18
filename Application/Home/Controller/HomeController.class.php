@@ -135,13 +135,10 @@ class HomeController extends AdminController
          $identity = I('get.identity',0,'intval');
          switch($identity){
              case 1:
-                $title = "认证经纪人列表";
-                break;
-             case 2:
-                $title = "认证中介列表";
+                $title = "员工列表";
                 break;
              case 3:
-                $title = "认证楼盘列表";
+                $title = "兼职经纪人";
                 break;
          }
 
