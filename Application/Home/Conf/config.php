@@ -220,4 +220,10 @@ return array(
         3=>'<span class="am-badge am-badge-warning am-radius">写字楼</span>'
     ),
 
+    'CLIENT_STATE_TABLE' =>array(
+       -1=> '删除', //删除
+       0 => '推荐',//推荐
+       1 => '跟进', 
+       2 => '成交',
+    ),
 );

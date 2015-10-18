@@ -1,0 +1,27 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+<div class="am-container">
+   <h2>我推荐的客户</h2>
+     <table class="am-table">
+       <thead>
+         <tr>
+           <th>客户名</th>
+           <th>电话</th>
+           <th>状态</th>
+         </tr>
+       </thead>
+       <tbody>
+         <volist name="list" id="item">
+         <tr>
+           <td><a href="{:U('clientDetail',array('id'=>$item['id']))}">{$item.client_name}</a></td>
+           <td>
+             <a href="tel:{$item.client_tel}"> {$item.client_tel}</a>
+           </td>
+           <td>{$item.client_status}</td>
+         </tr>
+         </volist>
+       </tbody>
+     </table>   
+</div>
+</block>

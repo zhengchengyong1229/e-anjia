@@ -1,0 +1,30 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+<!-- 主体展示 -->
+<div class="am-container">
+       <form class="ajax-form am-form am-u-md-5 am-u-md-centered" action="{:U('Home/Client/tuijian')}"  method='post'>
+            <fieldset>
+              <div class="am-form-group">
+                <label for="">客户姓名：</label>
+                <input type="text" name='client_name' placeholder="请输入客户姓名">
+              </div>
+
+              <div class="am-form-group">
+                <label for="">客户电话：</label>
+                <input type="text" name='client_tel' placeholder="请输入电话">
+              </div>
+
+              <div class="am-form-group">
+                <label for="">需求描述</label>
+                <textarea id="" name="client_des" cols="30" rows="10"> </textarea>
+              </div>
+
+              <div class="am-form-group">
+                <input type="submit" class="am-btn am-btn-success am-btn-block" style="background-color:#c40d23;border-color:#c40d23;" value="提交">
+              </div>
+            </fieldset>
+       </form>
+</div>
+<!-- 主体展示 end -->
+</block>

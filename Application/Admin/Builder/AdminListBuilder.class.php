@@ -16,6 +16,10 @@ class AdminListBuilder extends AdminBuilder
     private $_selectPostUrl;
     private $_setClearUrl;
 
+
+    //是否显示经纪人筛选
+    private $_ifBrokerFilter;
+
     private $_search = array();
     private $_select = array();
 
@@ -288,6 +292,22 @@ class AdminListBuilder extends AdminBuilder
     public function keyText($name, $title)
     {
         return $this->key($name, text($title), 'text');
+    }
+
+    /*
+     * 是否显示经纪人筛选
+     *
+     *
+     */
+
+    public function keyBrokerFilter($bool = 0){
+        if($bool){
+            $this->_ifBrokerFilter = 1;
+        }else{
+            $this->_ifBrokerFilter = 0;
+        }
+
+        return $this;
     }
 
     /**显示html
@@ -605,7 +625,7 @@ class AdminListBuilder extends AdminBuilder
                 if(!$key['opt']['url']){
                     return $val;
                 } else {
-                    $urld = U($key['opt']['url'],array($key['opt']['return']=>$value));
+                $urld = U($key['opt']['url'],array($key['opt']['return']=>$value));
                     return "<a href=\"$urld\">$val</a>";
                 }
             }
@@ -662,6 +682,10 @@ class AdminListBuilder extends AdminBuilder
         /*加入搜索 陈一枭*/
         $this->assign('searches', $this->_search);
         $this->assign('searchPostUrl', $this->_searchPostUrl);
+
+
+        /*加入经纪人筛选*/
+        $this->assign('broker_filter',$this->_ifBrokerFilter);
 
         /*加入筛选select 郑钟良*/
         $this->assign('selects', $this->_select);

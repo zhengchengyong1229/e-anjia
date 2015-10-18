@@ -43,23 +43,11 @@
             <div id="identity" class="form-item">
                 <label class="item-label">选择身份</label>
                 <div class="controls">
-                    <label class="radio-inline"><input type="radio" name="identity" value="1">经纪人</label>
-                    <label class="radio-inline"><input type="radio" name="identity" value="2">中介</label>
-                    <label class="radio-inline"><input type="radio" name="identity" value="3">楼盘</label>
+                    <label class="radio-inline"><input type="radio" name="identity" value="0">客户</label>
+                    <label class="radio-inline"><input type="radio" name="identity" value="1">员工</label>
+                    <label class="radio-inline"><input type="radio" name="identity" value="3">兼职经纪人</label>
                 </div>
             </div>
-            <div id="cbd" class="form-item">
-                <label class="item-label">选择楼盘</label>
-                    <div class="controls">
-                    <style type="text/css">
-                      .form-control {
-                        display:inline-block;
-                        width: 140px;
-                      }
-                    </style>
-                    {:hook('J_CBD')}
-                    </div>
-              </div>
           </div>
 
           <div class="form-item with-padding">
@@ -69,27 +57,4 @@
             <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
         </div>
     </form>
-    <script>
-      $(function(){
-        $('#identity').hide();
-        $('#cbd').hide();
-
-        $('#status input[value=1]').click(function(){
-          $('#identity').show();
-        })
-
-        $('#identity input[value=3]').click(function(){
-          $('#cbd').show();
-        })
-
-        $('#identity input[value=1],input[value=2]').click(function(){
-          $('#cbd').hide();
-        })
-
-        $('#status input[value=0]').click(function(){
-          $('#identity').hide();
-          $('#cbd').hide();
-        })
-      })
-    </script>
 </block>

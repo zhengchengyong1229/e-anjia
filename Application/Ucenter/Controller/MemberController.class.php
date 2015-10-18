@@ -16,14 +16,12 @@ require_once APP_PATH . 'User/Conf/config.php';
  */
 class MemberController extends Controller
 {
-
     /**
      * register  注册页面
      * @author:xjw129xjt(肖骏涛) xjt@ourstu.com
      */
     public function register()
     {
-
         //获取参数
         $aUsername = $username = I('post.username', '', 'op_t');
         $aNickname = I('post.nickname', '', 'op_t');
@@ -33,12 +31,12 @@ class MemberController extends Controller
         $aRegType = I('post.reg_type', '', 'op_t');
         $aStep = I('get.step', 'start', 'op_t');
         $aRole = I('post.role', 0, 'intval');
-
+        $aTuijian = I('post.tuijian',0,'intval');
+        $aYaoqingma = I('post.yaoqingma',0,'intval');
 
         if (!modC('REG_SWITCH', '', 'USERCONFIG')) {
             $this->error('注册已关闭');
         }
-
 
         if (IS_POST) { //注册用户
             $return = check_action_limit('reg', 'ucenter_member', 1, 1, true);
@@ -55,6 +53,15 @@ class MemberController extends Controller
                 $this->error('请选择角色。');
             }
 
+            /*  检测邀请码 */
+            if($aYaoqingma){
+                  $res  =    D('broker')->checkYaoqingma($aYaoqingma);
+                  if(!$res){
+                      $this->error('sorry,邀请码不正确');
+                  }
+            }
+
+            //检测短信
             if (($aRegType == 'mobile' && modC('MOBILE_VERIFY_TYPE', 0, 'USERCONFIG') == 1) || (modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 2 && $aRegType == 'email')) {
                 if (!D('Verify')->checkVerify($aUsername, $aRegType, $aRegVerify, 0)) {
                     $str = $aRegType == 'mobile' ? '手机' : '邮箱';
@@ -89,13 +96,11 @@ class MemberController extends Controller
                 ///////////////////
                 //  初始化说说   //
                 ///////////////////
-                  
-
                 $this->initialShuo($uid);
-
-
-                $this->initInviteUser($uid, $aCode, $aRole);
+                $this->initInviteUser($uid, $aCode, $aRole);//邀请用户?
                 $this->initRoleUser($aRole, $uid); //初始化角色用户
+
+                //通常用不上?
                 if (modC('EMAIL_VERIFY_TYPE', 0, 'USERCONFIG') == 1 && $aUnType == 2) {
                     set_user_status($uid, 3);
                     $verify = D('Verify')->addVerify($email, 'email', $uid);
@@ -103,14 +108,22 @@ class MemberController extends Controller
                     // $this->success('注册成功，请登录邮箱进行激活');
                 }
 
+
                 $uid = UCenterMember()->login($username, $aPassword, $aUnType); //通过账号密码取到uid
-                D('Member')->login($uid, false, $aRole); //登陆
+
+               //判断邀请码 
+                if($aYaoqingma){
+                    $res = D('broker')->addPid($uid,$aYaoqingma);
+                }
+
+                D('Member')->login($uid, false, $aRole);                        //实际登陆
 
                 //$this->success('注册成功', U('Ucenter/member/step', array('step' => get_next_step('start'))));
             } else { //注册失败，显示错误信息
                 $this->error($this->showRegError($uid));
             }
         } else { //显示注册表单
+            //已经把这部分代码迁移到mobregister中
             if (is_login()) {
                 redirect(U(C('AFTER_LOGIN_JUMP_URL')));
             }
@@ -125,6 +138,22 @@ class MemberController extends Controller
         }
     }
 
+    //添加邀请码，注册上级
+    public function addYaoQing(){
+        if(IS_POST){
+            $yaoqingma = I('post.yaoqingma',0,'intval');
+            
+            $res =   D('broker')->addPid(is_login(),$yaoqingma);
+            if($res){
+                $this->success('配置成功');
+            }else{
+                $this->error('配置失败');
+            }
+        }else{
+            $this->display();
+        }
+    }
+
     public function mobregister(){
           
  
@@ -132,8 +161,8 @@ class MemberController extends Controller
           //     redirect(U(C('AFTER_LOGIN_JUMP_URL')));
             }
 
-            $this->checkRegisterType();
-            $aType = I('get.type', '', 'op_t');
+            $this->checkRegisterType(); //检查注册配置
+            $aType = I('get.type', '', 'op_t'); //手机注册无疑
             $regSwitch = modC('REG_SWITCH', '', 'USERCONFIG');
             $regSwitch = explode(',', $regSwitch);
             $this->assign('regSwitch', $regSwitch);
@@ -975,6 +1004,7 @@ class MemberController extends Controller
         }
         return false;
     }
+
 
     private function initInviteUser($uid = 0, $code = '', $role = 0)
     {

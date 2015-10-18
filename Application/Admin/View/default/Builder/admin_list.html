@@ -86,7 +86,9 @@
                 <{$button.tag} {$button.attr}>{$button.title|htmlspecialchars}</{$button.tag}>&nbsp;
             </volist>
 
-
+            <eq name="broker_filter" value="1">
+               <include file="Builder/_brokerfilter" />
+            </eq>
 
             <php>
                 foreach($selects as $select){

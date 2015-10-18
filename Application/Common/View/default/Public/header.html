@@ -97,7 +97,8 @@
 </form>
 
 
-    <!-- <form class="am-fr am-topbar-form am-topbar-left am-form-inline"  method="post" role="search"  action="{:U(search)}" style="width:50%;height:50px;margin-right:50px">
+<!-- 
+<form class="am-fr am-topbar-form am-topbar-left am-form-inline"  method="post" role="search"  action="{:U(search)}" style="width:50%;height:50px;margin-right:50px">
       <div class="am-form-group am-form-feedback am-form-icon" style="margin-top:10px"><input type="text" name="keywords" class="am-form-field am-input-sm  am-round" placeholder="搜索房源">
         <span class="am-icon-search" style="padding-right:10px"></span>
       </div>
@@ -130,35 +131,107 @@
       <div class="am-text-center" id="signin" style="display: none; height: 44px; line-height: 44px;">
         <a style="text-indent: 0px;" href="{:U('Ucenter/member/moblogin')}">
           <i class=""></i>
-          OA登录
+          登录
+        </a>
+      </div>
+      <div class="am-text-center" id="register" style="display: none; height: 44px; line-height: 44px;">
+        <a style="text-indent: 0px;" href="{:U('Ucenter/member/mobregister',array('tel'=>I('get.tel')))}">
+          <i class=""></i>
+         注册 
         </a>
       </div>
       <ul class="am-menu-nav am-avg-sm-1 am-text-center">
-     <if condition="(is_login() gt 0) AND ($user_info.identity == 2)">
-        <li>
-          <a style="text-indent: 0px;" class="need_login" href="{:U('Home/object/edit')}">
-            <i class=""></i>
-            添加房源                          
-          </a>
-        </li>
+
+               <if condition="$user_info['identity'] neq null">
+                        <li>
+                          <a style="text-indent: 0px;" class="need_login" href="">
+                            <i class=""></i>
+                            <switch name="user_info.identity">
+                              <case value="0">
+                                   身份:客户
+                              </case>
+                              <case value="1">
+                                   身份:员工
+                              </case>
+                              <case value="3">
+                                   身份:经纪人
+                              </case>
+                            </switch>
+                          </a>
+                        </li>
+               </if>
+
+               <if condition="$user_info['pid']">
+                      <li>
+                        <a style="text-indent: 0px;" class="need_login" href="">
+                          <i class=""></i>
+                          邀请人:{$user_info['pid_name']|msubstr=###,-2,2,'UTF-8',false}
+                        </a>
+                      </li>
+               <elseif condition="is_login() AND ($user_info['identity'] neq 1)"/>
+                        <li>
+                          <a style="text-indent: 0px;" class="need_login" href="{:U('Ucenter/member/addYaoQing')}">
+                            <i class=""></i>
+                            填邀请码                          
+                          </a>
+                        </li>
+               </if>
+
+               <if condition="is_login() AND (!$user_info['identity'])">
+                        <li>
+                          <a style="text-indent: 0px;" class="need_login" href="{:U('Ucenter/config/apply')}">
+                            <i class=""></i>
+                            身份认证                          
+                          </a>
+                        </li>
+               </if>
+
+               <if condition="$user_info['identity'] eq 1">
+                        <li>
+                          <a style="text-indent: 0px;" class="need_login" href="{:U('Home/client/manageclient')}">
+                            <i class=""></i>
+                             管理客户                          
+                          </a>
+                        </li>
+               </if>
+               
+               <if condition="$user_info['identity'] eq 2">
+                    <li>
+                      <a style="text-indent: 0px;" class="need_login" href="{:U('Home/object/edit')}">
+                        <i class=""></i>
+                        添加房源                          
+                      </a>
+                    </li>
         
-        <li>
-        <a style="text-indent: 0px;" class="need_login" href="{:U('Home/object/index',array('uid'=>is_login()))}">
-            <i class=""></i>
-            删改房源                          
-          </a>
-        </li>
-     </if>
+                    <li>
+                      <a style="text-indent: 0px;" class="need_login" href="{:U('Home/object/index',array('uid'=>is_login()))}">
+                        <i class=""></i>
+                        删改房源                          
+                      </a>
+                    </li>
+                <elseif condition="is_login()  && ($user_info['identity'] neq 1)" />
+                    <li>
+                      <a style="text-indent: 0px;" href="{:U('Home/Client/tuijian',array('uid'=>is_login()))}">
+                        <i class=""></i>
+                          推荐客户                           
+                      </a>
+                    </li>
+                    <li>
+                      <a style="text-indent: 0px;" class="need_login" href="{:U('Home/Client/myTuijian',array('uid'=>is_login()))}">
+                        <i class=""></i>
+                          已推荐                           
+                      </a>
+                    </li>
+               </if>
 
-     <if condition="is_login() gt 0">
-        <li>
-          <a style="text-indent: 0px;" class="need_login" href="{:U('Ucenter/member/mobchangepass')}">
-            <i class=""></i>
-            修改密码                          
-          </a>
-        </li>
-     </if>
-
+               <if condition="is_login() gt 0">
+                  <li>
+                    <a style="text-indent: 0px;" class="need_login" href="{:U('Ucenter/member/mobchangepass')}">
+                      <i class=""></i>
+                      修改密码                          
+                    </a>
+                  </li>
+               </if>
       </ul>
       <div class="am-text-center" id="signout" style="padding: 5px 0px;">
         <a>
@@ -178,13 +251,13 @@
     if (uid > 0) {
       $('#user').show()
       $('#signin').hide()
-//      $('#register').hide()
+      $('#register').hide()
       $('#signout').show()
       } else {
       $('#user').hide()
       $('#signin').show()
       $('#signout').hide()
-//    $('#register').show();
+      $('#register').show();
 
 
       $('.need_login').addClass('ajax-post');

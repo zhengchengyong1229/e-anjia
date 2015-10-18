@@ -1,0 +1,47 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+<!-- 主体展示 -->
+<style>
+    ul{
+      padding-left: 1.5rem;
+    }
+    ul li {
+      list-style:none;
+      font-size:1.8rem;
+    }
+</style>
+<div class="am-container">
+  <div>
+    <h2 class="am-margin-bottom-xs">{$data.client_name}({$data.client_status})</h2>
+     <ul>
+       <li>
+          <span class="am-icon-phone"></span>
+          <span>客户电话:</span>
+          <span><a href="tel:{$data.client_tel}">{$data.client_tel}</a></span>
+       </li>
+       <li>
+          <span class="am-icon-user"></span>
+          <span>顾问姓名:</span>
+          <span>{$data.adviser_name}</span>
+       </li>
+       <li>
+          <span class="am-icon-phone"></span>
+          <span>顾问电话:</span>
+          <span><a href="tel:{$data.adviser_tel}">{$data.adviser_tel}</a></span>
+       </li>
+       <li>
+          <span class="am-icon-clock-o"></span>
+          <span>更新时间:</span>
+          <span>{$data.uptime|friendlydate}</span>
+       </li>
+       <li>
+          <p class="am-margin am-margin-left-0">
+          &nbsp;&nbsp;&nbsp;&nbsp;{$data.client_des}
+          </p>
+       </li>
+     </ul>
+  </div>  
+</div>
+<!-- 主体展示 end -->
+</block>

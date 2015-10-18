@@ -1,0 +1,99 @@
+<extend name="Base/common"/>
+<block name="hero">
+<link rel="stylesheet" href="__CSS__/home.css">
+<!-- 主体展示 -->
+<div class="am-container">
+  <h2>管理客户</h2>
+  <table class="am-table">
+    <thead>
+      <tr>
+        <th>客户</th>
+        <th>电话</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <volist name="list" id="item">
+        <tr>
+          <td>
+          <a href="{:U('clientDetailForManager',array('id'=>$item['id']))}">
+            {$item.client_name}<span class="am-text-danger client-status">( {:C('CLIENT_STATE_TABLE.'.strval($item['status']))} )</span>
+          </a>
+          </td>
+          <td>{$item.client_tel}</td>
+          <td >
+            <button data-id={$item.id} data-status="{$item.status}" class="action-triger am-btn am-btn-danger am-btn-xs">
+            <i class="am-icon-edit"></i>
+             操作
+            </button>   
+          </td>
+        </tr>
+      </volist>
+    </tbody>
+
+  </table>   
+</div>
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="action-modal">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">操作
+      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+    </div>
+    <div class="am-modal-bd">
+      <div class="next-step am-btn am-btn-primary">下一步</div>
+      <div class="give-up am-btn am-btn-danger">放弃</div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function() {
+    var $modal = $('#action-modal'),html;
+    $('.action-triger').on('click', function(e) {
+        var status={
+          0:'推荐',
+          1:'跟进',
+          2:'成交',
+        };
+
+        $that = $(this);
+        $target = $(e.target);
+        html = status[$target.data('status')+1];
+        if(!html){
+          return false;
+        }
+        if($target.data('status')==2){
+          return false;
+        }
+        $('.next-step').html(html).off().click(function(){
+          id = $target.data('id');
+          $.get(U('Home/Client/manageNext'),{id:id},function(data){
+              if(data.status){
+
+                  //改变列表中的数据
+                  $target.parents('tr').find('.client-status').html('( '+html+' )');
+
+                  //改变模态框中的数据
+                  html = '已'+html;
+                  $('.next-step').html(html);
+
+                  //改变数据中的data
+                  $that.data('status',$target.data('status')+1);
+                  $modal.modal('close'); //触发模态框
+              }
+          }) 
+        });
+
+        $('.give-up').click(function(){
+          id = $target.data('id');
+          $.get(U('Home/Client/manageGiveup'),{id:id},function(data){
+            if(data.status == 1){
+              //表示删除成功
+              //自动刷新页面
+              location.reload();
+            }
+          })
+        })
+        $modal.modal(); //触发模态框
+    });
+  });
+</script>
+</block>

@@ -88,15 +88,14 @@ class HomeController extends AdminController
                   //在申请表中标记通过时间,状态
                   $res = D('apply')->where(array('id'=>$id))->save(array('status'=>1,'uptime'=>NOW_TIME));
                   if($res){
-                      $res = D('broker')->add(array('uid'=>$uid,'identity'=>$identity,'property'=>$fid,'createtime'=>NOW_TIME,'status'=>1));
-                      //同时修改说说中身份标记
-                      D('shuo')->where(array('uid'=>$uid))->save(array('identity'=>$identity,'property'=>$fid));
+                      $res = D('broker')->addIdentity($uid,$identity);
 
                       if($res){
                           $this->success('认证成功');
                       }else{
                           $this->error('认证失败');
                       }
+
                   }else{
                       $this->error('审核失败');
                   }
@@ -436,6 +435,107 @@ class HomeController extends AdminController
                          ->keyCheckBox('type','类型','',array(0=>'住宅',1=>'公寓',2=>'商铺',3=>'写字楼'))
                          ->data($data)
                          ->buttonSubmit(U('propertyEdit'))->buttonBack()->display();
+        }
+
+    }
+
+    //后台分配顾问
+    /*
+     *  
+     *
+     */
+
+    //客户列表
+    //客户名，客户电话，客户描述，推荐人，推荐人电话，推荐时间，客户状态,重新分配顾问,（自页面编辑）
+    public function clientList(){
+
+        $time_filter = I('get.time_filter',0,'intval');    //时间类型，今天，昨天，范围 1,2,3
+        $start_time  = strtotime(I('get.start_time',0,'strval'));     //开始时间
+        $end_time    = strtotime(I('get.end_time',0,'strval'));       //结束时间
+        $broker_filter = I('get.broker_filter',0,'intval');//员工
+        $status_filter = I('get.status_filter',0,'intval');//状态
+
+        //字段uptime
+            if($time_filter == 3){
+                //表范围
+                $map['a.uptime'] = array('between',array($start_time,$end_time));
+
+            }else if($time_filter == 1){
+                //表今天
+                $lingcheng =  strtotime('today');
+                $map['a.uptime'] = array('between',array($lingcheng,NOW_TIME));
+            }else if($time_filter == 2){
+
+                //表昨天
+                $lingcheng =  strtotime('today');
+                $zuolingcheng =  $lingcheng-24*60*60;
+                $map['a.uptime'] = array('between',array($zuolingcheng,$lingcheng));
+            }
+        //字段adviser_id
+        if($broker_filter){
+            $map['a.adviser_id'] = $broker_filter;
+        }
+
+        //字段status
+        if($status_filter !=3){
+            $map['a.status'] = $status_filter;
+        }
+
+        $list = D('client')->getAdminList($map);
+        $builder = new AdminListBuilder();
+        $builder->title('客户管理列表');
+        $builder->keyId()
+                ->keyText('client_name','客户名')  //后期改成带描述的类型
+                ->keyText('client_tel','客户电话')
+                ->keyText('tuijian_name','推荐人')
+                ->keyText('tuijian_tel','推荐人电话')
+                ->keyText('adviser_name','顾问')
+                ->keyText('adviser_tel','顾问电话')
+                ->keyText('client_status','客户状态')
+                ->keyBrokerFilter(true)
+                ->keyCreatetime('uptime')
+                ->keyDoActionEdit('Home/assignAdviser?id=###');
+
+        $builder->data($list);
+        $builder->display();
+        
+    }
+
+
+    //手动分配顾问
+    /*
+     *   展示基本信息, 
+     *
+     *
+     *
+     */
+    public function assignAdviser($id){
+        if(IS_POST){
+            $id         =  I('post.id',0,'intval');         //客户表主ID
+            $adviser_id =  I('post.adviser_id',0,'intval'); //顾问ID
+
+            $res = D('client')->assignAdviser($id,$adviser_id);
+            if($res){
+                $this->success('修改成功',U('clientList'));
+            }else{
+                $this->success('修改失败');
+            }
+        }else{
+
+            $data = D('client')->getDetail($id);
+            $adviser_list = S('adviser_list')?S('adviser_list'):D('broker')->getAdviserList();
+
+            $admin_config = new AdminConfigBuilder();
+            $admin_config->title('管理客户')
+                         ->keyReadOnly('client_name', '客户名')
+                         ->keyReadOnly('client_tel', '客户电话')
+                         ->keyReadOnly('tuijian_name', '推荐人')
+                         ->keyReadOnly('tuijian_tel', '推荐人电话')
+                         ->keyReadOnly('client_status', '客户状态')
+                         ->keySelect('adviser_id','顾问','',$adviser_list)
+                         ->keyHidden('id')
+                         ->data($data)
+                         ->buttonSubmit(U('assignAdviser'))->buttonBack()->display();
         }
 
     }
