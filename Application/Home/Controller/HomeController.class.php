@@ -88,7 +88,7 @@ class HomeController extends AdminController
                   //在申请表中标记通过时间,状态
                   $res = D('apply')->where(array('id'=>$id))->save(array('status'=>1,'uptime'=>NOW_TIME));
                   if($res){
-                      $res = D('broker')->addIdentity($uid,$identity);
+                      $res = D('Broker')->addIdentity($uid,$identity);
 
                       if($res){
                           $this->success('认证成功');
@@ -146,7 +146,7 @@ class HomeController extends AdminController
              'a.identity'=>$identity,
          );
 
-         $list = D('broker')->alias('a')->where($map)
+         $list = D('Broker')->alias('a')->where($map)
                             ->field('a.id,a.uid,b.nickname,c.mobile,a.createtime,a.status')
                             ->join('__MEMBER__ b on a.uid = b.uid','left')
                             ->join('__UCENTER_MEMBER__ c on a.uid = c.id','left')
@@ -520,7 +520,7 @@ class HomeController extends AdminController
         }else{
 
             $data = D('client')->getDetail($id);
-            $adviser_list = S('adviser_list')?S('adviser_list'):D('broker')->getAdviserList();
+            $adviser_list = S('adviser_list')?S('adviser_list'):D('Broker')->getAdviserList();
 
             $admin_config = new AdminConfigBuilder();
             $admin_config->title('管理客户')
