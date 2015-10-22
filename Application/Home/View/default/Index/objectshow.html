@@ -9,14 +9,17 @@
             $array_pic = explode(',',$data['pics']);
             krsort($array_pic);
           </php>
-           <li>
-              <img src="{:getThumbImageById($data['huxing'],400,250)}">
-           </li>
-        <volist id="item" name="array_pic">
-          <li data-id="{$item}">
-             <img class="" src="{:getThumbImageById($item,400,250)}" alt="">
-           </li>
-         </volist>
+           <if condition="$data['huxing']">
+             <li>
+                <img style="width:auto;margin:0 auto" src="{:getThumbImageById($data['huxing'],'auto',250)}">
+             </li>
+           </if>
+
+              <volist id="item" name="array_pic">
+                <li data-id="{$item}">
+                   <img style="width:auto;margin:0 auto" class="" src="{:getThumbImageById($item,'auto',250)}" alt="">
+                 </li>
+               </volist>
      </ul>
    </div>
 		<div class="am-container">

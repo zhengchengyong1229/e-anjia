@@ -134,7 +134,7 @@ function getThumbImage($filename, $width = 100, $height = 'auto', $type = 0, $re
             return $info;
         } else {
             if ($height == "auto") $height = $old_image_height * $width / $old_image_width;
-            if ($width == "auto") $width = $old_image_width * $width / $old_image_height;
+            if ($width == "auto") $width = $old_image_width * $height / $old_image_height;
             if (intval($height) == 0 || intval($width) == 0) {
                 return 0;
             }

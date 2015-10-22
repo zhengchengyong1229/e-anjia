@@ -48,7 +48,7 @@ class ClientController extends BaseController
             'tid'=>is_login(),
         );
         $client_state_table = C('CLIENT_STATE_TABLE');
-        $list = D('client')->getlist($map);
+        $list = D('Client')->getlist($map);
 
         foreach($list as $key=>$val){
             $bb = intval($val['status']);
@@ -61,7 +61,7 @@ class ClientController extends BaseController
 
     //获取客户详情
     public function clientDetail($id){
-        $data = D('client')->getDetail($id);
+        $data = D('Client')->getDetail($id);
 
         $this->assign('data',$data);
         $this->display();
@@ -69,7 +69,7 @@ class ClientController extends BaseController
 
     //获取客户详情FOR 员工
     public function clientDetailForManager($id){
-        $data = D('client')->getDetail($id);
+        $data = D('Client')->getDetail($id);
         $this->assign('data',$data);
         $this->display();
     }
@@ -124,7 +124,7 @@ class ClientController extends BaseController
             'status'=>array('gt',-1)
         );
 
-        $list = D('client')->getlist($map);
+        $list = D('Client')->getlist($map);
         $client_state_table = C('CLIENT_STATE_TABLE');
 
         //dump(C("CLIENT_STATE_TABLE.".strval(2)));
@@ -145,7 +145,7 @@ class ClientController extends BaseController
                 'id' =>$id,
             );
 
-            $res =  D('client')->setStatus($map);
+            $res =  D('Client')->setStatus($map);
             if($res){
                 $this->ajaxreturn(array('status'=>1));
             }else{
@@ -163,7 +163,7 @@ class ClientController extends BaseController
                 'uid'=>is_login(),
                 'id' =>$id,
             );
-            $res =  D('client')->giveUp($map);
+            $res =  D('Client')->giveUp($map);
 
             if($res){
                 $this->ajaxreturn(array('status'=>1));
